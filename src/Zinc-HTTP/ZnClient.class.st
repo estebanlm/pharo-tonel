@@ -330,7 +330,7 @@ ZnClient>>contentWriter: object [
 	#category : #'accessing response',
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnClient>>contents  [
+ZnClient>>contents [
 	"Answer the contents or HTTP payload of the last response, 
 	assuming the current request was executed.
 	If I have a contentReader, it will be used to compute the contents.
@@ -1007,7 +1007,7 @@ ZnClient>>isRedirect [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnClient>>isSuccess  [
+ZnClient>>isSuccess [
 	"Return true it the last executed HTTP request returned an HTTP success response code."
 	
 	^ response 
@@ -1563,7 +1563,7 @@ ZnClient>>queryAddAll: keyedCollection [
 	#category : #'accessing request',
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnClient>>queryAt: key add: value  [
+ZnClient>>queryAt: key add: value [
 	"Modify the receiver by adding a query variable key=value.
 	If key already exists, value is added to it."
 
@@ -1674,7 +1674,7 @@ ZnClient>>resetEntity [
 	#category : #'accessing response',
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnClient>>response  [
+ZnClient>>response [
 	"Answer the last response, assuming the current request was executed."
 
 	^ response 

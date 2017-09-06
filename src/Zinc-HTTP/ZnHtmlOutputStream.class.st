@@ -184,7 +184,7 @@ ZnHtmlOutputStream>>html5 [
 	#category : #streaming,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnHtmlOutputStream>>next: count putAll: collection	 [
+ZnHtmlOutputStream>>next: count putAll: collection [
 	self 
 		next: count 
 		putAll: collection 

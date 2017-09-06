@@ -140,6 +140,6 @@ ZnDigestAuthenticator>>isRequestAuthenticated: request [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnDigestAuthenticator>>nonces  [
+ZnDigestAuthenticator>>nonces [
 	^ nonces ifNil: [ nonces := Dictionary new ]
 ]

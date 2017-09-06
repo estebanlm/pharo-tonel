@@ -26,7 +26,7 @@ ZnConstants class>>defaultHTTPVersion [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnConstants class>>defaultServerString  [
+ZnConstants class>>defaultServerString [
 	^ self frameworkNameAndVersion , ' (' , self systemVersion , ')'
 ]
 
@@ -110,7 +110,7 @@ ZnConstants class>>initialize [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnConstants class>>initializeHTTPStatusCodes  [
+ZnConstants class>>initializeHTTPStatusCodes [
 	HTTPStatusCodes := Dictionary newFromPairs: self officialHTTPStatusCodesSpec 
 ]
 
@@ -151,7 +151,7 @@ ZnConstants class>>maximumLineLength [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnConstants class>>officialHTTPStatusCodesSpec  [
+ZnConstants class>>officialHTTPStatusCodesSpec [
 	"This is the official list from http://www.iana.org/assignments/http-status-codes (version 2017-04-14)"
 
 	^ #(

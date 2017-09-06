@@ -77,7 +77,7 @@ ZnDigestCredential>>authTokenForUrl: urlObject method: method [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnDigestCredential>>isComplete  [
+ZnDigestCredential>>isComplete [
 	^ super isComplete & nonce notNil 
 ]
 

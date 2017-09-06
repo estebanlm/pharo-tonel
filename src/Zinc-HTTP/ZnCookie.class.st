@@ -168,7 +168,7 @@ ZnCookie>>httponly: aBoolean [
 	#category : #initialization,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnCookie>>initialize  [
+ZnCookie>>initialize [
 	attributes := Dictionary new.
 ]
 

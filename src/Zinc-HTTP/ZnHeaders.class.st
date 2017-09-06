@@ -359,7 +359,7 @@ ZnHeaders>>isDescribingEntity [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnHeaders>>isEmpty  [
+ZnHeaders>>isEmpty [
 	^ headers isNil or: [ self headers isEmpty ]
 ]
 
@@ -440,7 +440,7 @@ ZnHeaders>>readOneHeaderFrom: stream [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnHeaders>>removeKey: headerName	 [
+ZnHeaders>>removeKey: headerName [
 	^ self headers removeKey: (self normalizeHeaderKey: headerName)
 ]
 

@@ -236,7 +236,7 @@ ZnEntity>>close [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnEntity>>contentLength  [
+ZnEntity>>contentLength [
 	"Content length can be nil when it is (currently) unknown."
 	
 	^ contentLength
@@ -310,7 +310,7 @@ ZnEntity>>hash [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnEntity>>isEmpty  [
+ZnEntity>>isEmpty [
 	self subclassResponsibility 
 ]
 

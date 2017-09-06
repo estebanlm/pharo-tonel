@@ -100,7 +100,7 @@ ZnStreamingEntity>>contents [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnStreamingEntity>>isEmpty  [
+ZnStreamingEntity>>isEmpty [
 	"We actually don't know"
 	
 	^ false
@@ -123,7 +123,7 @@ ZnStreamingEntity>>readFrom: readStream [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnStreamingEntity>>readStream  [
+ZnStreamingEntity>>readStream [
 	^ self stream
 ]
 
@@ -131,7 +131,7 @@ ZnStreamingEntity>>readStream  [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnStreamingEntity>>stream  [
+ZnStreamingEntity>>stream [
 	^ stream
 ]
 

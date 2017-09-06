@@ -83,7 +83,7 @@ ZnDefaultServerDelegate>>dwbench: request [
 	#category : #responses,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnDefaultServerDelegate>>echoRequest: request	 [
+ZnDefaultServerDelegate>>echoRequest: request [
 	"Echo request by generating a plain text response useful for debugging purposes"
 	
 	| delay info entity |
@@ -429,7 +429,7 @@ ZnDefaultServerDelegate>>random: request [
 	#category : #responses,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnDefaultServerDelegate>>sessionRequest: request	 [
+ZnDefaultServerDelegate>>sessionRequest: request [
 	"An HTML response that uses a session"
 	
 	| session hitCount |

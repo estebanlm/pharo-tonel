@@ -38,7 +38,7 @@ ZnCookieJar>>cookieAt: aName forUrl: urlObject [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnCookieJar>>cookies  [
+ZnCookieJar>>cookies [
 	^ cookies ifNil: [ cookies := Bag new ]
 ]
 

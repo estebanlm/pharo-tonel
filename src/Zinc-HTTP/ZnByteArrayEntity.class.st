@@ -91,7 +91,7 @@ ZnByteArrayEntity>>hash [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnByteArrayEntity>>isEmpty  [
+ZnByteArrayEntity>>isEmpty [
 	^ self bytes isNil or: [ self bytes isEmpty ]
 ]
 

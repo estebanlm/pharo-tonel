@@ -200,7 +200,7 @@ ZnStringEntity>>invalidateEncoder [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnStringEntity>>isEmpty  [
+ZnStringEntity>>isEmpty [
 	^ self string isNil or: [ self string isEmpty ] 
 ]
 

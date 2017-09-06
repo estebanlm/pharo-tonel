@@ -170,7 +170,7 @@ ZnLimitedReadStream>>next [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnLimitedReadStream>>next: requestedCount  [
+ZnLimitedReadStream>>next: requestedCount [
 	"Read requestedCount elements into new collection and return it,
 	 it could be that less elements were available"
 
@@ -282,7 +282,7 @@ ZnLimitedReadStream>>printOn: aStream [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnLimitedReadStream>>readInto: collection startingAt: offset count: count  [
+ZnLimitedReadStream>>readInto: collection startingAt: offset count: count [
 	"Read count elements and place them in collection starting at offset.
 	Return the number of elements actually read."
 	
@@ -316,7 +316,7 @@ ZnLimitedReadStream>>skip: count [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:19'
 }
-ZnLimitedReadStream>>upTo: anObject  [
+ZnLimitedReadStream>>upTo: anObject [
 	"We use our own collectionSpecies."
 	
 	^ self collectionSpecies streamContents: [ :out | | element |
