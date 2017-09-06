@@ -1,0 +1,124 @@
+"
+I am a refactoring operation for renaming methods.
+
+The new method name has to have the same number of arguments, but the order of arguments can be changed.
+
+My preconditions verify that the number of arguments is the same and that the new method name isn't already used.
+
+All references in senders of the old method are changed, either the method name only or the order of the supplied arguments.
+
+"
+Class {
+	#name : #RBRenameMethodRefactoring,
+	#superclass : #RBChangeMethodNameRefactoring,
+	#instVars : [
+		'hasPermutedArguments'
+	],
+	#category : #Refactoring-Core-Refactorings,
+	#timestamp : 'NicolaiHess 8/6/2016 14:10'
+}
+
+{
+	#category : #'instance creation',
+	#timestamp : ' 8/31/2017 05:26:24'
+}
+RBRenameMethodRefactoring class>>model: aRBSmalltalk renameMethod: aSelector in: aClass to: newSelector permutation: aMap  [
+	^(self new)
+		model: aRBSmalltalk;
+		renameMethod: aSelector
+			in: aClass
+			to: newSelector
+			permutation: aMap;
+		yourself
+]
+
+{
+	#category : #'instance creation',
+	#timestamp : ' 8/31/2017 05:26:24'
+}
+RBRenameMethodRefactoring class>>renameMethod: aSelector in: aClass to: newSelector permutation: aMap  [
+	^self new renameMethod: aSelector
+		in: aClass
+		to: newSelector
+		permutation: aMap
+]
+
+{
+	#category : #testing,
+	#timestamp : ' 8/31/2017 05:26:24'
+}
+RBRenameMethodRefactoring>>hasPermutedArguments [
+	^hasPermutedArguments isNil 
+		ifTrue: [hasPermutedArguments := super hasPermutedArguments]
+		ifFalse: [hasPermutedArguments]
+]
+
+{
+	#category : #testing,
+	#timestamp : ' 8/31/2017 05:26:24'
+}
+RBRenameMethodRefactoring>>implementorsCanBePrimitives [
+	^self hasPermutedArguments not
+]
+
+{
+	#category : #preconditions,
+	#timestamp : ' 8/31/2017 05:26:24'
+}
+RBRenameMethodRefactoring>>myConditions [
+	^RBCondition withBlock: [oldSelector numArgs = newSelector numArgs]
+		errorString: newSelector printString 
+				, ' doesn''t have the correct number of arguments.'
+]
+
+{
+	#category : #transforming,
+	#timestamp : ' 8/31/2017 05:26:24'
+}
+RBRenameMethodRefactoring>>parseTreeRewriter [
+	| rewriteRule oldString newString |
+	oldString := self buildSelectorString: oldSelector.
+	newString := self buildSelectorString: newSelector
+				withPermuteMap: permutation.
+	rewriteRule := self hasPermutedArguments 
+				ifTrue: [RBParseTreeRewriter new]
+				ifFalse: [RBParseTreeRewriter replaceLiteral: oldSelector with: newSelector].
+	rewriteRule replace: '``@object ' , oldString
+		with: '``@object ' , newString.
+	^rewriteRule
+]
+
+{
+	#category : #preconditions,
+	#timestamp : ' 8/31/2017 05:26:24'
+}
+RBRenameMethodRefactoring>>preconditions [
+	| newCondition |
+	newCondition := (RBCondition 
+							withBlock: [newSelector = oldSelector]
+							errorString: 'The selectors are <1?:not >equivalent') 
+						& (RBCondition 
+							withBlock: [permutation asArray ~= (1 to: oldSelector numArgs) asArray]
+							errorString: 'The arguments are <1?:not >permuted').
+	^newCondition | super preconditions
+]
+
+{
+	#category : #printing,
+	#timestamp : ' 8/31/2017 05:26:24'
+}
+RBRenameMethodRefactoring>>storeOn: aStream  [
+	aStream nextPut: $(.
+	self class storeOn: aStream.
+	aStream
+		nextPutAll: ' renameMethod: #';
+		nextPutAll: oldSelector;
+		nextPutAll: ' in: '.
+	class storeOn: aStream.
+	aStream
+		nextPutAll: ' to: #';
+		nextPutAll: newSelector;
+		nextPutAll: ' permutation: '.
+	permutation storeOn: aStream.
+	aStream nextPut: $)
+]

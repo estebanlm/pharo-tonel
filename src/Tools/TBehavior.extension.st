@@ -1,0 +1,57 @@
+Extension {
+	#name : #TBehavior
+}
+
+{
+	#category : #'*Tools',
+	#timestamp : ' 8/31/2017 05:26:26'
+}
+TBehavior>>browse [
+
+	^  Smalltalk tools browser openOnClass: self
+]
+
+{
+	#category : #'*Tools',
+	#timestamp : ' 8/31/2017 05:26:26'
+}
+TBehavior>>browseHierarchy [
+	self systemNavigation browseHierarchy: self
+]
+
+{
+	#category : #'*Tools',
+	#timestamp : ' 8/31/2017 05:26:26'
+}
+TBehavior>>inspectAllInstances  [
+	"Inspect all instances of the receiver."
+
+	| all allSize prefix |
+	all := self allInstances.
+	(allSize := all size) isZero ifTrue: [^ self inform: 'There are no 
+instances of ', self name].
+	prefix := allSize = 1
+		ifTrue: 	['The lone instance']
+		ifFalse:	['The ', allSize printString, ' instances'].
+	
+	all asArray inspectWithLabel: (prefix, ' of ', self name)
+]
+
+{
+	#category : #'*Tools',
+	#timestamp : ' 8/31/2017 05:26:26'
+}
+TBehavior>>inspectSubInstances  [
+	"Inspect all instances of the receiver and all its subclasses.  CAUTION - don't do this for something as generic as Object!"
+
+	| all allSize prefix |
+	all := self allSubInstances.
+	(allSize := all size) isZero ifTrue: [^ self inform: 'There are no 
+instances of ', self name, '
+or any of its subclasses'].
+	prefix := allSize = 1
+		ifTrue: 	['The lone instance']
+		ifFalse:	['The ', allSize printString, ' instances'].
+	
+	all asArray inspectWithLabel: (prefix, ' of ', self name, ' & its subclasses')
+]

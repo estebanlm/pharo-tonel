@@ -1,0 +1,608 @@
+"
+A sequence is corresponds to a block in the control flow graph.
+"
+Class {
+	#name : #IRSequence,
+	#superclass : #Object,
+	#instVars : [
+		'sequence',
+		'orderNumber',
+		'method'
+	],
+	#category : #OpalCompiler-Core-IR-Nodes,
+	#timestamp : '<historical>'
+}
+
+{
+	#category : #'instance creation',
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence class>>orderNumber: aNumber [
+	^self new orderNumber: aNumber
+]
+
+{
+	#category : #copying,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>, otherCollection  [
+	^sequence, otherCollection
+]
+
+{
+	#category : #optimizing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>absorbConstantConditionalJumps: alreadySeen [
+	"Collapse sequences that look like:
+			[if] goto s1
+			...
+		 s1:	pushConst: true/false
+			goto s2
+		 s2:	if true/false goto s3 else s4
+	into:
+			[if] goto s3/s4
+
+	These sequences are produced by and:/or: messages"
+
+	| seq bool if |
+	(alreadySeen includes: self) ifTrue: [^ self].
+	alreadySeen add: self.
+
+	[(seq := self successorSequences) notEmpty  "not return"
+	  and: [(seq := seq first "destination") size = 2
+	   and: [(seq first isPushLiteral: [:obj | (bool := obj) isKindOf: Boolean])
+	    and: [seq last isGoto
+	     and: [(if := seq last destination first) isIf]]]]
+	] whileTrue: [ "absorb"
+		self last destination: (bool == if boolean
+			ifTrue: [if destination]
+			ifFalse: [if otherwise]).
+	].
+
+	self successorSequences do: [:instrs | instrs ifNotNil: [:i | i absorbConstantConditionalJumps: alreadySeen]].
+
+
+]
+
+{
+	#category : #optimizing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>absorbJumpToSingleInstr: alreadySeen [
+	"Collapse jumps to single return instructions into caller"
+
+	| seqs seq |
+	(alreadySeen includes: self) ifTrue: [^ self].
+	alreadySeen add: self.
+	[ (seqs := self successorSequences) size = 1  "unconditional jump..." 
+	   and: [((seq := seqs first) size = 1)  "...to single instruction..."
+	    and: [seq successorSequences size < 2
+		and: [self last isBlockReturnTop not
+		  and: [((seq sequence size = 1) and: [(seq sequence first isBlockReturnTop) or: [seq sequence first isReturn]]) not]]]]"...but don't collapse conditional jumps so their otherwiseSequences can stay right after them"
+	] whileTrue: [ "replace goto with single instruction"
+		self removeLast.
+		seq do: [:instr |  self add: instr copy].
+	].
+
+	seqs do: [:instrs | instrs ifNotNil: [:i | i absorbJumpToSingleInstr: alreadySeen]].
+
+]
+
+{
+	#category : #visiting,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>accept: aVisitor [
+	^ aVisitor visitSequence: self
+]
+
+{
+	#category : #adding,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>add: anInstruction [
+
+	sequence add: anInstruction.
+	anInstruction sequence: self.
+	^anInstruction.
+]
+
+{
+	#category : #adding,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>add: instr after: another [
+
+	sequence add: instr after: another.
+	instr sequence: self.
+	^instr.
+]
+
+{
+	#category : #adding,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>add: instr before: another [
+	sequence add: instr before: another.
+	instr sequence: self.
+	^instr.
+]
+
+{
+	#category : #adding,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>addAll: aCollection [
+	^sequence addAll: aCollection
+]
+
+{
+	#category : #adding,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>addAllFirst: aCollection [
+	^sequence addAllFirst: aCollection.
+]
+
+{
+	#category : #adding,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>addInstructions: aCollection [
+	
+	^aCollection do: [:instr | self add: instr].
+]
+
+{
+	#category : #adding,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>addInstructions: aCollection after: anInstruction [
+	
+	^aCollection reverseDo: [:instr | self add: instr after: anInstruction].
+]
+
+{
+	#category : #adding,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>addInstructions: aCollection before: anInstruction [
+
+	aCollection do: [:instr | self add: instr before: anInstruction].
+]
+
+{
+	#category : #adding,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>addLast: anInstruction [
+	^self add: anInstruction.
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>after: o [
+	^sequence after: o
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>at: index [
+	^sequence at: index
+]
+
+{
+	#category : #inspector,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>children [
+	^sequence
+]
+
+{
+	#category : #enumerating,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>contains: aBlock [
+	^sequence contains: aBlock.
+]
+
+{
+	#category : #enumerating,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>detect: aBlock [
+	^sequence detect: aBlock
+]
+
+{
+	#category : #enumerating,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>do: aBlock [
+	^sequence do: aBlock.
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>first [
+	^sequence first
+]
+
+{
+	#category : #testing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>hasTempVector: aSymbol [
+	^sequence anySatisfy: [:irNode | irNode isTempVector and: [irNode name = aSymbol]].
+]
+
+{
+	#category : #testing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>ifEmpty: aBlock [
+	^sequence ifEmpty: aBlock
+]
+
+{
+	#category : #testing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>ifNotEmpty: aBlock [
+	^sequence ifNotEmpty: aBlock
+]
+
+{
+	#category : #initialization,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>initialize [
+	sequence := OrderedCollection new.
+]
+
+{
+	#category : #'successor sequences',
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>instructionsDo: aBlock [
+
+	^self withAllSuccessorsDo: [:seq | seq do: aBlock].
+]
+
+{
+	#category : #'successor sequences',
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>instructionsForDecompiling [
+
+	| irInstructions |
+	irInstructions := OrderedCollection new.
+	self withNonBodySuccessorsDo: [:seq | seq do: [:bc | irInstructions add: bc]].
+	^irInstructions
+	
+]
+
+{
+	#category : #testing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>isEmpty [
+	^sequence isEmpty
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>last [
+	^sequence last
+]
+
+{
+	#category : #printing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>longPrintOn: stream [
+
+	[IRPrinterV2 new
+		stream: stream;
+		visitNode: self
+	] onDNU: #orderNumber do: [:ex | ex resume: ex receiver]
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>method [
+
+	^method
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>method: aIRMethod [
+
+	method := aIRMethod
+]
+
+{
+	#category : #'successor sequences',
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>nextSequence [
+
+	| sequences i |
+	sequences := self withAllSuccessors.
+	i := sequences findFirst: [:seq | seq orderNumber = self orderNumber].
+	(i = 0 or: [i = sequences size]) ifTrue: [^ nil].
+	^ sequences at: i + 1
+]
+
+{
+	#category : #'successor sequences',
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>nonBodySuccessorSequences [
+
+	sequence isEmpty ifTrue: [^ #()].
+	^ sequence last nonBodySuccessorSequences
+]
+
+{
+	#category : #testing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>notEmpty [
+	^sequence notEmpty
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>orderNumber [
+	"Sequences are sorted by this number"
+
+	^ orderNumber
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>orderNumber: num [
+	"Sequences are sorted by this number"
+	orderNumber := num.
+]
+
+{
+	#category : #printing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>printOn: stream [
+
+	stream nextPutAll: 'an '.
+	self class printOn: stream.
+	stream space.
+	stream nextPut: $(.
+	self orderNumber printOn: stream.
+	stream nextPut: $).
+
+]
+
+{
+	#category : #replacing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>remove: aNode [
+	aNode sequence: nil.
+	sequence remove: aNode ifAbsent: [self error].
+]
+
+{
+	#category : #removing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>removeFirst [
+	^sequence removeFirst.
+]
+
+{
+	#category : #removing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>removeLast [
+	^sequence removeLast.
+]
+
+{
+	#category : #removing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>removeLast: n [
+	^sequence removeLast: n.
+]
+
+{
+	#category : #replacing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>replaceNode: aNode withNode: anotherNode  [
+
+	| index |
+	index := sequence indexOf: aNode ifAbsent: [ self error ].
+	sequence at: index put: (anotherNode sequence: self).
+]
+
+{
+	#category : #replacing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>replaceNode: aNode withNodes: aCollection  [
+
+	self addInstructions: aCollection before: aNode.
+	sequence remove: aNode ifAbsent: [self error].
+]
+
+{
+	#category : #enumerating,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>reverseDo: aBlock [
+	^sequence reverseDo: aBlock.
+]
+
+{
+	#category : #enumerating,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>select: aBlock [
+	^sequence select: aBlock.
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>sequence [
+	^sequence
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>size [
+	^sequence size.
+]
+
+{
+	#category : #inspector,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>sourceInterval [
+	^self sequence first sourceInterval first to: self sequence last sourceInterval last
+]
+
+{
+	#category : #inspector,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>sourceNode [
+	"we should do better here"
+	^RBSequenceNode new.
+]
+
+{
+	#category : #manipulating,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>splitAfter: instruction [
+
+	| newSeq index next |
+	next := self nextSequence.
+	next := next
+		ifNil: [self orderNumber + 1]
+		ifNotNil: [(next orderNumber + self orderNumber) / 2].
+	newSeq := self class new orderNumber: next.
+	newSeq method: self method.
+	"Split after instruction"
+	index := sequence indexOf: instruction.
+	(sequence last: sequence size - index) do: [:instr | newSeq add: instr].
+	sequence := sequence first: index.
+	self flag: 'The jump inherits the bytecode index from the instruction where it was split. Check if this value is correct.'.
+	self add: (IRJump new destination: newSeq; bytecodeIndex: (instruction bytecodeIndex + 1)).
+	^ newSeq
+]
+
+{
+	#category : #'successor sequences',
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>successorSequences [
+
+	sequence isEmpty ifTrue: [^ #()].
+	^ sequence last successorSequences
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>tempVectorNamed: aSymbol [
+	^sequence detect: [:irNode | irNode isTempVector and: [irNode name = aSymbol]].
+]
+
+{
+	#category : #'successor sequences',
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>withAllSuccessors [
+	"Return me and all my successors sorted by sequence orderNumber"
+
+	| list |
+	list := OrderedCollection new: 20.
+	self withAllSuccessorsDo: [:seq | list add: seq].
+	^ list asSortedCollection: [:x :y | x orderNumber <= y orderNumber]
+]
+
+{
+	#category : #'successor sequences',
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>withAllSuccessorsDo: block [
+	"Iterate over me and all my successors only once"
+
+	self withAllSuccessorsDo: block alreadySeen: IdentitySet new
+]
+
+{
+	#category : #'successor sequences',
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>withAllSuccessorsDo: block alreadySeen: set [
+	"Iterate over me and all my successors only once"
+
+	(set includes: self) ifTrue: [^ self].
+	set add: self.
+	block value: self.
+	self successorSequences do: [:seq |
+		seq ifNotNil: [seq withAllSuccessorsDo: block alreadySeen: set]].
+
+]
+
+{
+	#category : #'successor sequences',
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>withNonBodySuccessorsDo: block [
+	"Iterate over me and all my successors only once"
+
+	self withNonBodySuccessorsDo: block alreadySeen: IdentitySet new
+]
+
+{
+	#category : #'successor sequences',
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+IRSequence>>withNonBodySuccessorsDo: block alreadySeen: set [
+	"Iterate over me and all my successors only once"
+
+	(set includes: self) ifTrue: [^ self].
+	set add: self.
+	block value: self.
+	self nonBodySuccessorSequences do: [:seq |
+		seq ifNotNil: [seq withNonBodySuccessorsDo: block alreadySeen: set]].
+
+]

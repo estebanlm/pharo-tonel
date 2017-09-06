@@ -1,0 +1,72 @@
+Extension {
+	#name : #Morph
+}
+
+{
+	#category : #'*SUnit-UITesting',
+	#timestamp : ' 8/31/2017 05:26:20'
+}
+Morph>>simulateClick [
+
+	self simulateClickWith: MouseEvent redButton.
+]
+
+{
+	#category : #'*SUnit-UITesting',
+	#timestamp : ' 8/31/2017 05:26:20'
+}
+Morph>>simulateClickWith: buttons [
+	"Did you know there's #simulateClick (left), #simulateMiddleClick, and #simulateRightClick?
+	buttons - look at MouseEvent's class-side for button types"
+
+	| noButtons |
+	noButtons := 0.
+	{ #mouseDown->buttons. #mouseUp->noButtons } do: [ :type |
+		self activeHand handleEvent: (MouseButtonEvent new 
+			setType: type key
+			position: (self pointInWorld: self center) "Some Morphs report local coords"
+			which: (noButtons bitXor: buttons)
+			buttons: type value
+			hand: self activeHand
+			stamp: Time millisecondClockValue) ].
+]
+
+{
+	#category : #'*SUnit-UITesting',
+	#timestamp : ' 8/31/2017 05:26:20'
+}
+Morph>>simulateClickWith: buttons position: position [
+	"Did you know there's #simulateClick (left), #simulateMiddleClick, and #simulateRightClick?
+	buttons - look at MouseEvent's class-side for button types"
+
+	| noButtons hand |
+	noButtons := 0.
+	hand := HandMorph new mouseFocus: self; yourself.
+	hand privateOwner: self.
+	{ #mouseDown->buttons. #mouseUp->noButtons } do: [ :type |
+		hand handleEvent: (MouseButtonEvent new 
+			setType: type key
+			position: position "Some Morphs report local coords"
+			which: (noButtons bitXor: buttons)
+			buttons: type value
+			hand: hand
+			stamp: Time millisecondClockValue) ].
+]
+
+{
+	#category : #'*SUnit-UITesting',
+	#timestamp : ' 8/31/2017 05:26:20'
+}
+Morph>>simulateMiddleClick [
+
+	self simulateClickWith: MouseEvent blueButton.
+]
+
+{
+	#category : #'*SUnit-UITesting',
+	#timestamp : ' 8/31/2017 05:26:20'
+}
+Morph>>simulateRightClick [
+
+	self simulateClickWith: MouseEvent yellowButton.
+]

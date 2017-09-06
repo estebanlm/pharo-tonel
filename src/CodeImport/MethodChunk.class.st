@@ -1,0 +1,140 @@
+"
+I represent the declaration of a method.  My contents are the source code to import, and the category reader is the object who knows the class, category and timestamp where to install the method.
+
+Sending me the message #import makes me install the method into the class.
+"
+Class {
+	#name : #MethodChunk,
+	#superclass : #BehaviorOwnedChunk,
+	#instVars : [
+		'categoryName',
+		'stamp'
+	],
+	#category : #CodeImport,
+	#timestamp : '<historical>'
+}
+
+{
+	#category : #'instance creation',
+	#timestamp : ' 8/31/2017 07:16:32'
+}
+MethodChunk class>>contents: someContents behaviorName: behaviorName isMeta: isMeta category: categoryName stamp: stamp [
+	^self new
+			contents: someContents;
+			behaviorName: behaviorName;
+			isMeta: isMeta;
+			category: categoryName;
+			stamp: stamp;
+			yourself
+]
+
+{
+	#category : #visiting,
+	#timestamp : ' 8/31/2017 07:16:32'
+}
+MethodChunk>>accept: aVisitor [
+
+	^ aVisitor visitMethodChunk: self
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:32'
+}
+MethodChunk>>category [
+	^ categoryName
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:32'
+}
+MethodChunk>>category: aCategoryName [
+	categoryName := aCategoryName
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:32'
+}
+MethodChunk>>description [
+
+	^ 'Method ( ', behaviorName , ' >> ' , (contents first: (20 min: contents size)), ' )' , stamp asString
+]
+
+{
+	#category : #importing,
+	#timestamp : ' 8/31/2017 07:16:32'
+}
+MethodChunk>>handleMissingBehavior [
+	"self error: ('Cannot install method in unexistent behavior {1}' format: {(behaviorName asString)})"
+	
+	(MissingClassError 
+		className: behaviorName asString)
+		signal: 'Cannot install method in non-existent behavior ', behaviorName asString
+]
+
+{
+	#category : #importing,
+	#timestamp : ' 8/31/2017 07:16:32'
+}
+MethodChunk>>importFor: requestor logSource: logSource [
+	self existsBehavior
+		ifFalse: [ self handleMissingBehavior ].
+	^ [ self targetClass
+		compile: contents
+		classified: categoryName
+		withStamp: stamp
+		notifying: (self methodCompileRequestorFor: requestor)
+		logSource: logSource ]
+		on: ReparseAfterSourceEditing
+		do: [ :exception | 
+			contents := exception newSource.
+			self importFor: requestor logSource: logSource ]
+]
+
+{
+	#category : #testing,
+	#timestamp : ' 8/31/2017 07:16:32'
+}
+MethodChunk>>isMethodDeclaration [
+
+	^ true
+]
+
+{
+	#category : #importing,
+	#timestamp : ' 8/31/2017 07:16:32'
+}
+MethodChunk>>methodCompileRequestorFor: aRequestor [
+	aRequestor ifNotNil: [ aRequestor contents ifNil: [ aRequestor contents: contents ] ].
+	^ MethodChunkCompilerRequestor new
+		methodChunk: self;
+		fileCompileRequestor: aRequestor;
+		yourself
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:32'
+}
+MethodChunk>>methodSelector [
+	
+	^ RBParser parseMethodPattern: self contents
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:32'
+}
+MethodChunk>>stamp [
+	^ stamp
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:32'
+}
+MethodChunk>>stamp: aMethodStamp [
+	stamp := aMethodStamp
+]

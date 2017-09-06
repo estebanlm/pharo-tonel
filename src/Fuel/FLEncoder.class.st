@@ -1,0 +1,303 @@
+"
+I am an abstraction used by the serialization algorithm to encode the graph in a stream.
+"
+Class {
+	#name : #FLEncoder,
+	#superclass : #Object,
+	#instVars : [
+		'stream',
+		'objectsIndexes',
+		'objectCount',
+		'indexStream',
+		'globalEnvironment',
+		'substitutionIndexes'
+	],
+	#category : #Fuel-Core,
+	#timestamp : 'MartinDias 1/6/2012 16:08'
+}
+
+{
+	#category : #'instance creation',
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder class>>on: aStream globalEnvironment: aDictionary [
+	
+	^self basicNew
+		initializeOn: aStream
+		globalEnvironment: aDictionary;
+		yourself.
+]
+
+{
+	#category : #'instance creation',
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder class>>on: aStream globalEnvironment: aDictionary do: aBlock [
+	
+	| anEncoder |
+	anEncoder := self on: aStream globalEnvironment: aDictionary.
+	^ [ aBlock value: anEncoder ] ensure: [ anEncoder flush ]
+]
+
+{
+	#category : #encoding,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>encodeBitmap: aBitmap  [
+	"Append to the receiver an Integer as the next two bytes."
+	aBitmap writeOn: stream.
+
+]
+
+{
+	#category : #encoding,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>encodeByte: aSmallInteger  [
+	stream nextPut: aSmallInteger
+]
+
+{
+	#category : #encoding,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>encodeBytes: aBytesObject [
+	stream nextBytesPutAll: aBytesObject 
+]
+
+{
+	#category : #encoding,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>encodeClusterClass: aClusterClass  [
+
+	self encodeString: aClusterClass name
+]
+
+{
+	#category : #encoding,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>encodeInt24: aSmallInteger  [
+	"Write a signed integer to the next 4 bytes"
+	| pos |
+	pos := aSmallInteger < 0
+		ifTrue: [((0-aSmallInteger) bitXor: 16rFFFFFF) + 1]
+		ifFalse: [aSmallInteger].
+	1 to: 3 do: [:i | stream nextPut: (pos digitAt: 4-i)].
+
+]
+
+{
+	#category : #encoding,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>encodeInt32: aSmallInteger  [
+	"Write a signed integer to the next 4 bytes"
+	| pos |
+	pos := aSmallInteger < 0
+		ifTrue: [(0-aSmallInteger) bitInvert32 + 1]
+		ifFalse: [aSmallInteger].
+	1 to: 4 do: [:i | stream nextPut: (pos digitAt: 5-i)].
+
+]
+
+{
+	#category : #encoding,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>encodePositiveInteger: anInteger [
+	"Append to the receiver an Integer as the next 4 bytes."
+	1 to: 4 do: [:i | stream nextPut: (anInteger digitAt: 4+1-i)].
+]
+
+{
+	#category : #encoding,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>encodeReferenceTo: anObject [
+	| index |
+	index := substitutionIndexes
+		at: anObject
+		ifAbsent: [
+			objectsIndexes
+				at: anObject
+				ifAbsent: [ FLObjectNotFound signalWith: anObject ] ].
+	indexStream nextIndexPut: index
+]
+
+{
+	#category : #encoding,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>encodeReferenceToClusterObjectClass: aClass  [
+	indexStream nextIndexPut: (objectsIndexes
+		at: aClass
+		ifAbsent: [ FLObjectNotFound signalWith: aClass ])
+]
+
+{
+	#category : #encoding,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>encodeString: aString [
+	| length |
+	(length := aString size) < 192
+		ifTrue: [stream nextPut: length]
+		ifFalse: 
+			[stream nextPut: (length digitAt: 4)+192.
+			stream nextPut: (length digitAt: 3).
+			stream nextPut: (length digitAt: 2).
+			stream nextPut: (length digitAt: 1)].
+	stream nextBytesPutAll: aString.
+]
+
+{
+	#category : #encoding,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>encodeUint16: aSmallInteger  [
+	"Append to the receiver an Integer as the next two bytes."
+	stream nextPut: (aSmallInteger bitShift: -8).
+	stream nextPut: (aSmallInteger bitAnd: 255).
+]
+
+{
+	#category : #encoding,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>encodeUint24: aSmallInteger  [
+	"Append to the receiver an Integer as the next 3 bytes."
+	stream		
+		nextPut: ((aSmallInteger bitShift: -16) bitAnd: 255);
+		nextPut: ((aSmallInteger bitShift: -8) bitAnd: 255);
+		nextPut: (aSmallInteger bitAnd: 255)
+
+
+]
+
+{
+	#category : #encoding,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>encodeUint32: aSmallInteger  [
+	"Append to the receiver an Integer as the next 4 bytes."
+	stream		
+		nextPut: (aSmallInteger bitShift: -24);
+		nextPut: ((aSmallInteger bitShift: -16) bitAnd: 255);
+		nextPut: ((aSmallInteger bitShift: -8) bitAnd: 255);
+		nextPut: (aSmallInteger bitAnd: 255)
+
+]
+
+{
+	#category : #encoding,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>encodeUint8: aSmallInteger  [
+	"Append to the receiver an Integer as the next two bytes."
+	stream nextPut: aSmallInteger 
+]
+
+{
+	#category : #encoding,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>encodeWeakReferenceTo: anObject [
+
+	indexStream 
+		nextIndexPut: (objectsIndexes at: anObject ifAbsent: [objectsIndexes at: nil]) 
+
+]
+
+{
+	#category : #encoding,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>encodeWords: aWordsObject [
+	stream nextWordsPut: aWordsObject
+]
+
+{
+	#category : #encoding,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>encodeYourself [
+
+	self encodePositiveInteger: objectCount.
+	self encodePositiveInteger: FLPlatform current isBigEndian asBit.
+]
+
+{
+	#category : #encoding,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>flush [
+
+	^ stream flush.
+]
+
+{
+	#category : #hooks,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>fuelAccept: aGeneralMapper [
+	^ aGeneralMapper visitSubstitution: self by: nil
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>globalEnvironment [
+	"Answer a dictionary where the look up for global symbols will be done during serialization."
+	
+	^ globalEnvironment
+]
+
+{
+	#category : #initialize-release,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>initializeOn: aStream globalEnvironment: aDictionary [
+	
+	self initialize.
+	stream := FLBufferedWriteStream on: aStream.
+	globalEnvironment := aDictionary.
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>objectCount [
+	^ objectCount
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>objectCount: aNumber [
+
+	objectCount := aNumber.
+	objectsIndexes := FLLargeIdentityDictionary new.
+	substitutionIndexes := FLLargeIdentityDictionary new.
+	indexStream := FLIndexStream on: stream digits: aNumber digitLength
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>objectsIndexes [
+	^ objectsIndexes
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:12'
+}
+FLEncoder>>substitutionIndexes [
+	^ substitutionIndexes
+]

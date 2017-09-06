@@ -1,0 +1,6901 @@
+"
+Common superclass for User Interface themes. Provides methods for creating new morphs in a standard way, various ""services"" like a file dialog, message dialogs etc. and also methods for customising aspects of the appearance of various morphs.
+Though conceptually abstract, no code is ""missing"". Subclasses, therefore, should override the aspects they wish to change.
+"
+Class {
+	#name : #UITheme,
+	#superclass : #Model,
+	#instVars : [
+		'settings',
+		'forms',
+		'soundTheme',
+		'focusIndicator'
+	],
+	#classVars : [
+		'Builder',
+		'Current'
+	],
+	#classInstVars : [
+		'defaultSettings'
+	],
+	#category : #Polymorph-Widgets-Themes,
+	#timestamp : 'HenrikNergaard 11/15/2015 14:11'
+}
+
+{
+	#category : #query,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>allThemeClasses [
+	"Answer the subclasses of the receiver that are considered to be
+	concrete (useable as a theme)."
+
+	^(self allSubclasses reject: [:c | c isAbstract]) asSortedCollection: [:a :b |
+		a themeName <= b themeName]
+]
+
+{
+	#category : #query,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>beCurrent [
+	"Make a new instance of the receiver be the current theme."
+
+	self isAbstract ifTrue: [^self error: self name, ' is abstract, send #beCurrent to a subclass.'].
+	self current: self newDefault
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>builder [
+	"Answer a morph that has the TEasilyThemed trait."
+
+	^Builder ifNil: [Builder := self newBuilder. Builder]
+]
+
+{
+	#category : #cleanup,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>cleanUp [
+
+	"avoid old references to morphs that should be garbage-collected"
+	UITheme current focusIndicator: nil.
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>current [
+	"Answer the current ui theme.
+	WARNING: Direct access to this method is ill-adviced, use Smalltalk ui theme instead."
+
+	^Current ifNil: [
+		Current := Pharo3Theme newDefault.
+		Current ]
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>current: aUITheme [
+	"Set the current ui theme."
+
+	Current := aUITheme.
+	SystemProgressMorph reset. "reset to use new fill styles"
+	ScrollBar initializeImagesCache. "reset to use new arrows"
+
+	self class environment at: #SHPreferences ifPresent: [:shPreferences |
+		shPreferences setStyleTable: aUITheme shStyleTable. ].
+
+	self class environment at: #PolymorphSystemSettings ifPresent: [:polymorphSystemSettings |
+		polymorphSystemSettings desktopColor: aUITheme desktopColor. ].
+	
+	self class environment at: #NECPreferences ifPresent: [:necPreferences |
+		necPreferences backgroundColor: aUITheme windowColor.  ].
+
+	self class environment at: #Paragraph ifPresent: [:paragraph |
+		paragraph insertionPointColor: aUITheme caretColor.  ].
+
+	self class environment at: #BalloonMorph ifPresent: [:balloonMorph |
+		balloonMorph setBalloonColorTo: aUITheme balloonBackgroundColor. ].
+
+	aUITheme updateWorldDockingBars.
+	World themeChanged.
+	(SystemWindow allSubInstances select:[:e | e owner isNil]) do:#themeChanged.
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>currentAnimationSettings [
+	"Answer the current ui theme settings."
+
+	^ self currentSettings animationSettings
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>currentSettings [
+	"Answer the current ui theme settings."
+
+	^ self current settings
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>defaultSettings [
+	"Answer the default settings for the theme."
+	
+	^defaultSettings ifNil: [
+		self defaultSettings: self newDefaultSettings.
+		defaultSettings]
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>defaultSettings: aThemeSettings [
+	"Set the default settings for the theme."
+	
+	defaultSettings := aThemeSettings
+]
+
+{
+	#category : #initialize-release,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>initialize [
+	"self initialize"
+	self current class = UITheme
+		ifTrue: [self current: nil
+			"due to change to being abstract"].
+]
+
+{
+	#category : #testing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>isAbstract [
+	"Answer whether the receiver is considered to be abstract."
+
+	^true
+]
+
+{
+	#category : #testing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>isCurrent [
+	"Answer whether an instance of the receiver is the current theme."
+
+	^Current class == self
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>lightBaseColor [
+
+	^ Color white
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>newBuilder [
+	"Answer a new builder morph."
+
+	^ComposableMorph new
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>newDefault [
+	"Answer a new default ui theme."
+
+	^self new
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>newDefaultSettings [
+	"Answer a new original default settings."
+
+	^ThemeSettings new
+		buttonColor: Color gray;
+		scrollbarColor: Color gray;
+		yourself
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>resetAllDefaultSettings [
+	"Reset the default settings of all themes"
+	"self resetAllDefaultSettings"
+	self withAllSubclassesDo: [:cls | cls defaultSettings: nil]
+]
+
+{
+	#category : #initialize-release,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>resetBuilder [
+	"self resetBuilder"
+	
+	Builder := nil
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>resetDefaultSettings [
+	"Reset the default settings to use the original values."
+
+	self defaultSettings: nil
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>standardThemeClass [
+	^ Pharo3Theme 
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme class>>themeName [
+	"Answer the friendly name of the theme."
+
+	self subclassResponsibility
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>abortIn: aThemedMorph text: aStringOrText title: aString [
+	"Answer the result of an error dialog (true) with the given label and title."
+
+	self abortSound play.
+	^(aThemedMorph openModal: (
+		(ErrorDialogWindow newWithTheme: aThemedMorph theme)
+			textFont: self textFont;
+			title: aString;
+			text: aStringOrText)) cancelled not
+]
+
+{
+	#category : #sounds,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>abortSound [
+	"Answer the abort sound."
+
+	^self soundTheme abortSound
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>alertIn: aThemedMorph text: aStringOrText title: aString configure: aBlock [
+	"Answer the result of an alert dialog (true) with the given label and title."
+
+	|dialog|
+	SoundTheme useThemeSounds ifTrue: [self alertSound play].
+	dialog := (AlertDialogWindow newWithTheme: aThemedMorph theme)
+		textFont: self textFont;
+		title: aString;
+		text: aStringOrText.
+	aBlock value: dialog.
+	aThemedMorph openModal: dialog.
+	^dialog cancelled not
+]
+
+{
+	#category : #sounds,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>alertSound [
+	"Answer the alert sound."
+
+	^self soundTheme alertSound
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>autoMenuColor [
+	^ self settings autoMenuColor
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>backgroundColor [
+
+	^ Color white
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>balloonBackgroundColor [
+
+	^self lightBaseColor
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>baseColor [
+	^ self class baseColor
+]
+
+{
+	#category : #scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>basicCreateArrowOfDirection: aSymbolDirection size: finalSizeInteger color: aColor  [
+	"PRIVATE - create an arrow with aSymbolDirectionDirection,  
+	finalSizeInteger and aColor.
+	aSymbolDirectionDirection = #top, #bottom. #left or #right .
+	Try with:  
+	(UITheme current
+		basicCreateArrowOfDirection: #top 
+		size: 32 
+		color: Color lightGreen) asMorph openInHand. 
+	Fixed to work with translucent colours."
+	
+	|form resizeFactor arrow resizedForm |
+	resizeFactor := 4.
+	form := Form
+		extent: finalSizeInteger asPoint * resizeFactor
+		depth: Display depth.
+	form fillColor: Color transparent.
+	arrow := (self createArrowOfDirection: aSymbolDirection in: form boundingBox)
+		borderWidth: 1;
+		borderColor: aColor lighter.
+	self
+		updateScrollBarButtonAspect: arrow
+		color: (aColor alphaMixed: 0.7 with: Color black).
+	arrow fullDrawOn: form getCanvas.
+	resizedForm := form
+		magnify: form boundingBox
+		by: 1 / resizeFactor
+		smoothing: 4.
+	^resizedForm trimBordersOfColor: Color transparent
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>borderColor  [
+	^ Color gray
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>borderWidth [
+	^ 1
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>builder [
+	^ self class builder
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonBorderStyleFor: aButton [
+	aButton borderStyle: BorderStyle thinGray
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonColor  [
+	^ self settings buttonColor
+]
+
+{
+	#category : #basic-colors,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonColorFor: aButton [
+	"Answer the colour for the given button."
+
+	^self settings standardColorsOnly
+		ifTrue: [self buttonColor]
+		ifFalse: [ aButton colorToUse ]
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonCornerStyleIn: aThemedMorph [
+	"Allow for themes to override default behaviour."
+	
+	^aThemedMorph
+		ifNil: [#square]
+		ifNotNil: [:tm | 
+			tm preferredButtonCornerStyle
+				ifNil: [tm preferredCornerStyle]
+				ifNotNil: [:bcs | bcs]]
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonDisabledBorderStyleFor: aButton [
+	"Return the disabled button borderStyle for the given button."
+
+	^self buttonNormalBorderStyleFor: aButton
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonDisabledFillStyleFor: aButton [
+	"Return the disabled button fillStyle for the given color."
+
+	^self buttonNormalFillStyleFor: aButton
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonFocusBoundsFor: aButton [
+	"Answer the bounds for drawing the focus indication for the
+	given button."
+
+	^(aButton bounds extent min < 6)
+		ifTrue: [aButton bounds]
+		ifFalse: [aButton bounds insetBy: aButton borderWidth + 
+					(aButton label isMorph ifTrue: [1] ifFalse: [2])]
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonFocusIndicatorCornerRadiusFor: aButton [
+	"Answer the default corner radius preferred for the focus indicator
+	for the button for themes that support this."
+
+	^self focusIndicatorCornerRadiusFor: aButton
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonFont [
+	"Answer the button font to use."
+
+	^StandardFonts buttonFont
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonLabelFor: aButton [
+	"Answer the label to use for the given button."
+
+	|label|
+	label := self buttonLabelForText: aButton label.
+	label enabled: aButton enabled.
+	label font: self buttonFont.
+	label extent: label optimalExtent.
+	^label
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonLabelForText: aTextOrString [
+	"Answer the label to use for the given text."
+
+	^aTextOrString isString
+		ifTrue: [(LabelMorph contents: aTextOrString)
+					disabledStyle: self disabledItemStyle]
+		ifFalse: [|t|
+				t := TextMorph new newContents: aTextOrString.
+				t
+					extent: t optimalExtent;
+					margins: (0@0 corner: 0@1);
+					lock]
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonLabelInsetFor: aButton [
+	"Answer the inset to use for a button's label."
+
+	^2
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonMinHeight [
+	"Answer the minumum height of a button for this theme."
+	
+	^16
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonMinWidth [
+	"Answer the minumum width of a button for this theme."
+	
+	^16
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonMouseOverBorderStyleFor: aButton [
+	"Return the mouse over button borderStyle for the given button."
+	
+	^self buttonNormalBorderStyleFor: aButton
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonMouseOverFillStyleFor: aButton [
+	"Return the button mouse over fillStyle for the given color."
+
+	^self buttonNormalFillStyleFor: aButton
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonNormalBorderStyleFor: aButton [
+	"Return the normal button borderStyle for the given button."
+
+	|c|
+	c := aButton colorToUse.
+	aButton isDefault
+		ifTrue: [c := c alphaMixed: 0.5 with: Color black].
+	^BorderStyle simple
+		width: 1;
+		baseColor: c
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonNormalFillStyleFor: aButton [
+	"Return the normal button fillStyle for the given button."
+	
+	^self buttonColorFor: aButton
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonPressedBorderStyleFor: aButton [
+	"Return the pressed button borderStyle for the given button."
+
+	^self buttonSelectedBorderStyleFor: aButton
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonPressedFillStyleFor: aButton [
+	"Return the button pressed fillStyle for the given color."
+	
+	^self buttonMouseOverFillStyleFor: aButton
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonPressedLabelInsetFor: aButton [
+	"Answer the inset to use for a button's label when pressed."
+
+	^self buttonLabelInsetFor: aButton
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonSelectedBorderStyleFor: aButton [
+	"Return the selected button borderStyle for the given button."
+
+	^self buttonNormalBorderStyleFor: aButton
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonSelectedDisabledBorderStyleFor: aButton [
+	"Return the selecteddisabled button borderStyle for the given button."
+
+	^self buttonSelectedBorderStyleFor: aButton
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonSelectedDisabledFillStyleFor: aButton [
+	"Return the button selected disabled fillStyle for the given color."
+	
+	^self buttonSelectedFillStyleFor: aButton
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonSelectedFillStyleFor: aButton [
+	"Return the button selected fillStyle for the given color."
+	
+	^self buttonNormalFillStyleFor: aButton
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonSelectedMouseOverBorderStyleFor: aButton [
+	"Return the selected mouse over button borderStyle for the given button."
+
+	^self buttonSelectedBorderStyleFor: aButton
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonSelectedMouseOverFillStyleFor: aButton [
+	"Return the button selected mouse over fillStyle for the given color."
+	
+	^self buttonSelectedFillStyleFor: aButton
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonSelectedPressedBorderStyleFor: aButton [
+	"Return the selected pressed button borderStyle for the given button."
+
+	^self buttonNormalBorderStyleFor: aButton
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>buttonSelectedPressedFillStyleFor: aButton [
+	"Return the button selected pressed fillStyle for the given color."
+
+	^self buttonSelectedMouseOverFillStyleFor: aButton
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>caretColor [
+	^ Color blue
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>centeredAlertIn: aThemedMorph text: aStringOrText title: aString configure: aBlock [
+	"Answer the result of an alert dialog (true) with the given label and title."
+
+	| dialog |
+	SoundTheme useThemeSounds ifTrue: [ self alertSound play ].
+	dialog := (AlertDialogWindow newWithTheme: aThemedMorph theme)
+		textFont: self textFont;
+		title: aString;
+		text: aStringOrText.
+	aBlock value: dialog.
+	dialog left: ((World width / 2) - (dialog width /2)).
+	dialog top: ((World height / 2) - (dialog height /2)).
+	aThemedMorph openModal: dialog.
+	^ dialog cancelled not
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>checkboxButtonDisabledBorderStyleFor: aCheckboxButton [
+	"Return the disabled checkbox button borderStyle for the given button."
+
+	^BorderStyle simple
+		width: 1;
+		baseColor: aCheckboxButton paneColor darker
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>checkboxButtonDisabledFillStyleFor: aCheckboxButton [
+	"Return the disabled checkbox button fillStyle for the given button."
+	
+	^aCheckboxButton paneColor
+		alphaMixed: 0.3
+		with: Color white
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>checkboxButtonLabelNormalFillStyleFor: aCheckboxButton label: aLabel [
+	"Return the selected disabled checkbox button fillStyle for the given button."
+	
+	^ aLabel color
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>checkboxButtonNormalBorderStyleFor: aCheckboxButton [
+	"Return the normal checkbox button borderStyle for the given button."
+
+	^BorderStyle simple
+		width: 1;
+		baseColor: aCheckboxButton paneColor twiceDarker
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>checkboxButtonNormalFillStyleFor: aCheckboxButton [
+	"Return the normal checkbox button fillStyle for the given button."
+	
+	^Color white
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>checkboxButtonSelectedBorderStyleFor: aCheckboxButton [
+	"Return the selected checkbox button borderStyle for the given button."
+
+	^self checkboxButtonNormalBorderStyleFor: aCheckboxButton
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>checkboxButtonSelectedDisabledBorderStyleFor: aCheckboxButton [
+	"Return the selected disabled checkbox button borderStyle for the given button."
+
+	^self checkboxButtonDisabledBorderStyleFor: aCheckboxButton
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>checkboxButtonSelectedDisabledFillStyleFor: aCheckboxButton [
+	"Return the selected disabled checkbox button fillStyle for the given button."
+	
+	^self checkboxButtonDisabledFillStyleFor: aCheckboxButton
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>checkboxButtonSelectedFillStyleFor: aCheckboxButton [
+	"Return the selected checkbox button fillStyle for the given button."
+	
+	^self checkboxButtonNormalFillStyleFor: aCheckboxButton
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>checkboxCornerStyleFor: aCheckbox [
+	"Answer the corner style for checkbox buttons."
+	
+	^#square
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>checkboxLabelFor: aCheckbox [
+	"Answer the label to use for the given checkbox."
+
+	|label|
+	label := self checkboxLabelForText: aCheckbox label.
+	label enabled: aCheckbox enabled.
+	label font: self labelFont.
+	^label
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>checkboxLabelForText: aTextOrString [
+	"Answer the label to use for the given text."
+
+	|morph|
+	morph := aTextOrString isString
+		ifTrue: [(LabelMorph contents: aTextOrString)
+				disabledStyle: self disabledItemStyle]
+		ifFalse: [|t|
+				t := TextMorph new newContents: aTextOrString.
+				t extent: t optimalExtent].
+	^morph 
+		vResizing: #shrinkWrap;
+		hResizing: #spaceFill;
+		lock
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>checkboxMarkerForm [
+	"Answer the form to use for a checkbox marker."
+
+	^self forms at: #checkboxMarker ifAbsent: [Form extent: 12@12 depth: Display depth]
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>chooseColorIn: aThemedMorph title: aString color: aColor [
+	"Answer the result of a color selector dialog with the given title and initial color."
+
+	|d|
+	d := aThemedMorph openModal: (
+		(ColorSelectorDialogWindow newWithTheme: aThemedMorph theme)
+			title: aString;
+			selectedColor: aColor).
+	^d  cancelled
+		ifFalse: [d selectedColor]
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>chooseColorIn: aThemedMorph title: aString color: aColor for: aBlock [
+	"execute block with result of a color selector dialog with the given title and initial color."
+
+	|d newColor|
+	d := (ColorSelectorDialogWindow newWithTheme: aThemedMorph theme)
+			title: aString;
+			selectedColor: aColor.
+	d extent: d initialExtent.
+	d announcer when: ColorChanged do: [:ann | 
+		aBlock value: ann newColor].
+	d openInHand.
+	self runModal: d.
+	
+	newColor := d  cancelled
+		ifTrue: [aColor]
+		ifFalse: [d selectedColor].
+				
+	aBlock value: newColor.
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>chooseDirectoryIn: aThemedMorph title: title path: path [
+	"Answer the result of a file dialog with the given title, choosing directories only."
+
+	|fd|
+	fd := (FileDialogWindow newWithTheme: aThemedMorph theme)
+		title: title;
+		answerDirectory.
+	path ifNotNil: [fd selectPathName: path].
+	^(aThemedMorph openModal: fd) answer
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>chooseDropListIn: aThemedMorph text: aStringOrText title: aString list: aList [
+	"Answer the result of a drop list chooser with the given label, title and list."
+
+	^(aThemedMorph openModal: (
+		(ChooseDropListDialogWindow newWithTheme: aThemedMorph theme)
+			textFont: self textFont;
+			title: aString;
+			text: aStringOrText;
+			list: aList)) selectedItem
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>chooseFileIn: aThemedMorph title: title extensions: exts path: path preview: preview [
+	"Answer the result of a file open dialog with the given title, extensions path and preview type.
+	Answer nil or a filename."
+
+	|fd|
+	fd := FileDialogWindow basicNew
+		basicTheme: aThemedMorph theme;
+		previewType: preview;
+		initialize;
+		title: title;
+		answerFileEntry.
+	exts ifNotNil: [fd validExtensions: exts].
+	path ifNotNil: [fd selectPathName: path].
+	^(aThemedMorph openModal: fd) answer
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>chooseFileNameIn: aThemedMorph title: title extensions: exts path: path preview: preview [
+	"Answer the result of a file name chooser dialog with the given title, extensions
+	path and preview type.
+	Answer nil or a filename."
+
+	|fd|
+	fd := FileDialogWindow basicNew
+		basicTheme: aThemedMorph theme;
+		previewType: preview;
+		initialize;
+		title: title;
+		answerFileName.
+	exts ifNotNil: [fd validExtensions: exts].
+	path ifNotNil: [fd selectPathName: path].
+	^(aThemedMorph openModal: fd) answer
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>chooseFontIn: aThemedMorph title: aString font: aFont [
+	"Answer the result of a font selector dialog with the given title and initial font."
+
+	|d|
+	d := aThemedMorph openModal: (
+		Cursor wait showWhile: [
+			self newFontSelector
+				basicTheme: aThemedMorph theme;
+				title: aString;
+				selectedFont: aFont]).
+	^d  cancelled
+		ifFalse: [d selectedFont]
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>chooseFullFileNameIn: aThemedMorph title: title extensions: exts path: path preview: preview [
+	"Answer the result of a file name chooser dialog with the given title, extensions
+	path and preview type.
+	Answer nil or a full filename."
+
+	|fd|
+	fd := FileDialogWindow basicNew
+		basicTheme: aThemedMorph theme;
+		previewType: preview;
+		initialize;
+		title: title;
+		answerPathName.
+	exts ifNotNil: [fd validExtensions: exts].
+	path ifNotNil: [fd selectPathName: path].
+	^(aThemedMorph openModal: fd) answer
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>chooseFullFileNameIn: aThemedMorph title: title patterns: patterns path: path preview: preview [
+	"Answer the result of a file name chooser dialog with the given title, patterns
+	path and preview type.
+	Answer nil or a filename."
+
+	|fd|
+	fd := FileDialogWindow basicNew
+		basicTheme: aThemedMorph theme;
+		previewType: preview;
+		initialize;
+		title: title;
+		answerPathName.
+	patterns ifNotNil: [
+		fd fileSelectionBlock: [:de |
+			(fd defaultFileSelectionBlock value: de) and: [
+				de isDirectory or: [patterns anySatisfy: [:pat | pat match: de name]]]]].
+	path ifNotNil: [fd selectPathName: path].
+	^(aThemedMorph openModal: fd) answer
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>chooseIn: aThemedMorph title: title labels: labels values: values lines: lines [
+	"Answer the result of a popup choice with the given title, labels, values and lines."
+
+	| pd |
+	pd := (PopupChoiceDialogWindow newWithTheme: aThemedMorph theme)
+		title: (title isEmpty ifTrue: ['Choose' translated] ifFalse: [title asString]);
+		labels: labels;
+		lines: (lines ifNil: [#()]);
+		model: values.
+	^(aThemedMorph openModal: pd) choice
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>chooseIn: aThemedMorph title: title message: aMessage labels: labels values: values lines: lines [
+	"Answer the result of a popup choice with the given title, labels, values and lines."
+
+	|pd|
+	pd := (PopupChoiceDialogWindowWithMessage newWithTheme: aThemedMorph theme)
+		title: (title isEmpty ifTrue: ['Choose' translated] ifFalse: [title asString]);
+		textFont: self textFont;
+		message: aMessage;
+		labels: labels;
+		lines: (lines ifNil: [#()]);
+		model: values.
+	^(aThemedMorph openModal: pd) choice
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>chooseOrRequestIn: aThemedMorph title: title labels: labels values: values lines: lines [
+	"Answer the result of a popup choice with the given title, labels, values and lines."
+
+	| dialog choice |
+	dialog := (PopupChoiceOrRequestDialogWindow newWithTheme: aThemedMorph theme)
+		title: (title isEmpty ifTrue: ['Choose' translated] ifFalse: [title asString]);
+		labels: labels;
+		lines: (lines ifNil: [#()]);
+		model: values.
+	choice := (aThemedMorph openModal: dialog) choice.
+	dialog cancelled ifTrue: [ ^nil ].
+	choice 
+		ifNotNil: [ ^choice ]
+		ifNil: [ ^dialog filterValue ]
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>classExtensionColor [
+	^ Color gray darker
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>configureDialogWindowLabelAreaFrameFor: aWindow [
+	"Configure the layout frame for the label area for the given dialog window."
+
+	|frame|
+	self configureWindowLabelAreaFrameFor: aWindow.
+	aWindow labelArea ifNil: [^ self].	
+	frame := aWindow labelArea layoutFrame.
+	frame
+		leftOffset: 0;
+		rightOffset: 0
+]
+
+{
+	#category : #configure,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>configureDropListMorph: aMorph [
+	"This also uses the fillStyle hack :(
+	 check at: #dropListNormalFillStyleFor: for changing style"
+]
+
+{
+	#category : #configure,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>configureLabelMorph: aMorph [
+
+]
+
+{
+	#category : #configure,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>configureLazyListMorph: listMorph  [
+	self configureScrollPane: listMorph.
+]
+
+{
+	#category : #configure,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>configureMorphTreeMorph: aMorph [
+	aMorph preferedPaneColor: Color white.
+	aMorph 
+		rowColorForEven: Color white
+		odd: Color white.
+]
+
+{
+	#category : #configure,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>configurePluggableButtonMorph: aMorph [
+	"This will not work because it is using the #normalFillStyle hack :(
+	 So, go check the #buttonNormalFillStyleFor: method, which is the one that 
+	 actually does something (he and his siblings)"
+]
+
+{
+	#category : #configure,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>configurePluggableListMorph: listMorph  [
+	self configureScrollPane: listMorph.
+]
+
+{
+	#category : #configure,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>configurePluggableTextFieldMorph: textFieldMorph [
+
+]
+
+{
+	#category : #configure,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>configurePluggableTextMorph: textMorph  [
+	textMorph 
+		color: Color white;
+		borderWidth: 1.
+]
+
+{
+	#category : #configure,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>configureScrollPane: aMorph [
+	aMorph color: Color white.
+]
+
+{
+	#category : #configure,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>configureSystemWindow: aWindow  [
+	aWindow basicBorderColor: Color lightGray.
+	aWindow basicBorderWidth: 1.
+	aWindow color: Color lightGray lighter lighter lighter.	
+	self
+		configureWindowBorderFor: aWindow;
+		configureWindowDropShadowFor: aWindow.	
+
+]
+
+{
+	#category : #configure,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>configureTextMorph: textMorph  [
+
+]
+
+{
+	#category : #'*Polymorph-Widgets-Themes',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>configureWatcherWindowLabelAreaFor: aWindow [
+	^ self configureWindowLabelAreaFor: aWindow
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>configureWindowBorderFor: aWindow [
+	"Configure the border for the given window."
+
+	aWindow roundedCorners: #(1 2 3 4).
+	aWindow borderStyle: (BorderStyle
+		width: 1 color: Color lightGray)
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>configureWindowDropShadowFor: aWindow [
+	"Configure the drop shadow for the given window."
+
+	aWindow
+		addDropShadow;
+		shadowColor: self windowShadowColor;
+		shadowOffset: 1@1
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>configureWindowLabelAreaFor: aWindow [
+	"Configure the label area for the given window."
+
+	aWindow labelArea
+		addMorphBack: (Morph new extent: aWindow class borderWidth @ 0).
+	aWindow hasCloseBox ifTrue: [aWindow addCloseBox].
+	aWindow hasMenuBox ifTrue: [aWindow addMenuControl].
+	aWindow labelArea
+		addMorphBack: (Morph new extent: aWindow class borderWidth @ 0).
+	aWindow basicLabel ifNotNil: [:label |
+		label hResizing: #spaceFill.
+		aWindow labelArea addMorphBack: label].
+	aWindow hasExpandBox ifTrue: [aWindow addExpandBox].
+	aWindow hasCollapseBox ifTrue: [aWindow addCollapseBox].
+	aWindow labelArea
+		addMorphBack: (Morph new extent: aWindow class borderWidth @ 0)
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>configureWindowLabelAreaFrameFor: aWindow [
+	"Configure the layout frame for the label area for the given window."
+
+	|frame windowBorderWidth|
+	aWindow labelArea ifNil: [^ self].	
+	windowBorderWidth := aWindow class borderWidth.
+	aWindow labelArea
+		layoutPolicy: RowLayout new;
+		cellPositioning: #topCenter;
+		hResizing: #spaceFill;
+		wrapCentering: #topLeft;
+		layoutInset: (Margin left: 0 top: windowBorderWidth right: 0 bottom: 1).
+	frame := (0@0 corner: 1@0) asLayoutFrame topOffset: aWindow labelHeight negated.
+	aWindow labelArea layoutFrame: frame
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>controlButtonDisabledBorderStyleFor: aButton [
+	"Return the disabled control button borderStyle for the given button.
+	Control buttons are generally used for drop-lists and expanders."
+
+	^self buttonDisabledBorderStyleFor: aButton
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>controlButtonDisabledFillStyleFor: aButton [
+	"Return the disabled control button fillStyle for the given button.
+	Control buttons are generally used for drop-lists and expanders."
+	
+	^self buttonDisabledFillStyleFor: aButton
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>controlButtonLabelInsetFor: aButton [
+	"Answer the inset to use for a control button's label."
+
+	^self buttonLabelInsetFor: aButton
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>controlButtonMouseOverBorderStyleFor: aButton [
+	"Return the mouse over control button borderStyle for the given button.
+	Control buttons are generally used for drop-lists and expanders."
+
+	^self buttonMouseOverBorderStyleFor: aButton
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>controlButtonMouseOverFillStyleFor: aButton [
+	"Return the mouse over control button fillStyle for the given button.
+	Control buttons are generally used for drop-lists and expanders."
+	
+	^self buttonMouseOverFillStyleFor: aButton
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>controlButtonNormalBorderStyleFor: aButton [
+	"Return the normal control button borderStyle for the given button.
+	Control buttons are generally used for drop-lists and expanders."
+
+	^self buttonNormalBorderStyleFor: aButton
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>controlButtonNormalFillStyleFor: aButton [
+	"Return the normal control button fillStyle for the given button.
+	Control buttons are generally used for drop-lists and expanders."
+	
+	^self buttonNormalFillStyleFor: aButton
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>controlButtonPressedBorderStyleFor: aButton [
+	"Return the pressed control button borderStyle for the given button.
+	Control buttons are generally used for drop-lists and expanders."
+
+	^self buttonPressedBorderStyleFor: aButton
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>controlButtonPressedFillStyleFor: aButton [
+	"Return the pressed button fillStyle for the given button.
+	Control buttons are generally used for drop-lists and expanders."
+	
+	^self buttonPressedFillStyleFor: aButton
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>controlButtonSelectedDisabledBorderStyleFor: aButton [
+	"Return the selected disabled control button borderStyle for the given button.
+	Control buttons are generally used for drop-lists and expanders."
+
+	^self buttonSelectedDisabledBorderStyleFor: aButton
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>controlButtonSelectedDisabledFillStyleFor: aButton [
+	"Return the selected disabled control button fillStyle for the given button.
+	Control buttons are generally used for drop-lists and expanders."
+	
+	^self buttonSelectedDisabledFillStyleFor: aButton
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>controlButtonSelectedFillStyleFor: aButton [
+	"Return the selected control button fillStyle for the given button.
+	Control buttons are generally used for drop-lists and expanders."
+	
+	^self buttonSelectedFillStyleFor: aButton
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>controlButtonSelectedMouseOverBorderStyleFor: aButton [
+	"Return the selected mouse over control button borderStyle for the given button.
+	Control buttons are generally used for drop-lists and expanders."
+
+	^self buttonSelectedMouseOverBorderStyleFor: aButton
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>controlButtonSelectedMouseOverFillStyleFor: aButton [
+	"Return the selected mouse over control button fillStyle for the given button.
+	Control buttons are generally used for drop-lists and expanders."
+	
+	^self buttonSelectedMouseOverFillStyleFor: aButton
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>controlButtonSelectedPressedBorderStyleFor: aButton [
+	"Return the selected pressed control button borderStyle for the given button.
+	Control buttons are generally used for drop-lists and expanders."
+
+	^self buttonSelectedPressedBorderStyleFor: aButton
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>controlButtonSelectedPressedFillStyleFor: aButton [
+	"Return the selected pressed button fillStyle for the given button.
+	Control buttons are generally used for drop-lists and expanders."
+	
+	^self buttonSelectedPressedFillStyleFor: aButton
+]
+
+{
+	#category : #scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>createArrowImagesCache [
+	"Creates the cache to store the arrow forms"
+
+	^ LRUCache new
+		maximumWeight: 40;
+		factory: [ :key |
+			self
+				scrollbarArrowOfDirection: key first
+				size: key second
+				color: key third ];
+		yourself
+]
+
+{
+	#category : #scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>createArrowOfDirection: aSymbol in: aRectangle  [
+	"PRIVATE - create an arrow bounded in aRectangle"
+
+	| arrow vertices |
+	vertices := self scrollBarButtonArrowVertices: aRectangle.
+	""
+	arrow := PolygonMorph 
+				vertices: vertices
+				color: Color transparent
+				borderWidth: 0
+				borderColor: Color black.
+	""
+	arrow bounds: (arrow bounds insetBy: (aRectangle width / 6) rounded).
+	""
+	aSymbol == #right 
+		ifTrue: [arrow rotationDegrees: arrow rotationDegrees + 90].
+	aSymbol == #bottom 
+		ifTrue: [arrow rotationDegrees: arrow rotationDegrees + 180].
+	aSymbol == #left 
+		ifTrue: [arrow rotationDegrees: arrow rotationDegrees + 270].
+	""
+	^arrow
+]
+
+{
+	#category : #scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>createArrowOfDirection: aSymbolDirection size: finalSizeInteger color: aColor  [
+	"Defer to current UITheme if available."
+	
+	^self
+		scrollbarArrowOfDirection: aSymbolDirection
+		size: finalSizeInteger
+		color: aColor
+]
+
+{
+	#category : #scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>createBoxImagesCache [
+	"Creates the cache to store the arrow forms"
+	
+	^ LRUCache new
+		maximumWeight: 20;
+		factory: [ :key |
+			self createBoxOfSize: key first color: key second ];
+		yourself
+]
+
+{
+	#category : #scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>createBoxIn: aRectangle  [
+	"PRIVATE - create an box bounded in aRectangle"
+	| box |
+	box := Morph new.
+	box extent: (aRectangle scaleBy: 1 / 2) extent rounded;
+		 borderWidth: 0.
+	""
+	^ box
+]
+
+{
+	#category : #scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>createBoxOfSize: finalSizeInteger color: aColor  [
+	"PRIVATE - create a box with finalSizeInteger and aColor  
+	 
+	Try with:  
+	(UITheme current createBoxOfSize: 32 color: Color lightGreen) 
+          asMorph openInHand.  
+	"
+	| resizeFactor outerBox innerBox resizedForm |
+	resizeFactor := 4.
+	outerBox := Morph new.
+	outerBox extent: finalSizeInteger asPoint * resizeFactor;
+		 color: aColor.
+	""
+	innerBox := self createBoxIn: outerBox bounds.
+	self updateScrollBarButtonAspect: innerBox color: aColor muchDarker.
+	outerBox addMorphCentered: innerBox.
+	""
+	resizedForm := outerBox imageForm
+				magnify: outerBox imageForm boundingBox
+				by: 1 / resizeFactor
+				smoothing: 4.
+	""
+	^ (resizedForm replaceColor: aColor withColor: Color transparent)
+		trimBordersOfColor: Color transparent
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>createCloseBoxFor: aSystemWindow [
+	"Answer a button for closing the window."
+	
+	^(self
+		newCloseControlIn: aSystemWindow
+		for: aSystemWindow
+		action: [aSystemWindow closeBoxHit]
+		help: 'Close this window' translated)
+		extent: aSystemWindow boxExtent
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>createCollapseBoxFor: aSystemWindow [
+	"Answer a button for minimising the window."
+	
+	^aSystemWindow createBox
+		labelGraphic: self windowMinimizeForm;
+		extent: aSystemWindow boxExtent;
+		actionSelector: #collapseBoxHit;
+		setBalloonText: 'Collapse this window' translated
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>createExpandBoxFor: aSystemWindow [
+	"Answer a button for maximising/restoring the window."
+	
+	^aSystemWindow createBox
+		labelGraphic: self windowMaximizeForm;
+		extent: aSystemWindow boxExtent;
+		actionSelector: #expandBoxHit;
+		setBalloonText: 'Expand to full screen' translated
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>createMenuBoxFor: aSystemWindow [
+	"Answer a button for the window menu."
+	
+	^aSystemWindow createBox
+		labelGraphic: (self windowMenuIconFor: aSystemWindow);
+		extent: aSystemWindow boxExtent;
+		actWhen: #buttonDown;
+		actionSelector: #offerWindowMenu;
+		setBalloonText: 'Window menu' translated
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>currentSettings [
+	^ self class currentSettings
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>customQuestionIn: aThemedMorph text: labelText yesText: yesText noText: noText cancelText: cancelText default: defaultOption title: aString [
+	"Answer the result of a question dialog with the given label, button labels and title.
+	defaultOption should be one of true, false or nil to set the default button."
+
+	self questionSound play.
+	^(aThemedMorph openModal: (
+		(CustomQuestionDialogWindow newWithTheme: aThemedMorph theme)
+			textFont: self textFont;
+			title: aString;
+			text: labelText;
+			yesText: yesText help: nil;
+			noText: noText help: nil;
+			cancelText: cancelText help: nil;
+			default: defaultOption)) answer
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>customQuestionIn: aThemedMorph text: labelText yesText: yesText noText: noText title: aString [
+	"Answer the result of a question dialog with the given label, button labels and title."
+
+	self questionSound play.
+	^(aThemedMorph openModal: (
+		(CustomQuestionDialogWindow newWithTheme: aThemedMorph theme)
+			textFont: self textFont;
+			title: aString;
+			text: labelText;
+			yesText: yesText help: nil;
+			noText: noText help: nil)) answer
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>dangerBackgroundColor [
+	^ self dangerTextColor darker darker
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>dangerTextColor [
+	^ Color red
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>darkBaseColor [
+	^ self class darkBaseColor
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>defaultButtonBorderColor [
+	"Answer the color to use for a 'default' button."
+
+	^self settings selectionColor
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>defaultMenuColor [
+	"Answer the default color to use for a menu
+	in the absence of an override in settings."
+
+	^ self settings fallbackMenuColor 
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>defaultMenuTitleColor [
+	"Answer the default color to use for a menu title
+	in the absence of an override in settings."
+
+	^self settings menuTitleColor
+]
+
+{
+	#category : #initialize-release,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>defaultSettings [
+	"Answer the default settings."
+
+	^self class defaultSettings copy
+]
+
+{
+	#category : #initialize-release,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>defaultSoundTheme [
+	"Answer the default sound theme.
+	Answer the system sound theme by default."
+
+	^SoundTheme current
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>denyIn: aThemedMorph text: aStringOrText title: aString [
+	"Answer the result of an deny dialog (true) with the given label and title."
+
+	self denySound play.
+	^(aThemedMorph openModal: (
+		(DenyDialogWindow newWithTheme: aThemedMorph theme)
+			textFont: self textFont;
+			title: aString;
+			text: aStringOrText)) cancelled not
+]
+
+{
+	#category : #sounds,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>denySound [
+	"Answer the deny sound."
+
+	^self soundTheme denySound
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>desktopColor [
+
+	^(Color r: 240 g: 240 b: 240 range: 255)
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>desktopImageFor: aWorld [
+	"Answer the desktop image for the given world.
+	Look for an image file with the name of the theme.
+	Answer nil for none available."
+
+	|file|
+	file := FileSystem disk workingDirectory / self class themeName , 'jpg'.
+	^ file exists ifTrue: [
+		ImageReadWriter formFromFileNamed: file fullName]
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>desktopImageLayout [
+	"Answer the layout symbol for any desktop image.
+	See AlphaImageMorph>>layoutSymbols."
+
+	^self settings desktopImageLayout
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>dialogWindowActiveFillStyleFor: aWindow [
+	"Return the dialog window active fillStyle for the given window."
+	
+	^aWindow paneColorToUse lighter
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>dialogWindowInactiveFillStyleFor: aWindow [
+	"Return the dialog window inactive fillStyle for the given window."
+	
+	^self settings  fadedBackgroundWindows
+		ifTrue: [aWindow paneColorToUse lighter
+					alphaMixed: 0.9
+					with: (Color white alpha: aWindow paneColorToUse alpha)]
+		ifFalse: [aWindow paneColorToUse lighter]
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>dialogWindowPreferredCornerStyleFor: aDialogWindow [
+	"Answer the preferred corner style for the given dialog."
+
+	^#rounded
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>disabledColor  [
+	^ Color gray
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>disabledItemStyle [
+	"Answer either #plain or #inset to determine how
+	diabled text is drawn."
+
+	^#plain
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>disabledTextColor  [
+	^ self disabledColor
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>dockingBarNormalFillStyleFor: aToolDockingBar [
+	"Return the normal docking bar fillStyle for the given color."
+	
+	|aColor|
+	aColor := aToolDockingBar originalColor.
+	^(GradientFillStyle ramp: {
+			0.0->aColor whiter whiter. 0.2->aColor lighter.
+			0.8->aColor darker. 1.0->aColor blacker})
+		origin: aToolDockingBar topLeft;
+		direction: (aToolDockingBar isVertical
+			ifTrue: [aToolDockingBar width @ 0]
+			ifFalse: [0 @ aToolDockingBar height]);
+		radial: false
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>drawTabGroupFinishingFor: aTabGroupMorph on: aCanvas [
+	"Patch up any visuals for the selected tab."
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>drawTextAdornmentFor: aPluggableTextMorph color: aColor on: aCanvas [
+	"Indicate edit status for the given morph."
+	
+	aCanvas frameRectangle: aPluggableTextMorph innerBounds width: 2 color: aColor
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>drawTextAdornmentsFor: aPluggableTextMorph on: aCanvas [
+	"Indicate edit status for the given morph."
+
+	(aPluggableTextMorph hasEditingConflicts or: [ aPluggableTextMorph hasValidText not ])
+		ifTrue: [ ^ self drawTextAdornmentFor: aPluggableTextMorph color: Color red on: aCanvas ].
+	aPluggableTextMorph hasUnacceptedEdits
+		ifTrue: [ aPluggableTextMorph model wantsVisualFeedback
+				ifTrue: [ ^ self drawTextAdornmentFor: aPluggableTextMorph color: Color orange on: aCanvas ] ]
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>drawWindowActiveDropShadowFor: aSystemWindow on: aCanvas [
+	"Draw the active drop shadow for the given window."
+	
+	
+	^self windowActiveDropShadowStyle == #diffuse
+		ifTrue: [self drawWindowDiffuseDropShadowFor: aSystemWindow on: aCanvas]
+		ifFalse: [self drawWindowPlainDropShadowFor: aSystemWindow on: aCanvas]
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>drawWindowDiffuseDropShadowFor: aSystemWindow on: aCanvas [
+	"Draw the diffuse drop shadow for the given window."
+	
+	|or b r o gc|
+	or := self windowActiveDropShadowOffsetRectangleFor: aSystemWindow.
+	o := or bottom.
+	(aSystemWindow roundedCorners includesAnyOf: #(2 3))
+		ifTrue: [o := o + 2].
+	b := aSystemWindow bounds expandBy: or.
+	gc := {Color black alpha: 0.6. Color transparent}.
+	r := b topLeft extent: o asPoint.
+	aCanvas
+		fillRectangle: r
+		fillStyle: ((GradientFillStyle colors: gc)
+					origin: r bottomRight;
+					direction: o@0;
+					radial: true).
+	r := b topLeft + (o@0) extent: (b width - o - o @ o).
+	aCanvas
+		fillRectangle: r
+		fillStyle: ((GradientFillStyle colors: gc)
+					origin: r bottomLeft;
+					direction: 0@o negated).
+	r := b topRight - (o@0) extent: o asPoint.
+	aCanvas
+		fillRectangle: r
+		fillStyle: ((GradientFillStyle colors: gc)
+					origin: r bottomLeft;
+					direction: o@0;
+					radial: true).
+	r := b topRight + (o negated@o) extent: (o @ (b height - o - o)).
+	aCanvas
+		fillRectangle: r
+		fillStyle: ((GradientFillStyle colors: gc)
+					origin: r topLeft;
+					direction: o@0).
+	r := b bottomRight - o asPoint extent: o asPoint.
+	aCanvas
+		fillRectangle: r
+		fillStyle: ((GradientFillStyle colors: gc)
+					origin: r topLeft;
+					direction: o@0;
+					radial: true).
+	r := b bottomLeft + (o@o negated) extent: (b width - o - o @ o).
+	aCanvas
+		fillRectangle: r
+		fillStyle: ((GradientFillStyle colors: gc)
+					origin: r topLeft;
+					direction: 0@o).
+	r := b bottomLeft - (0@o) extent: o asPoint.
+	aCanvas
+		fillRectangle: r
+		fillStyle: ((GradientFillStyle colors: gc)
+					origin: r topRight;
+					direction: o@0;
+					radial: true).
+	r := b topLeft + (0@o) extent: (o @ (b height - o - o)).
+	aCanvas
+		fillRectangle: r
+		fillStyle: ((GradientFillStyle colors: gc)
+					origin: r topRight;
+					direction: o negated@0)
+
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>drawWindowInactiveDropShadowFor: aSystemWindow on: aCanvas [
+	"Draw the inactive drop shadow for the given window."
+	
+	self drawWindowPlainDropShadowFor: aSystemWindow on: aCanvas
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>drawWindowPlainDropShadowFor: aSystemWindow on: aCanvas [
+	"Draw the plain drop shadow for the given window."
+	
+	|blOffset brOffset trOffset|
+	(aSystemWindow owner notNil and: [aSystemWindow owner isHandMorph])
+		ifTrue: [^self]. "skip if being dragged"
+	blOffset := (aSystemWindow wantsRoundedCorners and: [aSystemWindow roundedCorners includes: 2])	
+		ifTrue: [7] ifFalse: [1].
+	brOffset := (aSystemWindow wantsRoundedCorners and: [aSystemWindow roundedCorners includes: 3])	
+		ifTrue: [7] ifFalse: [1].
+	trOffset := (aSystemWindow wantsRoundedCorners and: [aSystemWindow roundedCorners includes: 4])	
+		ifTrue: [7] ifFalse: [1].
+	aCanvas
+		fillRectangle: (aSystemWindow bounds bottomLeft + (blOffset @ 0)
+						corner: aSystemWindow bounds bottomRight - (brOffset @ -1))
+		fillStyle: aSystemWindow shadowColor;
+		fillRectangle: (aSystemWindow bounds topRight + (0 @ trOffset)
+						corner: aSystemWindow bounds bottomRight + (1 @ brOffset negated))
+		fillStyle: aSystemWindow shadowColor.
+	aCanvas
+		clipBy: (aSystemWindow bounds bottomRight - brOffset
+			corner: aSystemWindow bounds bottomRight + (1@1))
+			during: [:c | ((RoundedBorder new
+							baseColor: aSystemWindow shadowColor;
+							width: 1) cornerRadius: brOffset - 1)
+							frameRectangle: (aSystemWindow bounds translateBy: 1)
+							on: c]
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>dropListButtonLabelFor: aDropList [
+	"Answer the label for the button of the given drop list."
+
+	^AlphaImageMorph new
+		image: (ScrollBar
+			arrowOfDirection: #bottom
+			size: aDropList buttonWidth - 3
+			color: aDropList paneColor darker);
+		enabled: aDropList enabled
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>dropListControlButtonWidth [
+	"Answer the width of a drop list control button for this theme."
+	
+	^self buttonMinWidth
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>dropListDisabledBorderStyleFor: aDropList [
+	"Return the disabled borderStyle for the given drop list."
+
+	^self dropListNormalBorderStyleFor: aDropList
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>dropListDisabledFillStyleFor: aDropList [
+	"Return the disabled fillStyle for the given drop list."
+	
+	^aDropList paneColor alphaMixed: 0.3 with: Color white
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>dropListFocusBoundsFor: aDropList [
+	"Answer the bounds for drawing the focus indication for the
+	given drop list."
+
+	^(aDropList innerBounds
+		insetBy: (0@0 corner: aDropList buttonMorph width@0))
+		insetBy: aDropList layoutInset
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>dropListFocusIndicatorCornerRadiusFor: aDropList [
+	"Answer the default corner radius preferred for the focus indicator
+	for the drop list for themes that support this."
+
+	^self focusIndicatorCornerRadiusFor: aDropList
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>dropListFont [
+	"Answer the drop list font to use."
+
+	^self textFont
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>dropListInsetFor: aDropList [
+	"Answer the inset to use for drop-list layout."
+
+	^Margin left: 1 top: 0 right: -1 bottom: 0
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>dropListNormalBorderStyleFor: aDropList [
+	"Return the normal borderStyle for the given drop list"
+
+	^BorderStyle inset
+		width: 1;
+		baseColor: aDropList paneColor
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>dropListNormalFillStyleFor: aDropList [
+	"Return the normal fillStyle for the given drop list."
+	
+	^Color white
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>dropListNormalListBorderStyleFor: aDropList [
+	"Return the normal borderStyle for the list of the given given drop list"
+
+	^BorderStyle inset
+		width: 1;
+		baseColor: aDropList paneColor
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>dropListNormalListFillStyleFor: aDropList [
+	"Return the normal fillStyle for the list of the given drop list."
+	
+	^Color white
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>editableDropListMargins [
+	"Answer the text margins for an editable drop list for this theme."
+	
+	^Margin left: 0 top: 1 right: 2 bottom: 1
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>enabledColor  [
+	^ Color black
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>enterOrRequestIn: aThemedMorph title: title labels: labels values: values lines: lines [
+	"Answer the result of a popup choice with the given title, labels, values and lines."
+
+	| dialog choice |
+	dialog := (PopupChoiceOrRequestDialogWindow newWithTheme: aThemedMorph theme)
+		title: (title isEmpty ifTrue: ['Choose' translated] ifFalse: [title asString]);
+		labels: labels;
+		lines: (lines ifNil: [#()]);
+		model: values.
+	choice := (aThemedMorph openModal: dialog) choice.
+	dialog cancelled ifTrue: [ ^nil ].
+	choice 
+		ifNotNil: [ ^choice ]
+		ifNil: [ ^dialog filterValue ]
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>expanderTitleControlButtonWidth [
+	"Answer the width of an expander title control button for this theme."
+	
+	^self buttonMinWidth
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>expanderTitleInsetFor: anExpanderTitle [
+	"Answer the inset to use for expander title layout."
+
+	^anExpanderTitle borderWidth negated
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>expanderTitleNormalFillStyleFor: anExpanderTitle [
+	"Return the normal expander title fillStyle for the given expander title."
+	
+	^anExpanderTitle paneColor
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>fadeCheckboxWhenDisabled [
+	"Answer whether a checkbox should fade its appearance when disabled.
+	If false, assumed that is covered by the relevant disabled fill styles."
+
+	^true
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>fileOpenIn: aThemedMorph title: title extensions: exts path: path preview: preview [
+	"Answer the result of a file open dialog with the given title, extensions path and preview type."
+
+	|fd|
+	fd := FileDialogWindow basicNew
+		basicTheme: aThemedMorph theme;
+		previewType: preview;
+		initialize;
+		title: title;
+		answerOpenFile.
+	exts ifNotNil: [fd validExtensions: exts].
+	path ifNotNil: [fd selectPathName: path].
+	^(aThemedMorph openModal: fd) answer
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>fileSaveIn: aThemedMorph title: title extensions: exts path: path [
+	"Answer the result of a file save dialog with the given title, extensions and path."
+
+	^self fileSaveIn: aThemedMorph title: title initialAnswer: '' extensions: exts path: path
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>fileSaveIn: aThemedMorph title: title initialAnswer: aFileName extensions: exts path: path [
+	"Answer the result of a file save dialog with the given title, extensions and path."
+
+	|fd|
+	fd := (FileDialogWindow newWithTheme: aThemedMorph theme)
+		title: title;
+		fileNameText: aFileName;
+		answerSaveFile.
+	exts ifNotNil: [fd validExtensions: exts].
+	path ifNotNil: [fd selectPathName: path].
+	^(aThemedMorph openModal: fd) answer
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>flatMenu [
+	^ self settings flatMenu
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>focusIndicator [
+	"Answer the value of focusIndicator"
+
+	^ focusIndicator
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>focusIndicator: anObject [
+	"Set the value of focusIndicator"
+
+	focusIndicator := anObject
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>focusIndicatorCornerRadiusFor: aMorph [
+	"Answer the default corner radius preferred for the focus indicator
+	for the morph for themes that support this."
+
+	^aMorph wantsRoundedCorners
+		ifTrue: [6]
+		ifFalse: [2]
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>focusIndicatorMorphFor: aMorph [
+	"Answer a (cached) focus indicator for the given morph."
+
+	(self focusIndicator isNil or: [
+			self focusIndicator isMorph
+				ifTrue: [self focusIndicator ~~ aMorph]
+				ifFalse: [self focusIndicator key ~~ aMorph]])
+		ifTrue: [self focusIndicator: aMorph ->(self newFocusIndicatorMorphFor: aMorph)].
+	^self focusIndicator value 
+		privateBounds: aMorph focusBounds
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>forms [
+	"Answer the value of forms"
+
+	^ forms
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>forms: anObject [
+	"Set the value of forms"
+
+	forms := anObject
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>groupLabelBorderStyleFor: aGroupPanel [
+	"Answer the normal border style for a group label."
+
+	^BorderStyle simple
+		width: 0;
+		baseColor: Color transparent
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>groupPanelBorderStyleFor: aGroupPanel [
+	"Answer the normal border style for a group panel."
+
+	^BorderStyle simple
+		width: 0;
+		baseColor: Color transparent
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>handlesWindowDropShadowInHandFor: aSystemWindow [
+	"Answer whether the receiver will handle drop shadow drawing
+	for a window when picked up in the hand. We will when diffuse."
+
+	^self windowActiveDropShadowStyle == #diffuse and: [
+		aSystemWindow isActive]
+]
+
+{
+	#category : #icons-utilities,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>icons [
+	^ Smalltalk ui icons
+]
+
+{
+	#category : #initialization,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>initialize [
+	"Initialize the receiver."
+
+	super initialize.
+	self
+		initializeForms;
+		settings: self defaultSettings.
+]
+
+{
+	#category : #initialize-release,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>initializeForms [
+	"Initialize the receiver's image forms."
+
+	self forms: Dictionary new.
+	self forms
+		at: #checkboxMarker put: self newCheckboxMarkerForm;
+		at: #radioButtonMarker put: self newRadioButtonMarkerForm;
+		at: #treeExpanded put: self newTreeExpandedForm;
+		at: #treeUnexpanded put: self newTreeUnexpandedForm;
+		at: #windowClose put: self newWindowCloseForm;
+		at: #windowMinimize put: self newWindowMinimizeForm;
+		at: #windowMaximize put: self newWindowMaximizeForm;
+		at: #windowMenu put: self newWindowMenuForm;
+		at: #windowCloseOver put: self newWindowCloseOverForm;
+		at: #windowMinimizeOver put: self newWindowMinimizeOverForm;
+		at: #windowMaximizeOver put: self newWindowMaximizeOverForm
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>labelDisabledColorFor: aLabel [
+	"Answer the color to use for a label when disabled."
+
+	^aLabel owner
+		ifNil: [aLabel paneColor muchDarker]
+		ifNotNil: [aLabel owner color isTransparent
+					ifTrue: [aLabel owner paneColor muchDarker]
+					ifFalse: [aLabel owner color muchDarker]].
+			
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>labelFont [
+	"Answer the label font to use."
+
+	^self textFont
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>lessConspicuousColorFrom: aColor [
+
+	^	aColor alphaMixed: 0.5 with: Color white
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>lightBackgroundColor  [
+	^ Color veryLightGray muchLighter
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>lightBaseColor [
+
+	^ self class lightBaseColor
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>lineNumberColor  [
+	^ Color gray muchDarker
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>listBackgroundColor [
+	^ self backgroundColor
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>listDisabledBorderStyleFor: aList [
+	"Return the disabled borderStyle for the given list."
+
+	^self listNormalBorderStyleFor: aList
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>listDisabledFillStyleFor: aList [
+	"Return the disabled fillStyle for the given list."
+	
+	^aList paneColor alphaMixed: 0.3 with: Color white
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>listFocusBoundsFor: aListMorph [
+	"Answer the bounds for drawing the focus indication."
+
+	^aListMorph bounds
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>listFont [
+	"Answer the list font to use."
+
+	^StandardFonts listFont
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>listNormalBorderStyleFor: aList [
+	"Return the normal borderStyle for the given list"
+
+	^BorderStyle inset
+		width: 1;
+		baseColor: aList paneColor
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>listNormalFillStyleFor: aList [
+	"Return the normal fillStyle for the given list."
+	
+	^Color white
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>listTextColor [
+	"Answer the list text color to use."
+
+	^Color black
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>longMessageIn: aThemedMorph text: aStringOrText title: aString [
+	"Answer the result of a (potentially long) message dialog (true) with the given label and title."
+
+	self messageSound play.
+	^(aThemedMorph openModal: (
+		(LongMessageDialogWindow newWithTheme: aThemedMorph theme)
+			textFont: self textFont;
+			title: aString;
+			text: aStringOrText)) cancelled not
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>menuBarFont [
+	"Answer the menu bar font to use."
+
+	^self textFont
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>menuBorderColor [
+	^  self settings menuBorderColor
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>menuBorderWidth  [
+	^  self settings menuBorderWidth
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>menuCloseForm [
+	"Answer the form to use for the close button of a menu."
+
+	^self windowCloseForm
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>menuColor [
+	"Answer the menu color to use."
+
+	^self settings menuColor
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>menuColorFor: aThemedMorph [
+	"Answer the menu color to use."
+
+	|w|
+	^self menuColor ifNil: [
+		aThemedMorph ifNil: [^self defaultMenuColor].
+		w := aThemedMorph isSystemWindow
+			ifTrue: [aThemedMorph]
+			ifFalse: [aThemedMorph ownerThatIsA: SystemWindow].
+		w isNil
+			ifTrue: [self defaultMenuColor]
+			ifFalse: [(w valueOfProperty: #paneColor) ifNil: [self defaultMenuColor]]]
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>menuFillStyleFor: aMenu [
+	"Return the fillStyle for the given menu."
+	
+	| bc fill |
+	bc := aMenu valueOfProperty: #basicColor ifAbsent: [self settings derivedMenuColor].
+	fill := GradientFillStyle ramp: {0.0 -> (bc alphaMixed: 0.2 with: Color white). 1.0 -> bc}.
+	fill
+		radial: false;
+		origin: aMenu topLeft;
+		direction: 0 @ aMenu height.
+	^ fill.
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>menuFont [
+	"Answer the menu font to use."
+
+	^StandardFonts menuFont
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>menuItemDisabledTextColorFor: aMenuItem [
+	"Answer the color to use for disabled menu item text."
+
+	^((aMenuItem color luminance - aMenuItem owner color luminance) abs < 0.3)
+		ifTrue: [aMenuItem owner color contrastingColor muchDarker]
+		ifFalse: [aMenuItem owner color muchDarker]
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>menuItemInDockingBarSelectedBorderStyleFor: aMenuItem [
+	"Return the selected menu item borderStyle when in a docking bar for the given menu item."
+
+	^self menuItemSelectedBorderStyleFor: aMenuItem
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>menuItemInDockingBarSelectedFillStyleFor: aMenuItem [
+	"Answer the selected fill style to use for the given menu item that is in a docking bar."
+	
+	^ self menuItemSelectedFillStyleFor: aMenuItem
+
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>menuItemNormalTextColorFor: aMenuItem [
+	"Answer the color to use for normal menu item text."
+
+	^((aMenuItem color luminance - aMenuItem owner paneColor luminance) abs < 0.3)
+		ifTrue: [aMenuItem owner paneColor contrastingColor]
+		ifFalse: [aMenuItem color]
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>menuItemSelectedBorderStyleFor: aMenuItem [
+	"Return the selected menu item borderStyle for the given menu item."
+
+	^BorderStyle simple
+		width: 0
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>menuItemSelectedFillStyleFor: aMenuItem [
+	"Answer the selected fill style to use for the given menu item."
+	
+	Display depth <= 2 ifTrue: [^ Color gray].
+	^ self settings menuSelectionColor.
+
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>menuItemSelectedTextColorFor: aMenuItem [
+	"Answer the color to use for selected menu item text."
+
+	^ self settings menuSelectionTextColor
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>menuKeyboardFocusColor [
+	^ self settings menuKeyboardFocusColor
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>menuPinForm [
+	"Answer the form to use for the pin button of a menu."
+
+	^ self iconNamed: #smallPushpinIcon
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>menuShadowColor [
+	^ self settings menuShadowColor
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>menuTitleColor [
+	"Answer the menu title color to use."
+	^self settings menuTitleColor
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>menuTitleColorFor: aThemedMorph [
+	"Answer the menu titlecolor to use."
+
+	|w|
+	^self menuTitleColor ifNil: [
+		aThemedMorph ifNil: [^self defaultMenuTitleColor].
+		w := aThemedMorph isSystemWindow
+			ifTrue: [aThemedMorph]
+			ifFalse: [aThemedMorph ownerThatIsA: SystemWindow].
+		w isNil
+			ifTrue: [self defaultMenuTitleColor]
+			ifFalse: [(w valueOfProperty: #paneColor) darker ifNil: [self defaultMenuTitleColor]]]
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>menuTitleFillStyleFor: aMenuTitle [
+	"Return the fillStyle for the given title menu."
+	| fill |
+
+	fill := GradientFillStyle ramp: {0.0 -> aMenuTitle color twiceLighter. 1 -> aMenuTitle color twiceDarker}.
+	fill
+		origin: aMenuTitle topLeft;
+		direction: aMenuTitle width @ 0.
+	^ fill
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>messageIn: aThemedMorph text: aStringOrText title: aString [
+	"Answer the result of a message dialog (true) with the given label and title."
+
+	self messageSound play.
+	^(aThemedMorph openModal: (
+		(MessageDialogWindow newWithTheme: aThemedMorph theme)
+			textFont: self textFont;
+			title: aString;
+			text: aStringOrText)) cancelled not
+]
+
+{
+	#category : #sounds,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>messageSound [
+	"Answer the message sound."
+
+	^self soundTheme messageSound
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>morphTreeColumnBorderStyleFor: aMorph [
+	^ self buttonNormalBorderStyleFor: aMorph
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>morphTreeColumnFillStyleFor: aMorph [
+	^ self buttonNormalFillStyleFor: aMorph 
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>morphTreeSplitterNormalFillStyleFor: aSplitter [
+	"Return the normal splitter fillStyle for the given splitter."
+	
+	|aColor|
+	aColor := aSplitter paneColor.
+	^(GradientFillStyle ramp: {
+		0.0->aColor whiter whiter. 0.2->aColor lighter.
+		0.8->aColor darker. 1.0->aColor blacker})
+		origin: aSplitter topLeft;
+		direction: (aSplitter splitsTopAndBottom
+			ifTrue: [0 @ aSplitter height]
+			ifFalse: [aSplitter width @ 0]);
+		radial: false
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>morphTreeSplitterPressedFillStyleFor: aSplitter [
+	"Return the pressed splitter fillStyle for the given splitter."
+	
+	|aColor|
+	aColor := aSplitter paneColor twiceDarker.
+	^(GradientFillStyle ramp: {
+			0.0->Color white. 0.4-> aColor twiceLighter.
+			1.0->aColor darker duller})
+		origin: aSplitter topLeft;
+		direction: (aSplitter splitsTopAndBottom
+			ifTrue: [0 @ aSplitter height]
+			ifFalse: [aSplitter width @ 0]);
+		radial: false
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>multiFormFillStyleFrom: anArray cornerWidths: widthArray in: aRectangle [
+	"Answer a composite fill style from the given forms and central colour
+	in the given bounds. Use the widths specified for the portion of the
+	corner forms to display."
+	
+	|tl tm tr ml mr bl bm br c tlw trw blw brw|
+	tl := anArray first. tlw:= widthArray first.
+	tm := anArray second.
+	tr := anArray third. trw := widthArray second.
+	ml  := anArray fourth.
+	c := anArray fifth.
+	mr  := anArray sixth.
+	bl := anArray seventh. blw := widthArray third.
+	bm := anArray eighth.
+	br := anArray ninth. brw := widthArray fourth.
+	^CompositeFillStyle fillStyles: {
+		(ImageFillStyle form: tl)
+			origin: aRectangle topLeft;
+			extent: tlw@tl height.
+		(AlphaInfiniteForm with: tm)
+			origin: aRectangle topLeft + (tlw@0);
+			extent: (aRectangle width - trw - tlw)@tm height.
+		(ImageFillStyle form: tr)
+			origin: aRectangle topRight - (tr width@0);
+			extent: trw@tr height;
+			offset: (tr width - trw)@0.
+		(AlphaInfiniteForm with: ml)
+			origin: aRectangle topLeft + (0@tl height);
+			extent: ml width@(aRectangle height - tl height - bl height).
+		(ColorFillStyle color: c)
+			origin: aRectangle topLeft + (tlw@tl height);
+			extent: aRectangle extent - (tlw@tl height) - (brw@br height).
+		(AlphaInfiniteForm with: mr)
+			origin: aRectangle topRight + (trw negated@tr height);
+			extent: mr width@(aRectangle height - tr height - br height).
+		(ImageFillStyle form: bl)
+			origin: aRectangle bottomLeft - (0@bl height);
+			extent: blw@bl height.
+		(AlphaInfiniteForm with: bm)
+			origin: aRectangle bottomLeft - (blw negated@bl height);
+			extent: (aRectangle width - blw - brw)@bm height.
+		(ImageFillStyle form: br)
+			origin: aRectangle bottomRight - br extent;
+			extent: brw@br height;
+			offset: (br width - brw)@0}
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>multiFormFillStyleFrom: anArray in: aRectangle [
+	"Answer a composite fill style from the given forms and central colour
+	in the given bounds."
+	
+	|tl tm tr ml mr bl bm br c|
+	tl := anArray first.
+	tm := anArray second.
+	tr := anArray third.
+	ml  := anArray fourth.
+	c := anArray fifth.
+	mr  := anArray sixth.
+	bl := anArray seventh.
+	bm := anArray eighth.
+	br := anArray ninth.
+	^CompositeFillStyle fillStyles: {
+		(ImageFillStyle form: tl) origin: aRectangle topLeft.
+		(AlphaInfiniteForm with: tm)
+			origin: aRectangle topLeft + (tl width@0);
+			extent: (aRectangle width - tl width - tr width)@tm height.
+		(ImageFillStyle form: tr)
+			origin: aRectangle topRight - (tr width@0).
+		(AlphaInfiniteForm with: ml)
+			origin: aRectangle topLeft + (0@tl height);
+			extent: ml width@(aRectangle height - tl height - bl height).
+		(ColorFillStyle color: c)
+			origin: aRectangle topLeft + tl extent;
+			extent: aRectangle extent - tl extent - br extent.
+		(AlphaInfiniteForm with: mr)
+			origin: aRectangle topRight + (tr width negated@tr height);
+			extent: mr width@(aRectangle height - tr height - br height).
+		(ImageFillStyle form: bl) origin: aRectangle bottomLeft - (0@bl height).
+		(AlphaInfiniteForm with: bm)
+			origin: aRectangle bottomLeft - (bl width negated@bl height);
+			extent: (aRectangle width - bl width - br width)@bm height.
+		(ImageFillStyle form: br)
+			origin: aRectangle bottomRight - br extent}
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>multiFormTopFillStyleFrom: anArray in: aRectangle [
+	"Answer a composite fill style from the given forms and central colour
+	in the given bounds. Only top and middle sections are considered."
+	
+	|tl tm tr ml mr c|
+	tl := anArray first.
+	tm := anArray second.
+	tr := anArray third.
+	ml  := anArray fourth.
+	c := anArray fifth.
+	mr  := anArray sixth.
+	^CompositeFillStyle fillStyles: {
+		(ImageFillStyle form: tl) origin: aRectangle topLeft.
+		(AlphaInfiniteForm with: tm)
+			origin: aRectangle topLeft + (tl width@0);
+			extent: (aRectangle width - tl width - tr width)@tm height.
+		(ImageFillStyle form: tr)
+			origin: aRectangle topRight - (tr width@0).
+		(AlphaInfiniteForm with: ml)
+			origin: aRectangle topLeft + (0@tr height);
+			extent: ml width@(aRectangle height - tl height).
+		(ColorFillStyle color: c)
+			origin: aRectangle topLeft + tl extent;
+			extent: aRectangle extent - tl extent - (mr width @0).
+		(AlphaInfiniteForm with: mr)
+			origin: aRectangle topRight + (tr width negated@tr height);
+			extent: mr width@(aRectangle height - tr height)}
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newAlphaImageIn: aThemedMorph image: aForm help: helpText [
+	"Answer an alpha image morph."
+	
+	|answer|
+	answer := AlphaImageMorph new
+		hResizing: #rigid;
+		vResizing: #rigid;
+		setBalloonText: helpText.
+	aForm ifNotNil: [answer image: aForm].
+	^answer
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newAlphaSelectorIn: aThemedMorph for: aModel getAlpha: getSel setAlpha: setSel help: helpText [
+	"Answer an alpha selector ."
+
+	^(AColorSelectorMorph
+			on: aModel
+			getValue: getSel
+			setValue: setSel)
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		setBalloonText: helpText
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newAutoAcceptTextEntryIn: aThemedMorph for: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel font: aFont help: helpText  [
+	"Answer a text entry for the given model.
+	Object conversion will be automatic based on the class of
+	object returned after performing the get selector, aClass
+	is provided in case of initial nil returns."
+	^ self
+		newAutoAcceptTextEntryIn: aThemedMorph
+		for: aModel
+		get: getSel
+		set: setSel
+		class: aClass 
+		getEnabled: enabledSel
+		font: aFont
+		help: helpText
+		entryCompletion: nil
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newAutoAcceptTextEntryIn: aThemedMorph for: aModel  get: getSel set: setSel class: aClass getEnabled: enabledSel font: aFont help: helpText entryCompletion: anEntryCompletion [
+	"Answer a text entry for the given model.
+	Object conversion will be automatic based on the class of
+	object returned after performing the get selector, aClass
+	is provided in case of initial nil returns."
+
+	|pt|
+	pt := PluggableTextFieldMorph new
+		autoAccept: true;
+		alwaysAccept: true;
+		convertTo: aClass;
+		on: aModel
+		text: getSel
+		accept: setSel
+		readSelection: nil
+		menu: nil;
+		acceptOnCR: true;
+		getEnabledSelector: enabledSel;
+		font: aFont;
+		cornerStyle: (self textEntryCornerStyleIn: aThemedMorph);
+		hResizing: #spaceFill;
+		vResizing: #rigid;
+		borderStyle: (BorderStyle inset width: 1);
+		selectionColor: self selectionColor;
+		hideScrollBarsIndefinitely;
+		extent: 24@(aFont height + 8);
+		setBalloonText: helpText;
+		entryCompletion: anEntryCompletion.
+	pt textMorph
+		autoFit: true;
+		wrapFlag: false;
+		margins: (2@1 corner: 2@1).
+	^pt
+
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newAutoAcceptTextEntryIn: aThemedMorph for: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel help: helpText  [
+	"Answer a text entry for the given model.
+	Object conversion will be automatic based on the class of
+	object returned after performing the get selector, aClass
+	is provided in case of initial nil returns."
+	^ self
+		newAutoAcceptTextEntryIn: aThemedMorph
+		for: aModel
+		get: getSel
+		set: setSel
+		class: aClass
+		getEnabled: enabledSel
+		help: helpText
+		entryCompletion: nil 
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newAutoAcceptTextEntryIn: aThemedMorph for: aModel  get: getSel set: setSel class: aClass getEnabled: enabledSel help: helpText entryCompletion: anEntryCompletion [
+	"Answer a text entry for the given model.
+	Object conversion will be automatic based on the class of
+	object returned after performing the get selector, aClass
+	is provided in case of initial nil returns."
+
+	^self
+		newAutoAcceptTextEntryIn: aThemedMorph
+		for: aModel
+		get: getSel
+		set: setSel
+		class: aClass
+		getEnabled: enabledSel
+		font: self textFont
+		help: helpText
+		entryCompletion: anEntryCompletion
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newBalloonHelpIn: aThemedMorph contents: aTextStringOrMorph for: aMorph corner: cornerSymbol [
+	"Answer a new balloon help morph with the given text
+	and positioning for aMorph."
+	
+	^SimpleBalloonMorph
+		string: aTextStringOrMorph
+		for: aMorph
+		corner: cornerSymbol
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newBracketSliderIn: aThemedMorph for: aModel getValue: getSel setValue: setSel min: minValue max: maxValue quantum: quantum getEnabled: enabledSel help: helpText [
+	"Answer a bracket slider."
+
+	^(BracketSliderMorph
+			on: aModel
+			getValue: getSel
+			setValue: setSel
+			min: minValue
+			max: maxValue
+			quantum: quantum)
+		getEnabledSelector: enabledSel;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		setBalloonText: helpText
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newButtonIn: aThemedMorph for: aModel getState: stateSel action: actionSel arguments: args getEnabled: enabledSel getLabel: labelSel help: helpText [
+	"Answer a new button."
+
+	|b|
+	b := PluggableButtonMorph
+			on: aModel
+			getState: stateSel
+			action: actionSel
+			label: labelSel.
+	b
+		theme: self;
+		label: ' ' font: self buttonFont;
+		update: labelSel;
+		arguments: (args ifNil: [{b}]);
+		getEnabledSelector: enabledSel;
+		cornerStyle: (self buttonCornerStyleIn: aThemedMorph);
+		hResizing: #shrinkWrap;
+		vResizing: #shrinkWrap;
+		setBalloonText: helpText;
+		extent: b minExtent;
+		removeProperty: #theme.
+	^b
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newButtonIn: aThemedMorph for: aModel getState: stateSel action: actionSel arguments: args getEnabled: enabledSel label: label help: helpText [
+	"Answer a new button."
+
+	|b|
+	b := PluggableButtonMorph
+			on: aModel getState: stateSel action: actionSel.
+	b
+		theme: self;
+		arguments: (args ifNil: [{b}]);
+		cornerStyle: (self buttonCornerStyleIn: aThemedMorph);
+		hResizing: #shrinkWrap;
+		vResizing: #shrinkWrap;
+		label: label font: self buttonFont;
+		getEnabledSelector: enabledSel;
+		setBalloonText: helpText;
+		extent: b minExtent;
+		hResizing: #rigid;
+		vResizing: #rigid;
+		removeProperty: #theme.
+	^b
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newButtonLabelIn: aThemedMorph for: aModel label: aString getEnabled: enabledSel [
+	"Answer a new button text label."
+
+	^(self buttonLabelForText: aString)
+		model: aModel;
+		getEnabledSelector: enabledSel
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newCancelButtonIn: aThemedMorph for: aModel [
+	"Answer a new cancel button."
+
+	^self
+		newButtonIn: aThemedMorph
+		for: aModel
+		getState: nil
+		action: #cancel
+		arguments: nil
+		getEnabled: nil
+		label: 'Cancel' translated
+		help: 'Cancel changes and close the window' translated
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newCheckboxIn: aThemedMorph for: aModel getSelected: getSel setSelected: setSel getEnabled: enabledSel getLabel: labelSel help: helpText [
+	"Answer a checkbox with the given label ."
+
+	| answer |
+	answer := CheckboxMorph
+			on: aModel selected: getSel changeSelected: setSel.
+	answer
+		getEnabledSelector: enabledSel;
+		getLabelSelector: labelSel;
+		labelMorph: (self checkboxLabelFor: answer);
+		font: self labelFont;
+		hResizing: #shrinkWrap;
+		vResizing: #shrinkWrap;
+		setBalloonText: helpText.
+	^answer
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newCheckboxIn: aThemedMorph for: aModel getSelected: getSel setSelected: setSel getEnabled: enabledSel label: label help: helpText [
+	"Answer a checkbox with the given label ."
+
+	| answer |
+	answer := CheckboxMorph
+			on: aModel selected: getSel changeSelected: setSel.
+	answer
+		getEnabledSelector: enabledSel;
+		label: label;
+		labelMorph: (self checkboxLabelFor: answer);
+		font: self labelFont;
+		hResizing: #shrinkWrap;
+		vResizing: #shrinkWrap;
+		setBalloonText: helpText.
+	^answer
+]
+
+{
+	#category : #initialize-release,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newCheckboxMarkerForm [
+	"Answer a new checkbox marker form."
+
+	^(Form
+	extent: 12@12
+	depth: 32
+	fromArray: #( 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 1342177280 1610612736 134217728 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 3338665984 4278190080 1476395008 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 671088640 4278190080 4009754624 134217728 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 2147483648 4278190080 2533359616 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 3607101440 4278190080 1207959552 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 1073741824 4278190080 3875536896 16777215 16777215 16777215 16777215 16777215 1207959552 3204448256 134217728 16777215 2801795072 4278190080 2147483648 16777215 16777215 16777215 16777215 134217728 3607101440 4278190080 2936012800 268435456 4143972352 4278190080 536870912 16777215 16777215 16777215 16777215 16777215 536870912 4009754624 4278190080 3607101440 4278190080 3070230528 16777215 16777215 16777215 16777215 16777215 16777215 16777215 805306368 4009754624 4278190080 4278190080 1342177280 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 671088640 2936012800 2801795072 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215)
+	offset: 0@0)
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newCloseButtonIn: aThemedMorph for: aModel [
+	"Answer a new close button."
+
+	^self
+		newButtonIn: aThemedMorph
+		for: aModel
+		getState: nil
+		action: #close
+		arguments: nil
+		getEnabled: nil
+		label: 'Close' translated
+		help: 'Close the window' translated
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newCloseControlIn: aThemedMorph for: aModel action: aValuable help: helpText [
+	"Answer a button for closing things."
+	
+	|form msb|
+	form := self windowCloseForm.
+	msb := MultistateButtonMorph new extent: form extent.
+	msb
+		activeEnabledNotOverUpFillStyle: (ImageFillStyle form: form);
+		addUpAction: aValuable;
+		setBalloonText: helpText.
+	^msb
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newColorChooserIn: aThemedMorph for: aModel getColor: getSel setColor: setSel getEnabled: enabledSel help: helpText [
+	"Answer a color chooser ."
+
+	^(ColorChooserMorph
+			on: aModel color: getSel changeColor: setSel)
+		getEnabledSelector: enabledSel;
+		hResizing: #spaceFill;
+		vResizing: #shrinkWrap;
+		setBalloonText: helpText
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newColorPresenterIn: aThemedMorph for: aModel getColor: getSel help: helpText [
+	"Answer a color presenter."
+
+	^(ColorPresenterMorph
+			on: aModel color: getSel)
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		setBalloonText: helpText
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newColumnIn: aThemedMorph for: controls [
+	"Answer a morph laid out with a column of controls."
+
+	|answer|
+	answer := PanelMorph new
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		fillStyle: Color transparent; "non pane color tracking"
+		changeTableLayout;
+		cellInset: 8;
+		cellPositioning: #leftCenter.
+	controls do: [:m | answer addMorphBack: m].
+	^answer
+			
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newDialogPanelIn: aThemedMorph [
+	"Answer a new (main) dialog panel."
+
+	^self newPanelIn: aThemedMorph
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newDropListIn: aThemedMorph for: aModel list: listSel getSelected: getSel setSelected: setSel getEnabled: enabledSel useIndex: useIndex help: helpText [
+	"Answer a drop list for the given model."
+
+	^(DropListMorph basicNew
+		basicTheme: self;
+			initialize;
+			useSelectionIndex: useIndex;
+			on: aModel
+			list: listSel
+			selected: getSel
+			changeSelected: setSel)
+		selectionColor: self selectionColor;
+		getEnabledSelector: enabledSel;
+		font: self dropListFont;
+		listFont: self listFont;
+		cornerStyle: aThemedMorph preferredCornerStyle;
+		hResizing: #spaceFill;
+		vResizing: #shrinkWrap;
+		setBalloonText: helpText;
+		basicTheme: nil
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newEditableDropListIn: aThemedMorph for: aModel list: listSel getSelected: getSel setSelected: setSel addToList: addSel class: aClass default: defaultValue ghostText: ghostText getEnabled: enabledSel useIndex: useIndex help: helpText [
+	"Answer an editable drop list for the given model."
+
+	^(EditableDropListMorph
+			on: aModel
+			list: listSel
+			selected: getSel
+			changeSelected: setSel
+			useIndex: useIndex
+			addToList: addSel
+			class: aClass
+			getEnabled: enabledSel
+			default: defaultValue)
+		ghostText: ghostText;
+		selectionColor: self selectionColor;
+		font: self dropListFont;
+		cornerStyle: aThemedMorph preferredCornerStyle;
+		hResizing: #spaceFill;
+		vResizing: #shrinkWrap;
+		setBalloonText: helpText
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newEmbeddedMenuIn: aThemedMorph for: aModel [
+	"Answer a new menu."
+
+	^EmbeddedMenuMorph new
+		defaultTarget: aModel;
+		color: (self menuColorFor: aThemedMorph)
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newExpanderIn: aThemedMorph label: aString forAll: controls [
+	"Answer an expander with the given label and controls."
+
+	|answer|
+	answer := ExpanderMorph basicNew
+		basicTheme: self;
+		initialize;
+		font: self menuFont;
+		titleText: aString;
+		basicTheme: nil.
+	controls do: [:m |
+		answer addMorphBack: m].
+	^answer
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newFocusIndicatorMorphFor: aMorph [
+	"Answer a new focus indicator for the given morph."
+
+	^BorderedMorph new
+		fillStyle: Color transparent;
+		borderStyle: (DashedBorder
+						width: 1
+						dashColors: {aMorph focusColor. Color transparent} dashLengths: #(1 1));
+		bounds: aMorph focusBounds
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newFontSelector [
+	"Answer a new font selector dialog"
+		^FreeTypeFontSelectorDialogWindow new
+	
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newFuzzyLabelIn: aThemedMorph for: aModel label: aString offset: offset alpha: alpha getEnabled: enabledSel [
+	"Answer a new fuzzy label."
+
+	^(FuzzyLabelMorph contents: aString font: self labelFont)
+		offset: offset;
+		alpha: alpha;
+		model: aModel;
+		getEnabledSelector: enabledSel	
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newGroupboxIn: aThemedMorph [
+	"Answer a plain groupbox."
+
+	^PlainGroupboxMorph new
+		cornerStyle: aThemedMorph preferredCornerStyle;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		yourself
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newGroupboxIn: aThemedMorph for: control [
+	"Answer a plain groupbox."
+
+	^(self newGroupboxIn: aThemedMorph)
+		addMorph: control
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newGroupboxIn: aThemedMorph forAll: controls [
+	"Answer a plain groupbox."
+
+	^self
+		newGroupboxIn: aThemedMorph
+		for: (self newColumnIn: aThemedMorph for: controls)
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newGroupboxIn: aThemedMorph label: aString [
+	"Answer a groupbox with the given label."
+
+	^GroupboxMorph new
+		font: self labelFont;
+		cornerStyle: aThemedMorph preferredCornerStyle;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		label: aString;
+		yourself
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newGroupboxIn: aThemedMorph label: aString for: control [
+	"Answer a groupbox with the given label and control."
+
+	^(self newGroupboxIn: aThemedMorph label: aString)
+		addContentMorph: control;
+		yourself
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newGroupboxIn: aThemedMorph label: aString forAll: controls [
+	"Answer a groupbox with the given label and controls."
+
+	^(self newGroupboxIn: aThemedMorph label: aString)
+		addContentMorph: (self newColumnIn: aThemedMorph for: controls);
+		yourself
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newHSVASelectorIn: aThemedMorph color: aColor help: helpText [
+	"Answer a hue-saturation-volume-alpha selector."
+
+	^HSVAColorSelectorMorph new
+		selectedColor: aColor;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		setBalloonText: helpText
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newHSVSelectorIn: aThemedMorph color: aColor help: helpText [
+	"Answer a hue-saturation-volume selector."
+
+	^HSVColorSelectorMorph new
+		selectedColor: aColor;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		setBalloonText: helpText
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newHueSelectorIn: aThemedMorph for: aModel getHue: getSel setHue: setSel help: helpText [
+	"Answer a hue selector ."
+
+	^(HColorSelectorMorph
+			on: aModel
+			getValue: getSel
+			setValue: setSel)
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		setBalloonText: helpText
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newImageIn: aThemedMorph for: aModel get: getSel help: helpText [
+	"Answer a new image morph."
+
+	^AlphaImageMorph new
+		model: aModel;
+		borderStyle: (BorderStyle inset width: 0);
+		getImageSelector: getSel;
+		setBalloonText: helpText;
+		updateImage
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newImageIn: aThemedMorph form: aForm [
+	"Answer a new text label."
+
+	^self
+		newImageIn: aThemedMorph
+		form: aForm
+		size: aForm extent
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newImageIn: aThemedMorph form: aForm size: aPoint [
+	"Answer a new image morph."
+
+	^AlphaImageMorph new
+		borderStyle: (BorderStyle inset width: 0);
+		image: aForm size: aPoint
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newIncrementalSliderIn: aThemedMorph for: aModel getValue: getSel setValue: setSel min: min max: max quantum: quantum getEnabled: enabledSel help: helpText [
+	"Answer a slider inrement/decrement buttons."
+
+	^(IncrementalSliderMorph
+			on: aModel
+			getValue: getSel
+			setValue: setSel
+			min: min
+			max: max
+			quantum: quantum)
+		getEnabledSelector: enabledSel;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		setBalloonText: helpText
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newLabelGroupIn: aThemedMorph for: labelsAndControls [
+	"Answer a morph laid out with a column of labels and a column of associated controls.
+	The vResizing for each row will be #spaceFill if the control for that row specifies
+	this, otherwise #shrinkWrap."
+
+	| labels labelWidth lc |
+	lc := labelsAndControls collect: [:a |
+		(a key isMorph
+			ifTrue: [a key]
+			ifFalse: [a key ifNotNil: [self newLabelIn: aThemedMorph label: a key asString]])
+			-> a value].
+	labels := Morph new
+		hResizing: #shrinkWrap;
+		vResizing: #spaceFill;
+		changeTableLayout.
+	lc do: [:a |
+		a key ifNotNil: [labels addMorphBack: a key]].
+	labelWidth := labels minExtent x.
+	^self newColumnIn: aThemedMorph for: (lc collect: [:a | | row |
+		a key ifNotNil: [a key hResizing: #rigid; extent: labelWidth@ a key height].
+		row := self newRowIn: aThemedMorph for: (a key ifNil: [{a value}] ifNotNil: [{a key. a value}]).
+		row vResizing: (a value vResizing = #spaceFill ifTrue: [#spaceFill] ifFalse: [#shrinkWrap]).
+		row])
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newLabelGroupIn: aThemedMorph for: labelsAndControls font: aFont labelColor: aColor [
+	"Answer a morph laid out with a column of labels and a column of associated controls.
+	If spaceFill is tru then each row will share available space to pad."
+
+	| labels labelWidth lc|
+	lc := labelsAndControls collect: [:a |
+		(a key isMorph
+			ifTrue: [a key]
+			ifFalse: [(self newLabelIn: aThemedMorph label: (a key ifNil: ['']) asString)
+						font: aFont;
+						color: aColor])
+			-> a value].
+	labels := Morph new
+		hResizing: #shrinkWrap;
+		vResizing: #spaceFill;
+		changeTableLayout.
+	lc do: [:a |
+		labels addMorphBack: a key].
+	labelWidth := labels minExtent x.
+	^self newColumnIn: aThemedMorph for: (lc collect: [:a | | row |
+		a key hResizing: #rigid; extent: labelWidth@ a key height.
+		row := self newRowIn: aThemedMorph for: {a key. a value}.
+		row vResizing: (a value vResizing = #spaceFill ifTrue: [#spaceFill] ifFalse: [#shrinkWrap]).
+		row])
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newLabelIn: aThemedMorph for: aModel getLabel: labelSel getEnabled: enabledSel [
+	"Answer a new text label."
+
+	^(LabelMorph contents: '' font: self labelFont)
+		model: aModel;
+		getEnabledSelector: enabledSel;
+		getTextSelector: labelSel
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newLabelIn: aThemedMorph for: aModel label: aString getEnabled: enabledSel [
+	"Answer a new text label."
+
+	^(LabelMorph contents: aString font: self labelFont)
+		model: aModel;
+		getEnabledSelector: enabledSel
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newLabelIn: aThemedMorph label: aString [
+	"Answer a new text label."
+
+	^self
+		newLabelIn: aThemedMorph
+		for: nil
+		label: aString
+		getEnabled: nil
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newListIn: aThemedMorph for: aModel list: listSelector selected: getSelector changeSelected: setSelector getEnabled: enabledSel help: helpText [
+	"Answer a list for the given model."
+
+	^PluggableListMorph new
+		selectionColor: self selectionColor;
+		textColor: self listTextColor;
+		font: self listFont;
+		on: aModel
+		list: listSelector
+		selected: getSelector
+		changeSelected: setSelector
+		menu: nil
+		keystroke: nil;
+		autoDeselect: false;
+		cornerStyle: aThemedMorph preferredCornerStyle;
+		color: Color white;
+		borderStyle: (BorderStyle inset width: 1);
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		getEnabledSelector: enabledSel;
+		setBalloonText: helpText
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newListIn: aThemedMorph for: aModel list: listSelector selected: getSelector changeSelected: setSelector icon: iconSelector getEnabled: enabledSel help: helpText [
+	"Answer an icon list for the given model."
+
+	^PluggableIconListMorph new
+		selectionColor: self selectionColor;
+		textColor: self listTextColor;
+		font: self listFont;
+		on: aModel
+		list: listSelector
+		selected: getSelector
+		changeSelected: setSelector
+		menu: nil
+		keystroke: nil;
+		autoDeselect: false;
+		cornerStyle: aThemedMorph preferredCornerStyle;
+		color: Color white;
+		borderStyle: (BorderStyle inset width: 1);
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		getIconSelector: iconSelector;
+		getEnabledSelector: enabledSel;
+		setBalloonText: helpText
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newMenuIn: aThemedMorph for: aModel [
+	"Answer a new menu."
+
+	^MenuMorph new
+		defaultTarget: aModel;
+		color: (self menuColorFor: aThemedMorph)
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newMorphDropListIn: aThemedMorph for: aModel list: listSel getSelected: getSel setSelected: setSel getEnabled: enabledSel help: helpText [
+	"Answer a morph drop list for the given model."
+
+	^self
+		newMorphDropListIn: aThemedMorph
+		for: aModel
+		list: listSel
+		getSelected: getSel
+		setSelected: setSel
+		getEnabled: enabledSel
+		useIndex: true
+		help: helpText
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newMorphDropListIn: aThemedMorph for: aModel list: listSel getSelected: getSel setSelected: setSel getEnabled: enabledSel useIndex: useIndex help: helpText [
+	"Answer a morph drop list for the given model."
+
+	^(MorphDropListMorph
+			on: aModel
+			list: listSel
+			selected: getSel
+			changeSelected: setSel
+			useIndex: useIndex)
+		selectionColor: self selectionColor;
+		getEnabledSelector: enabledSel;
+		cornerStyle: aThemedMorph preferredCornerStyle;
+		hResizing: #spaceFill;
+		vResizing: #shrinkWrap;
+		setBalloonText: helpText
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newMorphListIn: aThemedMorph for: aModel list: listSelector getSelected: getSelector setSelected: setSelector getEnabled: enabledSel help: helpText [
+	"Answer a morph list for the given model."
+
+	^(PluggableMorphListMorph
+			on: aModel
+			list: listSelector
+			selected: getSelector
+			changeSelected: setSelector
+			menu: nil
+			keystroke: nil)
+		selectionColor: self selectionColor;
+		autoDeselect: false;
+		cornerStyle: aThemedMorph preferredCornerStyle;
+		color: Color white;
+		borderStyle: (BorderStyle inset width: 1);
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		getEnabledSelector: enabledSel;
+		setBalloonText: helpText
+		
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newMultistateButtonIn: aThemedMorph [
+	"Answer a new multistate button morph."
+
+	^MultistateButtonMorph new
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newNoButtonIn: aThemedMorph for: aModel [
+	"Answer a new No button."
+
+	^(self
+			newButtonIn: aThemedMorph
+			for: aModel
+			getState: nil
+			action: #no
+			arguments: nil
+			getEnabled: nil
+			label: 'No' translated
+			help: 'Answer no and close the window' translated)
+		hResizing: #rigid;
+		vResizing: #rigid
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newOKButtonIn: aThemedMorph for: aModel getEnabled: enabledSel [
+	"Answer a new OK button."
+
+	^self
+		newButtonIn: aThemedMorph
+		for: aModel
+		getState: nil
+		action: #ok
+		arguments: nil
+		getEnabled: enabledSel
+		label: 'OK' translated
+		help: 'Apply changes and close the window' translated
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newOverflowRowIn: aThemedMorph forAll: aCollectionOfMorphs [
+	"Answer a new overflow row morph with the given contents."
+
+	^OverflowRowMorph new
+		baseMorphs: aCollectionOfMorphs;
+		yourself
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newPanelIn: aThemedMorph [
+	"Answer a new panel."
+
+	^PanelMorph new
+		changeTableLayout;
+		layoutInset: 4;
+		cellInset: 8;
+		cornerStyle: aThemedMorph preferredCornerStyle;
+		yourself
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newPluggableDialogWindowIn: aThemedMorph title: title for: contentMorph [
+	"Answer a new pluggable dialog panel with the given content."
+
+	|answer|
+	answer := PluggableDialogWindow new
+		setWindowColor: aThemedMorph paneColor;
+		title: title;
+		contentMorph: contentMorph.
+	contentMorph ifNotNil: [answer model: nil].
+	^answer
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newRadioButtonIn: aThemedMorph for: aModel getSelected: getSel setSelected: setSel getEnabled: enabledSel label: label help: helpText [
+	"Answer a checkbox (radio button appearance) with the given label ."
+
+	| answer |
+	answer := CheckboxMorph
+			on: aModel selected: getSel changeSelected: setSel.
+	answer
+		getEnabledSelector: enabledSel;
+		label: label;
+		labelMorph: (self checkboxLabelFor: answer);
+		font: self labelFont;
+		hResizing: #shrinkWrap;
+		vResizing: #shrinkWrap;
+		setBalloonText: helpText;
+		beRadioButton.
+	^answer
+]
+
+{
+	#category : #initialize-release,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newRadioButtonMarkerForm [
+	"Answer a new radio button marker form."
+
+	^(Form
+	extent: 12@12
+	depth: 32
+	fromArray: #( 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 1207959552 2533359616 2533359616 1207959552 16777215 16777215 16777215 16777215 16777215 16777215 16777215 2399141888 4278190080 4278190080 4278190080 4009754624 2399141888 16777215 16777215 16777215 16777215 16777215 1207959552 4278190080 4278190080 4278190080 4278190080 4278190080 4143972352 1207959552 16777215 16777215 16777215 16777215 2533359616 4278190080 4278190080 4278190080 4278190080 4278190080 4278190080 2533359616 16777215 16777215 16777215 16777215 2533359616 4278190080 4278190080 4278190080 4278190080 4278190080 4278190080 2399141888 16777215 16777215 16777215 16777215 1207959552 4278190080 4278190080 4278190080 4278190080 4143972352 4278190080 1073741824 16777215 16777215 16777215 16777215 16777215 2399141888 4278190080 4278190080 4278190080 4278190080 2399141888 16777215 16777215 16777215 16777215 16777215 16777215 16777215 1207959552 2533359616 2533359616 1207959552 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215)
+	offset: 0@0)
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newRowIn: aThemedMorph for: controls [
+	"Answer a morph laid out with a row of controls."
+
+	|answer|
+	answer := PanelMorph new
+		hResizing: #spaceFill;
+		vResizing: #shrinkWrap;
+		fillStyle: Color transparent; "non pane color tracking"
+		changeTableLayout;
+		listDirection: #leftToRight;
+		cellInset: 8;
+		cellPositioning: #center.
+	controls do: [:m | answer addMorphBack: m].
+	^answer
+			
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newSVSelectorIn: aThemedMorph color: aColor help: helpText [
+	"Answer a saturation-volume selector."
+
+	^SVColorSelectorMorph new
+		color: aColor;
+		selectedColor: aColor;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		setBalloonText: helpText
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newScrollBarDownButtonFor: aScrollbar [
+	^ BorderedMorph newBounds: (self scrollBarDownButtonBoundsFor: aScrollbar)
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newScrollBarUpButtonFor: aScrollbar [
+	^ BorderedMorph newBounds: (self scrollBarUpButtonBoundsFor: aScrollbar)
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newScrollPaneIn: aThemedMorph for: aMorph [
+	"Answer a new GeneralScrollPane with given content morph."
+
+	^GeneralScrollPane new
+		scrollTarget: aMorph;
+		yourself
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newSeparatorIn: aThemedMorph [
+	"Answer a new horizontal separator."
+
+	^SeparatorMorph new
+		fillStyle: Color transparent;
+		borderStyle: (BorderStyle inset baseColor: Color blue; width: 1);
+		extent: 2@2;
+		hResizing: #spaceFill
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newSliderIn: aThemedMorph for: aModel getValue: getSel setValue: setSel min: min max: max quantum: quantum getEnabled: enabledSel help: helpText [
+	"Answer a slider. Resizing set for horizontal usage by default."
+
+	^(PluggableSliderMorph
+			on: aModel
+			getValue: getSel
+			setValue: setSel
+			min: min
+			max: max
+			quantum: quantum)
+		getEnabledSelector: enabledSel;
+		hResizing: #spaceFill;
+		vResizing: #shrinkWrap;
+		setBalloonText: helpText;
+		minHeight: 16
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newStackIn: aThemedMorph for: controls [
+	"Answer a morph laid out with a stack of controls."
+
+	|answer|
+	answer := PanelMorph new
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		fillStyle: Color transparent; "non pane color tracking"
+		layoutPolicy: StackLayout new.
+	controls do: [:m | answer addMorphBack: m].
+	^answer
+			
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newStringIn: aThemedMorph label: aStringOrText font: aFont style: aStyle [
+	"Answer a new string/text morph."
+
+	^(EmbossedStringMorph contents: aStringOrText font: aFont)
+		style: aStyle
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newTabGroupIn: aThemedMorph for: labelsAndControls [
+	"Answer a tab group morph with the given tab labels and associated pages."
+
+	^(TabGroupMorph new
+		font: self labelFont;
+		cornerStyle: (self tabGroupCornerStyleIn: aThemedMorph);
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		labelsAndPages: labelsAndControls)
+		selectedPageIndex: (labelsAndControls isEmpty ifTrue: [0] ifFalse: [1])
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newTaskListButtonIn: aTasklist for: aTask [
+	"Answer a tasklist button morph for the given task."
+	
+	|lm lab button |
+	lab := (self buttonLabelForText: (aTask label contractTo: 40)).
+	aTask isActive
+		ifTrue: [ lab emphasis: 1 "1 -> bold" ].
+	lm := self
+		newRowIn: aTasklist
+		for: {(aTask icon ifNil: [self smallWindowIcon]) asMorph. lab}.
+	button := self
+		newButtonIn: aTasklist
+		for: aTask morph
+		getState: #isActive
+		action: #buttonClickedForTaskList:
+		arguments: {aTasklist}
+		getEnabled: nil
+		label: lm
+		help: nil.
+	button
+		useSquareCorners;
+		onColor: (self taskbarMinimizedButtonColorFor: button)
+		offColor: (aTask isActive
+				ifTrue: [self taskbarActiveButtonColorFor: button]
+				ifFalse: [self taskbarButtonColorFor: button]);
+		hResizing: #spaceFill.
+	lab color: (self taskbarButtonLabelColorFor: button).
+	button model: aTask.
+	^button
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newTaskbarButtonIn: aTaskbar for: aWindow [
+	"Answer a taskbar button morph for the given window."
+
+	|lm lab button labSize|
+	labSize := (150 // (aTaskbar tasks size + 1) max: 10) min: 30.
+	lab := (self buttonLabelForText: (aWindow taskbarLabel truncateWithElipsisTo: labSize)).
+	aWindow isActive
+		ifTrue: [ lab emphasis: 1 "1 -> bold" ].
+	lm := self
+		newRowIn: aTaskbar
+		for: {(aWindow taskbarIcon ifNil: [^nil]) asMorph. lab}.
+	lm cellInset: 2.
+	button := self
+		newButtonIn: aTaskbar
+		for: aWindow
+		getState: #isActive
+		action: #taskbarButtonClicked
+		arguments: #()
+		getEnabled: nil
+		label: lm
+		help: nil.
+	button
+		useSquareCorners;
+		wantsYellowButtonMenu: true;
+		getMenuSelector: #taskbarButtonMenu:;
+		on: #mouseEnter send: #taskbarButtonEntered:event:in: to: aWindow withValue: button;
+		on: #mouseLeave send: #taskbarButtonLeft:event:in: to: aWindow withValue: button.
+	aWindow isCollapsed
+		ifTrue:  [ lab color: (self taskbarButtonLabelColorForCollapsed: button) ]
+		ifFalse: [ lab color: (self taskbarButtonLabelColorForExpanded: button). ].
+	^button
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newTaskbarThumbnailIn: aThemedMorph for: aWindow [
+	"Answer a taskbar thumbnail morph for the given window."
+
+	|answer thumb|
+	thumb := aWindow taskbarThumbnail.
+	answer := PanelMorph new
+		hResizing: #shrinkWrap;
+		vResizing: #shrinkWrap;
+		changeTableLayout;
+		layoutInset: 8;
+		cellInset: 4;
+		addMorphBack: thumb;
+		addMorphBack: (self
+			buttonLabelForText: (aWindow labelString truncateWithElipsisTo: 50)).
+	answer
+		extent: answer minExtent;
+		fillStyle: (self taskListFillStyleFor: answer);
+		borderStyle: (self taskbarThumbnailNormalBorderStyleFor: aWindow);
+		cornerStyle: (self taskbarThumbnailCornerStyleFor: answer).
+	^answer
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newTextEditorIn: aThemedMorph for: aModel getText: getSel setText: setSel getEnabled: enabledSel menu: aMenuSelector [
+	"Answer a text (Smalltalk code) editor for the given model."
+
+	^PluggableTextMorph new
+		on: aModel
+		text: getSel
+		accept: setSel
+		readSelection: nil
+		menu: aMenuSelector;
+		theme: self;
+		getEnabledSelector: enabledSel;
+		font: self textFont;
+		cornerStyle: aThemedMorph preferredCornerStyle;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		borderStyle: (BorderStyle inset width: 1);
+		"color: Color darkGray;
+		selectionColor: self selectionColor;"
+		removeProperty: #theme
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newTextEntryIn: aThemedMorph for: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel help: helpText [
+	"Answer a text entry for the given model."
+
+	|pt|
+	pt := PluggableTextFieldMorph new
+		convertTo: aClass;
+		alwaysAccept: true;
+		on: aModel
+		text: getSel
+		accept: setSel
+		readSelection: nil
+		menu: nil;
+		acceptOnCR: true;
+		getEnabledSelector: enabledSel;
+		font: self textFont;
+		cornerStyle: (self textEntryCornerStyleIn: aThemedMorph);
+		hResizing: #spaceFill;
+		vResizing: #rigid;
+		borderStyle: (BorderStyle inset width: 1);
+		"color: Color white;"
+		selectionColor: self selectionColor;
+		hideScrollBarsIndefinitely;
+		extent: 24@(self textFont height + 8);
+		setBalloonText: helpText.
+	pt textMorph
+		autoFit: true;
+		wrapFlag: false;
+		margins: (2@1 corner: 2@1).
+	^pt
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newTextEntryIn: aThemedMorph for: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel help: helpText entryCompletion: anEntryCompletion [
+	"Answer a text entry for the given model."
+
+	|pt|
+	pt := PluggableTextFieldMorph new
+		convertTo: aClass;
+		alwaysAccept: true;
+		on: aModel
+		text: getSel
+		accept: setSel
+		readSelection: nil
+		menu: nil;
+		acceptOnCR: true;
+		getEnabledSelector: enabledSel;
+		font: self textFont;
+		cornerStyle: (self textEntryCornerStyleIn: aThemedMorph);
+		hResizing: #spaceFill;
+		vResizing: #rigid;
+		borderStyle: (BorderStyle inset width: 1);
+		"color: Color darkGray;
+		selectionColor: self selectionColor;"
+		hideScrollBarsIndefinitely;
+		extent: 24@(self textFont height + 8);
+		setBalloonText: helpText;
+		entryCompletion: anEntryCompletion.
+
+	pt textMorph
+		autoFit: true;
+		wrapFlag: false;
+		margins: (2@1 corner: 2@1).
+	^pt
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newTextIn: aThemedMorph text: aStringOrText [
+	"Answer a new text."
+
+	^TextMorph new
+		wrapFlag: true;
+		contents: aStringOrText;
+		font: self textFont;
+		autoFit: true;
+		lock;
+		hResizing: #shrinkWrap;
+		vResizing: #shrinkWrap
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newTitleIn: aThemedMorph label: aString for: control [
+	"Answer a morph laid out with a column with the title and control aligned to the left."
+
+	^(self newColumnIn: aThemedMorph for: {
+		self newLabelIn: aThemedMorph label: aString.
+		control})
+		cellPositioning: #leftCenter;
+		cellInset: 2
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newToolDockingBarIn: aThemedMorph [
+	"Answer a new tool docking bar."
+
+	^ToolDockingBarMorph new
+		borderWidth: 0;
+		hResizing: #spaceFill;
+		vResizing: #shrinkWrap;
+		clipSubmorphs: true
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newToolSpacerIn: aThemedMorph [
+	"Answer a new tool spacer."
+
+	^Morph new
+		borderWidth: 0;
+		color: Color transparent;
+		extent: 3@3
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newToolbarHandleIn: aThemedMorph [
+	"Answer a new toolbar handle."
+
+	^PanelMorph new
+		fillStyle: Color transparent; "non pane color tracking"
+		borderStyle: (BorderStyle raised baseColor: Color blue; width: 1);
+		extent: 4@3;
+		vResizing: #spaceFill
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newToolbarIn: aThemedMorph [
+	"Answer a new toolbar."
+
+	|bar|
+	bar := PanelMorph new
+		changeTableLayout;
+		layoutInset: 0@1;
+		listDirection: #leftToRight;
+		hResizing: #shrinkWrap;
+		vResizing: #shrinkWrap.
+	bar
+		addMorphBack: (self newToolSpacerIn: aThemedMorph);
+		addMorphBack: (self newToolbarHandleIn: aThemedMorph);
+		addMorphBack: (self newToolSpacerIn: aThemedMorph).
+	^bar
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newToolbarIn: aThemedMorph for: controls [
+	"Answer a new toolbar with the given controls."
+
+	|answer|
+	answer := self newToolbarIn: aThemedMorph.
+	controls do: [:m | answer addMorphBack: m].
+	^answer
+]
+
+{
+	#category : #initialize-release,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newTreeExpandedForm [
+	"Answer a new form for an expanded tree item."
+
+	^(Form
+		extent: 9@9
+		depth: 32
+		fromArray: #( 3749280121 4285822068 4285822068 4285822068 4285822068 4285822068 4285822068 4285822068 3816191606 4218778997 4293256677 4293322470 4292861919 4292401368 4291940817 4291546059 4290953922 4285822068 4218778997 4293059298 4293125091 4292664540 4292203989 4291743438 4291282887 4290624957 4285822068 4218778997 4292664540 4292664540 4292203989 4291743438 4291282887 4290822336 4290164406 4285822068 4218778997 4291809231 4278519045 4278519045 4278519045 4278519045 4278519045 4289769648 4285822068 4218778997 4291743438 4291743438 4291282887 4290822336 4290361785 4289901234 4289309097 4285822068 4218778997 4291348680 4291282887 4290822336 4290361785 4289901234 4289440683 4288848546 4285822068 4218778997 4290559164 4290493371 4290032820 4289638062 4289177511 4288716960 4288256409 4285822068 3665262455 4218713204 4218713204 4218713204 4218713204 4218713204 4218713204 4218713204 3749016949)
+		offset: 0@0)
+			asFormOfDepth: Display depth;
+			replaceColor: Color white withColor: Color transparent;
+			yourself
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newTreeIn: aThemedMorph for: aModel list: listSelector selected: getSelector changeSelected: setSelector [
+	"Answer a new tree morph."
+	
+	^TreeListMorph new
+		selectionColor: self selectionColor;
+		font: self listFont;
+		on: aModel
+		list: listSelector
+		selected: getSelector
+		changeSelected: setSelector
+		menu: nil
+		keystroke: nil;
+		cornerStyle: aThemedMorph preferredCornerStyle;
+		"color: Color white;"
+		borderStyle: (BorderStyle inset width: 1);
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		autoDeselect: false;
+		yourself
+		
+]
+
+{
+	#category : #initialize-release,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newTreeUnexpandedForm [
+	"Answer a new form for an unexpanded tree item."
+
+	^(Form
+		extent: 9@9
+		depth: 32
+		fromArray: #( 3749280121 4285822068 4285822068 4285822068 4285822068 4285822068 4285822068 4285822068 3816191606 4218778997 4293256677 4293322470 4292861919 4292401368 4291940817 4291546059 4290953922 4285822068 4218778997 4293059298 4293125091 4292203989 4278519045 4291348680 4291282887 4290624957 4285822068 4218778997 4292664540 4292664540 4291743438 4278190080 4290822336 4290822336 4290164406 4285822068 4218778997 4291809231 4278519045 4278519045 4278190080 4278519045 4278519045 4289769648 4285822068 4218778997 4291743438 4291743438 4290822336 4278190080 4289967027 4289901234 4289309097 4285822068 4218778997 4291348680 4291282887 4290361785 4278190080 4289506476 4289440683 4288848546 4285822068 4218778997 4290559164 4290493371 4290032820 4289638062 4289177511 4288716960 4288256409 4285822068 3665262455 4218713204 4218713204 4218713204 4218713204 4218713204 4218713204 4218713204 3749016949)
+		offset: 0@0)
+			asFormOfDepth: Display depth;
+			replaceColor: Color white withColor: Color transparent;
+			yourself
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newVerticalSeparatorIn: aThemedMorph [
+	"Answer a new vertical separator."
+
+	^SeparatorMorph new
+		fillStyle: Color transparent;
+		borderStyle: (BorderStyle inset baseColor: Color blue; width: 1);
+		extent: 2@2;
+		vResizing: #spaceFill
+]
+
+{
+	#category : #initialize-release,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newWindowCloseForm [
+	"Answer a new form for a window close box."
+
+	^Form
+		extent: 10@10
+		depth: 32
+		fromArray: #( 0 0 0 0 0 0 0 0 0 0 0 3326099520 3330310272 0 0 0 0 0 0 0 0 4144038145 3326099520 3330310272 0 0 0 4144038145 3326099520 0 0 0 4227924225 3326099520 3330310272 0 4144038145 3326099520 3330310272 0 0 0 0 4144038145 3326099520 4144038145 3326099520 3330310272 3336494814 0 0 0 0 0 4227924225 3326099520 3330310272 3336494814 0 0 0 0 0 4144038145 3326099520 4144038145 3326099520 3330310272 3336494814 0 0 0 4144038145 3326099520 3330310272 3336494814 4144038145 3326099520 3330310272 0 0 4144038145 3326099520 3330310272 3336494814 0 0 4144038145 3326099520 0 0 0 3330310272 3336494814 0 0 0 0 0 0)
+		offset: 0@0
+]
+
+{
+	#category : #initialize-release,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newWindowCloseOverForm [
+	"Answer a new form for a window menu box."
+
+	^ self newWindowCloseForm
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newWindowHeaderFor: aWindow [
+
+	^ (AlignmentMorph newSpacer: Color transparent)
+			vResizing: #spaceFill;
+			layoutPolicy: ProportionalLayout new
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newWindowIn: aThemedMorph for: aModel title: titleString [
+	"Answer a new StandardWindow with given model and title."
+
+	^StandardWindow new
+		title: titleString;
+		model: aModel;
+		yourself
+]
+
+{
+	#category : #initialize-release,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newWindowMaximizeForm [
+	"Answer a new form for a window maximize box."
+
+	^Form
+		extent: 10@10
+		depth: 32
+		fromArray: #( 3875602689 3875602689 3875602689 3875602689 3875602689 3875602689 0 0 0 0 3875602689 0 0 0 0 4127260929 3877181721 3877181721 3875602689 0 3875602689 0 0 0 0 3875602689 3212869760 0 3875602689 3212869760 3875602689 0 0 0 0 3875602689 3212869760 0 3875602689 3212869760 3875602689 0 0 0 0 3875602689 3212869760 0 3875602689 3212869760 3875602689 4127260929 3875602689 3875602689 3875602689 3875602689 3212869760 0 3875602689 3212869760 0 3877181721 3212869760 3212869760 3212869760 3212869760 3212869760 0 3875602689 3212869760 0 3877181721 0 0 0 0 0 0 3875602689 3212869760 0 3875602689 3875602689 3875602689 3875602689 3875602689 3875602689 3875602689 3875602689 3212869760 0 0 3212869760 3212869760 3212869760 3212869760 3212869760 3212869760 3212869760 3212869760)
+		offset: 0@0
+]
+
+{
+	#category : #initialize-release,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newWindowMaximizeOverForm [
+	"Answer a new form for a window menu box."
+
+	^ self newWindowMaximizeForm
+]
+
+{
+	#category : #initialize-release,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newWindowMenuForm [
+	"Answer a new form for a window menu box."
+
+	^Form
+		extent: 10@10
+		depth: 32
+		fromArray: #( 4227858432 4127195136 4127195136 4127195136 4127195136 4127195136 4127195136 4127195136 4227858432 0 4127195136 3212869760 3212869760 3212869760 3212869760 3212869760 3212869760 3212869760 4127195136 3212869760 4127195136 3212869760 0 0 0 0 0 0 4127195136 3212869760 4127195136 4127195136 4127195136 4127195136 4127195136 4127195136 4127195136 4127195136 4127195136 3212869760 4127195136 3212869760 0 0 0 0 0 0 4127195136 3212869760 4127195136 3212869760 0 0 0 0 0 0 4127195136 3212869760 4227858432 4127195136 4127195136 4127195136 4127195136 4127195136 4127195136 4127195136 4127195136 3212869760 4127195136 3212869760 0 0 0 0 0 0 4127195136 3212869760 4227858432 4127195136 4127195136 4127195136 4127195136 4127195136 4127195136 4127195136 4227858432 3212869760 0 3212869760 3212869760 3212869760 3212869760 3212869760 3212869760 3212869760 3212869760 3212869760)
+		offset: 0@0
+]
+
+{
+	#category : #initialize-release,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newWindowMinimizeForm [
+	"Answer a new form for a window minimize box."
+
+	^Form
+		extent: 10@10
+		depth: 32
+		fromArray: #( 0 0 4127260929 4127260929 4127260929 4127260929 4127260929 0 0 0 0 3875602689 3212869760 3212869760 3212869760 3212869760 3212869760 4227924225 0 0 4127260929 3212869760 3212869760 0 0 0 0 3212869760 4127260929 0 4127260929 3212869760 0 0 0 0 0 0 4127260929 3212869760 4127260929 3212869760 0 0 0 0 0 0 4127260929 3212869760 4127260929 3212869760 0 0 0 0 0 0 4127260929 3212869760 4128708375 3212869760 0 0 0 0 0 0 4127260929 3212869760 0 4127260929 3212869760 0 0 0 0 4127260929 3208659008 3212869760 0 3208659008 4127260929 4127260929 4127260929 4127260929 4127260929 3208659008 3212869760 0 0 0 3212869760 3212869760 3212869760 3212869760 3212869760 3212869760 0 0)
+		offset: 0@0
+]
+
+{
+	#category : #initialize-release,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newWindowMinimizeOverForm [
+	"Answer a new form for a window menu box."
+
+	^ self newWindowMinimizeForm
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>newYesButtonIn: aThemedMorph for: aModel [
+	"Answer a new Yes button."
+
+	^(self
+			newButtonIn: aThemedMorph
+			for: aModel
+			getState: nil
+			action: #yes
+			arguments: nil
+			getEnabled: nil
+			label: 'Yes' translated
+			help: 'Answer yes and close the window' translated)
+		hResizing: #rigid;
+		vResizing: #rigid
+]
+
+{
+	#category : #cursor,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>overTextCursorFor: aTextMorph [
+	"Answer the pointer cursor when over an active text 
+	(answer nil if no particular cursor is wanted)."
+
+	^ Cursor overEditableText
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>paneColorFor: aWindow [
+	"Answer the pane color that should be used."
+	
+	| cc |
+	(cc := aWindow valueOfProperty: #paneColor) 
+		ifNotNil: [
+			^self settings fadedBackgroundWindows
+				ifTrue: [aWindow isActive
+					ifTrue: [cc]
+					ifFalse: [cc alphaMixed: 0.5 with: (Color white alpha: cc alpha)]]
+				ifFalse: [cc]].
+	cc := aWindow paneMorphs isEmptyOrNil ifFalse: [aWindow paneMorphs first color].
+	aWindow setProperty: #paneColor toValue: (cc ifNil: [aWindow defaultBackgroundColor]).
+	^aWindow paneColor
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>passwordEntryIn: aThemedMorph text: aStringOrText title: aString entryText: defaultEntryText [
+	"Answer the result of a password entry dialog (a string or nil if cancelled)
+	with the given label and title."
+
+	^(aThemedMorph openModal: (
+		(PasswordDialogWindow newWithTheme: aThemedMorph theme)
+			textFont: self textFont;
+			title: aString;
+			text: aStringOrText;
+			entryText: defaultEntryText)) entryText
+]
+
+{
+	#category : #basic-colors,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>patchworkUIThemeColorFor: aWindowOrModel [
+	"Answer the colour for the given window."
+	^ self settings windowColor
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>plainGroupPanelBorderStyleFor: aGroupPanel [
+	"Answer the normal border style for a plain group panel."
+
+	^BorderStyle simple
+		width: 0;
+		baseColor: Color transparent
+]
+
+{
+	#category : #copying,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>postCopy [
+	"Copy the settings too."
+	
+	super postCopy.
+	self settings: self settings copy
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>preferGradientFill [
+	^ self settings preferGradientFill
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>proceedIn: aThemedMorph text: aStringOrText title: aString [
+	"Answer the result of a proceed dialog with the given label and title."
+
+	self questionSound play.
+	^(aThemedMorph openModal: (
+		(ProceedDialogWindow newWithTheme: aThemedMorph theme)
+			textFont: self textFont;
+			title: aString;
+			text: aStringOrText)) cancelled not
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>progressBarBorderStyleFor: aProgressBar [
+	"Return the progress bar borderStyle for the given progress bar."
+
+	|c|
+	c := self progressBarColorFor: aProgressBar.
+	^BorderStyle simple
+		width: 1;
+		baseColor: c darker
+]
+
+{
+	#category : #basic-colors,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>progressBarColorFor: aProgressBar [
+	"Answer the colour for the given progress bar."
+
+	^self settings progressBarColor
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>progressBarFillStyleFor: aProgressBar [
+	"Return the progress bar fillStyle for the given progress bar."
+	
+	|aColor area|
+	aColor := self progressBarColorFor: aProgressBar.
+	area :=  aProgressBar bounds.
+	^(GradientFillStyle ramp: {
+			0.0->aColor darker duller. 0.2-> aColor darker.
+			0.8->aColor twiceLighter. 1.0->aColor})	
+		origin: area origin;
+		direction: 0@area height;
+		radial: false
+]
+
+{
+	#category : #basic-colors,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>progressBarProgressColorFor: aProgressBar [
+	"Answer the colour for the progress part of the given progress bar."
+
+	^self settings progressBarProgressColor
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>progressBarProgressFillStyleFor: aProgressBar [
+	"Return the progress bar progress fillStyle for the given progress bar."
+	
+	|aColor area|
+	aColor := self progressBarProgressColorFor: aProgressBar.
+	area :=  aProgressBar innerBounds.
+	^(GradientFillStyle ramp: {
+			0.0->(aColor alphaMixed: 0.3 with: (Color white alpha: aColor alpha)).
+			0.2-> aColor twiceLighter.
+			0.8->aColor darker.
+			1.0->aColor darker duller})	
+		origin: area origin;
+		direction: 0@area height;
+		radial: false
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>progressFillStyleFor: aProgress [
+	"Return the progress fillStyle for the given progress morph."
+	| fill |
+	fill := GradientFillStyle ramp: {0.0 -> Color white. 1 ->aProgress color}.
+	fill radial: false;
+		origin: aProgress topLeft;
+		direction: 0 @ aProgress height.
+	^ fill
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>questionIn: aThemedMorph text: aStringOrText title: aString [
+	"Answer the result of a question dialog with the given label and title."
+
+	self questionSound play.
+	^(aThemedMorph openModal: (
+		(QuestionDialogWindow newWithTheme: aThemedMorph theme)
+			textFont: self textFont;
+			title: aString;
+			text: aStringOrText)) answer
+]
+
+{
+	#category : #sounds,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>questionSound [
+	"Answer the question sound."
+
+	^self soundTheme questionSound
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>questionWithoutCancelIn: aThemedMorph text: aStringOrText title: aString [
+	"Answer the result of a question dialog with the given label and title."
+
+	self questionSound play.
+	^(aThemedMorph openModal: (
+		(QuestionWithoutCancelDialogWindow newWithTheme: aThemedMorph theme)
+			textFont: self textFont;
+			title: aString;
+			text: aStringOrText)) answer
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>radioButtonCornerStyleFor: aRadioButton [
+	"Answer the corner style for radio buttons."
+	
+	^#rounded
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>radioButtonDisabledBorderStyleFor: aRadioButton [
+	"Return the disabled radio button borderStyle for the given button."
+
+	^self checkboxButtonDisabledBorderStyleFor: aRadioButton
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>radioButtonDisabledFillStyleFor: aRadioButton [
+	"Return the disabled radio button fillStyle for the given button."
+	
+	^self checkboxButtonDisabledFillStyleFor: aRadioButton
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>radioButtonMarkerForm [
+	"Answer the form to use for a radio button marker."
+
+	^self forms at: #radioButtonMarker ifAbsent: [Form extent: 12@12 depth: Display depth]
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>radioButtonNormalBorderStyleFor: aRadioButton [
+	"Return the disabled radio button borderStyle for the given button."
+
+	^self checkboxButtonNormalBorderStyleFor: aRadioButton
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>radioButtonNormalFillStyleFor: aRadioButton [
+	"Return the normal radio button fillStyle for the given button."
+	
+	^self checkboxButtonNormalFillStyleFor: aRadioButton
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>radioButtonSelectedBorderStyleFor: aRadioButton [
+	"Return the selected radio button borderStyle for the given button."
+
+	^self radioButtonNormalBorderStyleFor: aRadioButton
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>radioButtonSelectedDisabledBorderStyleFor: aRadioButton [
+	"Return the selecteddisabled radio button borderStyle for the given button."
+
+	^self radioButtonDisabledBorderStyleFor: aRadioButton
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>radioButtonSelectedDisabledFillStyleFor: aRadioButton [
+	"Return the selected disabled radio button fillStyle for the given button."
+	
+	^self checkboxButtonSelectedDisabledFillStyleFor: aRadioButton
+]
+
+{
+	#category : #fill-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>radioButtonSelectedFillStyleFor: aRadioButton [
+	"Return the selected radio button fillStyle for the given button."
+	
+	^self checkboxButtonSelectedFillStyleFor: aRadioButton
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>resizerGripNormalFillStyleFor: aResizer [
+	"Return the normal fillStyle for the given resizer.
+	For the moment, answer a transparent colour for no drawing,
+	non transparent to draw as normal."
+	
+	^Color white
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>runModal: aWidget [
+	
+	[aWidget world notNil] whileTrue: [
+		aWidget outermostWorldMorph doOneCycle]
+]
+
+{
+	#category : #scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollBarButtonArrowVertices: aRectangle  [
+	^ self verticesForComplexArrow: aRectangle
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollBarDownButtonBoundsFor: aScrollbar [
+	
+	| extent position |
+	
+	extent := aScrollbar buttonExtent.
+	position := aScrollbar innerBounds bottomRight - extent.	
+
+	^ position extent: extent
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollBarUpButtonBoundsFor: aScrollbar [
+	^ aScrollbar innerBounds topLeft extent: aScrollbar buttonExtent
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollPaneDisabledBorderStyleFor: aScrollPane [
+	"Return the disabled borderStyle for the given scroll pane."
+
+	^self scrollPaneNormalBorderStyleFor: aScrollPane
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollPaneNormalBorderStyleFor: aScrollPane [
+	"Return the normal borderStyle for the given scroll pane"
+
+	^BorderStyle inset
+		width: 1;
+		baseColor: aScrollPane paneColor
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarArrowOfDirection: aSymbol size: finalSizeInteger color: aColor [
+	"Answer a new scrollbar arrow form (normally cached by Scrollbar)."
+	
+	^self basicCreateArrowOfDirection: aSymbol size: finalSizeInteger color: aColor
+]
+
+{
+	#category : #border-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarButtonCornerStyleIn: aThemedMorph [
+	"Allow for themes to override default behaviour."
+	
+	^#square
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarColor [
+	^ self settings scrollbarColor
+]
+
+{
+	#category : #basic-colors,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarColorFor: aScrollbar [
+	"Answer the colour for the given scrollbar."
+
+	^self settings standardColorsOnly
+		ifTrue: [self settings scrollbarColor]
+		ifFalse: [aScrollbar lastPaneColor
+					 ifNil: [Color white]]
+]
+
+{
+	#category : #fill-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarImageColorFor: aScrollbar [
+	"Return the scrollbar image colour (on buttons) for the given scrollbar."
+	
+	^self scrollbarColorFor: aScrollbar
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarMinimumThumbThickness [
+	"Answer the minumum width or height of a scrollbar thumb 
+	as appropriate to its orientation."
+	
+	^7
+]
+
+{
+	#category : #border-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarMouseOverBarButtonBorderStyleFor: aScrollbar [
+	"Return the button borderStyle for the given scrollbar when
+	the mouse is over the bar."
+
+	^self scrollbarNormalButtonBorderStyleFor: aScrollbar
+]
+
+{
+	#category : #fill-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarMouseOverBarButtonFillStyleFor: aScrollbar [
+	"Return the button fillStyle for the given scrollbar when
+	the mouse is over the bar."
+
+	^self scrollbarNormalButtonFillStyleFor: aScrollbar
+]
+
+{
+	#category : #border-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarMouseOverBarThumbBorderStyleFor: aScrollbar [
+	"Return the thumb borderStyle for the given scrollbar when
+	the mouse is over the bar."
+
+	^self scrollbarNormalThumbBorderStyleFor: aScrollbar
+]
+
+{
+	#category : #fill-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarMouseOverBarThumbFillStyleFor: aScrollbar [
+	"Return the thumb fillStyle for the given scrollbar when
+	the mouse is over the bar."
+
+	^self scrollbarNormalThumbFillStyleFor: aScrollbar
+]
+
+{
+	#category : #border-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarMouseOverBorderStyleFor: aScrollbar [
+	"Return the mouse over borderStyle for the given scrollbar."
+
+	^self scrollbarNormalBorderStyleFor: aScrollbar
+]
+
+{
+	#category : #border-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarMouseOverButtonBorderStyleFor: aScrollbar [
+	"Return the mouse over button borderStyle for the given scrollbar."
+
+	^self scrollbarNormalButtonBorderStyleFor: aScrollbar
+]
+
+{
+	#category : #fill-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarMouseOverButtonFillStyleFor: aScrollbar [
+	"Return the scrollbar mouse over button fillStyle for the given color."
+
+	^self scrollbarNormalButtonFillStyleFor: aScrollbar
+]
+
+{
+	#category : #fill-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarMouseOverFillStyleFor: aScrollbar [
+	"Return the scrollbar mouse over fillStyle for the given color."
+
+	^self scrollbarNormalFillStyleFor: aScrollbar
+]
+
+{
+	#category : #border-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarMouseOverThumbBorderStyleFor: aScrollbar [
+	"Return the mouse over thumb borderStyle for the given scrollbar."
+
+	^self scrollbarNormalThumbBorderStyleFor: aScrollbar
+]
+
+{
+	#category : #border-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarMouseOverThumbButtonBorderStyleFor: aScrollbar [
+	"Return the button borderStyle for the given scrollbar when
+	the mouse is over the thumb."
+
+	^self scrollbarMouseOverBarButtonBorderStyleFor: aScrollbar
+]
+
+{
+	#category : #fill-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarMouseOverThumbButtonFillStyleFor: aScrollbar [
+	"Return the button fillStyle for the given scrollbar when
+	the mouse is over the thumb."
+
+	^self scrollbarMouseOverBarButtonFillStyleFor: aScrollbar
+]
+
+{
+	#category : #fill-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarMouseOverThumbFillStyleFor: aScrollbar [
+	"Return the scrollbar mouse over thumb fillStyle for the given color."
+
+	^self scrollbarNormalThumbFillStyleFor: aScrollbar
+]
+
+{
+	#category : #border-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarNormalBorderStyleFor: aScrollbar [
+	"Return the normal button borderStyle for the given scrollbar."
+
+	^BorderStyle simple
+		width: 0;
+		baseColor: Color transparent
+]
+
+{
+	#category : #border-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarNormalButtonBorderStyleFor: aScrollbar [
+	"Return the normal button borderStyle for the given scrollbar."
+
+	^self scrollbarNormalThumbBorderStyleFor: aScrollbar
+]
+
+{
+	#category : #fill-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarNormalButtonFillStyleFor: aScrollbar [
+	"Return the normal scrollbar button fillStyle for the given scrollbar."
+	
+	^self scrollbarNormalThumbFillStyleFor: aScrollbar
+]
+
+{
+	#category : #fill-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarNormalFillStyleFor: aScrollbar [
+	"Return the normal scrollbar fillStyle for the given scrollbar."
+	
+	^ Color white
+]
+
+{
+	#category : #border-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarNormalThumbBorderStyleFor: aScrollbar [
+	"Return the normal thumb borderStyle for the given scrollbar."
+
+	|aColor|
+	aColor := self scrollbarColorFor: aScrollbar.
+	^BorderStyle simple
+		width: 1;
+		baseColor: aColor twiceDarker
+]
+
+{
+	#category : #fill-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarNormalThumbFillStyleFor: aScrollbar [
+	"Return the normal scrollbar thumb fillStyle for the given scrollbar."
+	
+	^self scrollbarColorFor: aScrollbar
+]
+
+{
+	#category : #border-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarPagingAreaCornerStyleIn: aThemedMorph [
+	"Allow for themes to override default behaviour."
+	
+	^#square
+]
+
+{
+	#category : #border-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarPressedBorderStyleFor: aScrollbar [
+	"Return the pressed borderStyle for the given scrollbar."
+
+	^self scrollbarNormalBorderStyleFor: aScrollbar
+]
+
+{
+	#category : #border-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarPressedButtonBorderStyleFor: aScrollbar [
+	"Return the pressed button borderStyle for the given scrollbar."
+
+	^self scrollbarPressedThumbBorderStyleFor: aScrollbar
+]
+
+{
+	#category : #fill-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarPressedButtonFillStyleFor: aScrollbar [
+	"Return the pressed scrollbar button fillStyle for the given scrollbar."
+	
+	^self scrollbarPressedThumbFillStyleFor: aScrollbar
+]
+
+{
+	#category : #fill-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarPressedFillStyleFor: aScrollbar [
+	"Return the pressed scrollbar fillStyle for the given scrollbar."
+	
+	^self scrollbarNormalFillStyleFor: aScrollbar 
+]
+
+{
+	#category : #border-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarPressedThumbBorderStyleFor: aScrollbar [
+	"Return the pressed thumb borderStyle for the given scrollbar."
+
+	^self scrollbarNormalThumbBorderStyleFor: aScrollbar
+]
+
+{
+	#category : #fill-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarPressedThumbFillStyleFor: aScrollbar [
+	"Return the pressed scrollbar thumb fillStyle for the given scrollbar."
+	
+	^self scrollbarNormalThumbFillStyleFor: aScrollbar
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarThickness [
+	"Answer the width or height of a scrollbar as appropriate to
+	its orientation."
+	
+	^ self settings scrollBarThickness
+]
+
+{
+	#category : #border-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>scrollbarThumbCornerStyleIn: aThemedMorph [
+	"Allow for themes to override default behaviour."
+	
+	^#square
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>secondarySelectionColor [
+	^ self settings secondarySelectionColor
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>selectionBarColor [
+
+	^ self settings selectionBarColor
+
+
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>selectionColor [
+	"Answer the selection color to use.."
+
+	^ self settings selectionColor
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>selectionColorForFrame: frame  [
+
+	^ self selectionColor
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>selectionTextColor [
+ ^ self settings selectionTextColor
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>separatorFillStyleFor: aSeparator [
+	"Return the separator fillStyle for the given separator."
+	
+	|aColor|
+	aColor := aSeparator paneColor.
+	^(GradientFillStyle ramp: {
+		0.0->aColor whiter whiter. 0.2->aColor lighter.
+		0.8->aColor darker. 1.0->aColor blacker})
+		origin: aSeparator topLeft;
+		direction: (aSeparator bounds isWide
+			ifTrue: [0 @ aSeparator height]
+			ifFalse: [aSeparator width @ 0]);
+		radial: false
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>setSystemProgressMorphDefaultParameters: aProgressMorph [
+	"Set up the given progress morph."
+	aProgressMorph color: self settings derivedMenuColor.
+	self settings preferRoundCorner
+		ifTrue: [aProgressMorph useRoundedCorners].
+	aProgressMorph borderWidth: self menuBorderWidth.
+	aProgressMorph borderColor: self menuBorderColor.
+	aProgressMorph updateColor.
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>settings [
+	"Answer the value of settings"
+
+	^ settings
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>settings: anObject [
+	"Set the value of settings"
+
+	settings := anObject
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>shStyleTable [
+
+	^SHTextStylerST80 blueStyleTable
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>sliderDisabledBorderStyleFor: aSlider [
+	"Return the disabled slider borderStyle for the given text editor."
+
+	^self sliderNormalBorderStyleFor: aSlider
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>sliderDisabledFillStyleFor: aSlider [
+	"Return the disabled fillStyle for the given slider."
+	
+	^aSlider paneColor alphaMixed: 0.3 with: Color white
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>sliderNormalBorderStyleFor: aSlider [
+	"Return the normal slider borderStyle for the given text editor."
+
+	^BorderStyle inset
+		width: 1;
+		baseColor: aSlider paneColor twiceDarker
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>sliderNormalFillStyleFor: aSlider [
+	"Return the normal fillStyle for the given slider."
+	
+	^Color white
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>soundTheme [
+	"Answer the sound theme to use, if not specified
+	use the default sound theme."
+
+	^soundTheme ifNil: [self defaultSoundTheme]
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>soundTheme: anObject [
+	"Set the sound theme specific to this instance of ui theme,"
+
+	soundTheme := anObject
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>splitterNormalFillStyleFor: aSplitter [
+	"Return the normal splitter fillStyle for the given splitter."
+	
+	|aColor|
+	aColor := aSplitter paneColor.
+	^(GradientFillStyle ramp: {
+		0.0->aColor whiter whiter. 0.2->aColor lighter.
+		0.8->aColor darker. 1.0->aColor blacker})
+		origin: aSplitter topLeft;
+		direction: (aSplitter splitsTopAndBottom
+			ifTrue: [0 @ aSplitter height]
+			ifFalse: [aSplitter width @ 0]);
+		radial: false
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>splitterPressedFillStyleFor: aSplitter [
+	"Return the pressed splitter fillStyle for the given splitter."
+	
+	|aColor|
+	aColor := aSplitter paneColor twiceDarker.
+	^(GradientFillStyle ramp: {
+			0.0->Color white. 0.4-> aColor twiceLighter.
+			1.0->aColor darker duller})
+		origin: aSplitter topLeft;
+		direction: (aSplitter splitsTopAndBottom
+			ifTrue: [0 @ aSplitter height]
+			ifFalse: [aSplitter width @ 0]);
+		radial: false
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>spotlightWindowColor  [
+	^ self selectionColor muchDarker
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>statusFont [
+	"Answer the status font to use."
+
+	^((TextStyle named: #BitstreamVeraSansMono) ifNil: [TextStyle default])
+		fontOfPointSize: 8
+]
+
+{
+	#category : #basic-colors,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>subgroupColorFrom: paneColor [
+	"Answer the colour for a subgroup given the pane colour."
+
+	^paneColor whiter whiter
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>successBackgroundColor [
+	^ self successTextColor darker darker
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>successTextColor [
+	^ Color green
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>tabGroupCornerStyleIn: aThemedMorph [
+	"Allow for themes to override default behaviour."
+	
+	^aThemedMorph
+		ifNil: [#square]
+		ifNotNil: [:tm | tm preferredCornerStyle]
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>tabLabelInsetFor: aButton [
+	"Answer the inset to use for a tab label."
+
+	^ Margin left: 4 top: 2 right: 4 bottom: 0
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>tabLabelNormalBorderStyleFor: aTabLabel [
+	"Answer the normal border style for a tab label."
+
+	^BorderStyle simple
+		width: 0;
+		baseColor: Color transparent
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>tabLabelNormalFillStyleFor: aTabLabel [
+	"Return the normal fillStyle for the given tab label."
+	
+	^aTabLabel paneColor lighter
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>tabLabelSelectedBorderStyleFor: aTabLabel [
+	"Answer the selected border style for a tab label."
+
+	^self tabLabelNormalBorderStyleFor: aTabLabel
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>tabLabelSelectedFillStyleFor: aTabLabel [
+	"Return the selected fillStyle for the given tab label."
+	
+	^aTabLabel paneColor
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>tabPanelBorderStyleFor: aTabPanel [
+	"Answer the normal border style for a tab panel."
+
+	^BorderStyle simple
+		width: 0;
+		baseColor: Color transparent
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>tabSelectorCellInsetFor: aTabSelector [
+	"Answer the cell inset to use for the given tab selector."
+
+	^2@0
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>tabSelectorMorphMinExtentFor: aTabSelectorMorph [
+	"Answer the min extent of the given tab selector."
+	
+	^aTabSelectorMorph basicMinExtent + (8 @ 1)
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>taskListFillStyleFor: aTasklist [
+	
+	| aColor result |
+	aColor := aTasklist color.
+	result := GradientFillStyle ramp: {
+			0.0->aColor whiter whiter. 0.2->aColor lighter.
+			0.8->aColor darker. 1.0->aColor blacker}.
+	^ result		
+		origin: aTasklist topLeft;
+		direction: 0 @ aTasklist height;
+		radial: false;
+		yourself.
+]
+
+{
+	#category : #basic-colors,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>taskbarActiveButtonColorFor: aButton [
+	"Answer the colour for the given active taskbar button."
+
+	^(self taskbarButtonColorFor: aButton) twiceDarker
+]
+
+{
+	#category : #basic-colors,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>taskbarButtonColorFor: aButton [
+	"Answer the colour for the given taskbar button." 
+	^ self windowColorFor: aButton model
+]
+
+{
+	#category : #basic-colors,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>taskbarButtonLabelColorFor: aButton [
+	"Answer the colour for the label of the given taskbar button."
+
+	^Color black
+]
+
+{
+	#category : #basic-colors,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>taskbarButtonLabelColorForCollapsed: aButton [
+	"Answer the colour for the label of the given taskbar button, given that the corresponding window is collapsed."
+
+	^Color darkGray
+]
+
+{
+	#category : #basic-colors,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>taskbarButtonLabelColorForExpanded: aButton [
+	"Answer the colour for the label of the given taskbar button, given that the corresponding window is expanded."
+
+	^Color black
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>taskbarFillStyleFor: aTaskbar [
+	"Return the taskbar fillStyle for the given taskbar."
+	
+	|aColor|
+	aColor := aTaskbar color.
+	^(GradientFillStyle ramp: {
+			0.0->(aColor alphaMixed: 0.3 with: (Color white alpha: aColor alpha)).
+			0.2-> aColor twiceLighter.
+			0.8->aColor darker.
+			1.0->aColor darker duller})	
+		origin: aTaskbar position;
+		direction: 0@27;
+		radial: false
+]
+
+{
+	#category : #basic-colors,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>taskbarMinimizedButtonColorFor: aButton [
+	"Answer the colour for the given minimized taskbar button."
+
+	^self taskbarButtonColorFor: aButton
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>taskbarThumbnailCornerStyleFor: aMorph [
+	"Answer the corner style for the taskbar thumbnail/tasklist."
+	
+	^#rounded
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>taskbarThumbnailNormalBorderStyleFor: aWindow [
+	"Return the normal thumbnail borderStyle for the given button."
+
+	|c|
+	c := self windowColorFor: aWindow.
+	^BorderStyle raised
+		width: 1;
+		baseColor: c
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>textColor  [
+	^ Color black
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>textColorForNonStandardBackground [
+	^ self textColor
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>textEditorDisabledBorderStyleFor: aTextEditor [
+	"Return the disabled text editor borderStyle for the given text editor."
+
+	^self textEditorNormalBorderStyleFor: aTextEditor
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>textEditorDisabledFillStyleFor: aTextEditor [
+	"Return the disabled fillStyle for the given text editor."
+	
+	^aTextEditor paneColor alphaMixed: 0.3 with: Color white
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>textEditorIn: aThemedMorph text: aStringOrText title: aString entryText: defaultEntryText [
+	"Answer the result of a text editor (multiline) dialog ( a string or nil if cancelled)
+	with the given label and title."
+
+	^self
+		textEditorIn: aThemedMorph
+		text: aStringOrText
+		title: aString
+		entryText: defaultEntryText
+		entryHeight: 64
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>textEditorIn: aThemedMorph text: aStringOrText title: aString entryText: defaultEntryText entryHeight: entryHeight [
+	"Answer the result of a text editor (multiline) dialog ( a string or nil if cancelled)
+	with the given label and title."
+
+	self questionSound play.
+	^(aThemedMorph openModal: (
+		(TextEditorDialogWindow newWithTheme: aThemedMorph theme)
+			textFont: self textFont;
+			title: aString;
+			text: aStringOrText;
+			entryText: defaultEntryText;
+			entryHeight: entryHeight)) entryText
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>textEditorNormalBorderStyleFor: aTextEditor [
+	"Return the normal text editor borderStyle for the given text editor."
+
+	^BorderStyle inset
+		width: 1;
+		baseColor: aTextEditor paneColor
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>textEditorNormalFillStyleFor: aTextEditor [
+	"Return the normal fillStyle for the given text editor."
+	
+	^Color white
+]
+
+{
+	#category : #border-styles-buttons,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>textEntryCornerStyleIn: aThemedMorph [
+	"Answer the corner style to use for text entry morphs."
+	
+	^aThemedMorph
+		ifNil: [#square]
+		ifNotNil: [:tm | tm preferredCornerStyle]
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>textEntryIn: aThemedMorph text: aStringOrText title: aString entryText: defaultEntryText [
+	"Answer the result of a text entry dialog ( a string or nil if cancelled)
+	with the given label and title."
+
+	self questionSound play.
+	^(aThemedMorph openModal: (
+		TextEntryDialogWindow new
+			textFont: self textFont;
+			title: aString;
+			text: aStringOrText;
+			entryText: defaultEntryText)) entryText
+]
+
+{
+	#category : #services,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>textEntryIn: aThemedMorph text: aStringOrText title: aString entryText: defaultEntryText entryCompletion: anEntryCompletion [
+	"Answer the result of a text entry dialog ( a string or nil if cancelled)
+	with the given label and title."
+
+	self questionSound play.
+	^(aThemedMorph openModal: (
+		(TextEntryDialogWindow newWithTheme: aThemedMorph theme)
+			textFont: self textFont;
+			title: aString;
+			text: aStringOrText;
+			entryText: defaultEntryText;
+			entryCompletion: anEntryCompletion)) entryText
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>textFieldDisabledBorderStyleFor: aTextField [
+	"Return the disabled text field borderStyle for the given text field."
+
+	^self textEditorDisabledBorderStyleFor: aTextField
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>textFieldDisabledFillStyleFor: aTextField [
+	"Return the disabled fillStyle for the given text field."
+	
+	^self textEditorDisabledFillStyleFor: aTextField
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>textFieldNormalBorderStyleFor: aTextField [
+	"Return the normal text field borderStyle for the given text field."
+
+	^self textEditorNormalBorderStyleFor: aTextField
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>textFieldNormalFillStyleFor: aTextField [
+	"Return the normal fillStyle for the given text field."
+	
+	^self textEditorNormalFillStyleFor: aTextField
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>textFocusBoundsFor: aPluggableTextMorph [
+	"Answer the bounds for drawing the focus indication."
+
+	^aPluggableTextMorph bounds
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>textFont [
+	"Answer the text font to use."
+
+	^StandardFonts defaultFont
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>treeExpandedForm [
+	"Answer the form to use for an expanded tree item."
+
+	^self forms at: #treeExpanded ifAbsent: [Form extent: 10@9 depth: Display depth]
+]
+
+{
+	#category : #basic-colors,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>treeLineColorsFrom: aColor [
+	"Answer the colours to use for the tree lines.
+	The given colour is the preferred colour."
+
+	^{aColor. Color transparent}
+]
+
+{
+	#category : #basic-colors,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>treeLineDashes [
+	"Answer the dash lengths to use for the tree lines."
+
+	^#(1 1)
+]
+
+{
+	#category : #basic-colors,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>treeLineWidth [
+	"Answer the width of the tree lines."
+
+	^1
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>treeUnexpandedForm [
+	"Answer the form to use for an unexpanded tree item."
+
+	^self forms at: #treeUnexpanded ifAbsent: [Form extent: 10@9 depth: Display depth]
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>unfocusedSelectionColor [
+	^ self settings unfocusedSelectionColor
+]
+
+{
+	#category : #scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>updateScrollBarButtonAspect: aMorph color: aColor  [
+	"update aMorph with aColor"
+	aMorph isNil ifTrue: [^ self].
+	aMorph color: aColor.
+
+]
+
+{
+	#category : #scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>updateScrollBarButtonsAspect: aCollection color: aColor  [
+	"update aCollection of morphs with aColor"
+	
+	
+	aCollection
+		do: [:each | self updateScrollBarButtonAspect: each color: aColor]
+]
+
+{
+	#category : #initialize-release,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>updateWorldDockingBars [
+	"Update the world docking bar gradients."
+	
+	World mainDockingBars do: [:d |
+		d
+			color: (self worldMainDockingBarColorFor: d);
+			gradientRamp: (self class current
+				worldMainDockingBarNormalFillStyleFor: d) colorRamp;
+			borderStyle: (self worldMainDockingBarBorderStyleFor: d)]
+]
+
+{
+	#category : #fill-styles-scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>useScrollbarThumbShadow [
+	"Answer whether a shadow morph should be displayed when
+	dragging a scrollbar thumb."
+
+	^true
+]
+
+{
+	#category : #scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>verticesForComplexArrow: aRectangle  [
+	"PRIVATE - answer a collection of vertices to draw a complex arrow"
+
+	|r vertices aux b c|
+	r := aRectangle origin extent: aRectangle width asPoint.
+	aux := (r width / 5) rounded.
+	b := (aux * aux * 2) sqrt.
+	c := (b * b * 2) sqrt rounded.
+	vertices := OrderedCollection new.
+	vertices add: r bottomLeft - (0 @ aux).
+	vertices add: r topCenter + (0 @ aux).
+	vertices add: r bottomRight - (0 @ aux).
+	vertices add: r bottomRight - (aux @ 0).
+	vertices add: r topCenter + (0 @ (aux + c)).
+	vertices add: r bottomLeft + (aux @ 0).
+	^vertices
+]
+
+{
+	#category : #scrollbars,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>verticesForSimpleArrow: aRectangle  [
+	"PRIVATE - answer a collection of vertices to draw a simple arrow"
+	| vertices |
+	vertices := OrderedCollection new.
+	""
+	vertices add: aRectangle bottomLeft.
+	vertices add: aRectangle center x @ (aRectangle top + (aRectangle width / 8)).
+	vertices add: aRectangle bottomRight.
+	vertices add: aRectangle bottomRight + (0@0.01).
+	""
+	^ vertices
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>warningBackgroundColor [
+	^ self warningTextColor darker darker
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>warningTextColor [
+	^ Color yellow
+]
+
+{
+	#category : #'*Polymorph-Widgets-Themes',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>watcherWindowActiveFillStyleFor: aWindow [
+
+	^ self windowActiveFillStyleFor: aWindow
+]
+
+{
+	#category : #'*Polymorph-Widgets-Themes',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>watcherWindowInactiveFillStyleFor: aWindow [
+
+	^ self windowInactiveFillStyleFor: aWindow
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>whiteTreeExpandedForm [
+	"Answer the form to use for an expanded tree item when a contrasting one is needed."
+
+	^self forms 
+		at: #whiteTreeExpanded 
+		ifAbsent: [ | f |
+			f := self treeExpandedForm deepCopy.
+			f replaceColor: Color white withColor: Color transparent.
+			(f colorsUsed reject: [:c | c isTransparent]) do: [:c | f replaceColor:  c withColor: c whiter whiter whiter whiter whiter whiter].
+			self forms at: #whiteTreeExpanded put: f.
+			self whiteTreeExpandedForm]
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>whiteTreeUnexpandedForm [
+	"Answer the form to use for an unexpanded tree item when a contrasting one is needed."
+
+	^self forms 
+		at: #whiteTreeUnexpanded
+		ifAbsent: [ | f |
+			f := self treeUnexpandedForm deepCopy.
+			f replaceColor: Color white withColor: Color transparent.
+			(f colorsUsed reject: [:c | c isTransparent]) do: [:c | f replaceColor:  c withColor: c whiter whiter whiter whiter whiter whiter].
+			self forms at: #whiteTreeUnexpanded put: f.
+			self whiteTreeUnexpandedForm]
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowActiveDropShadowOffsetRectangleFor: aSystemWindow [
+	"Answer a rectangle describing the offsets for each corner
+	of the the active window bounds for the drop shadow area."
+	
+	^self windowActiveDropShadowStyle == #diffuse
+		ifTrue: [self windowDiffuseDropShadowOffsetRectangleFor: aSystemWindow]
+		ifFalse: [self windowPlainDropShadowOffsetRectangleFor: aSystemWindow]
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowActiveDropShadowStyle [
+	"Answer the style of drop shadow to use for active windows."
+	
+	^#plain
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowActiveFillStyleFor: aWindow [
+	"Return the window active fillStyle for the given window."
+	
+	^aWindow paneColorToUse
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowActiveLabelFillStyleFor: aWindow [
+	"Return the window active label fillStyle for the given window."
+	
+	^Color black
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowActiveTitleFillStyleFor: aWindow [
+	"Return the window active title fillStyle for the given color."
+	
+	^Color transparent
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowBorderWidthFor: aWindow [
+
+	^ 4
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowBottomOffset [
+
+	^ 0
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowCloseForm [
+	"Answer the form to use for the close button of a window."
+
+	^self forms at: #windowClose ifAbsent: [Form extent: 10@10 depth: Display depth]
+]
+
+{
+	#category : #sounds,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowCloseSound [
+	"Answer the window close sound."
+
+	^self soundTheme windowCloseSound
+]
+
+{
+	#category : #'morph creation',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowCollapseBoxLayoutFor: aWindow [
+
+	^ LayoutFrame new 
+		leftFraction: 1; 
+		leftOffset: aWindow boxExtent x negated;
+		yourself
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowColor [
+	"Answer the window color to use."
+
+	^self settings windowColor
+]
+
+{
+	#category : #basic-colors,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowColorFor: aWindowOrModel  [
+	"Answer the colour for the given window."
+
+	^ self settings windowColor
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowDiffuseDropShadowOffsetRectangleFor: aSystemWindow [
+	"Answer a rectangle describing the offsets for each corner
+	of the the active window bounds for the drop shadow area
+	when the difuse style is used."
+	
+	^8@4 corner: 8@10
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowEdgeNormalFillStyleFor: anEdgeGrip [
+	"Return the normal window edge fillStyle for the given edge grip."
+	
+	^Color transparent
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowEdgePressedFillStyleFor: anEdgeGrip [
+	"Return the pressed window edge fillStyle for the given edge grip."
+	
+	^self windowEdgeNormalFillStyleFor: anEdgeGrip
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowExtentChangedFor: aWindow [
+	"Update any extent related visuals."
+
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowInactiveDropShadowOffsetRectangleFor: aSystemWindow [
+	"Answer a rectangle describing the offsets for each corner
+	of the the inactive window bounds for the drop shadow area."
+	
+	^self windowPlainDropShadowOffsetRectangleFor: aSystemWindow
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowInactiveFillStyleFor: aWindow [
+	"Return the window inactive fillStyle for the given window."
+	
+	^self settings fadedBackgroundWindows
+		ifTrue: [aWindow paneColorToUse
+					alphaMixed: 0.9
+					with: (Color white alpha: aWindow paneColorToUse alpha)]
+		ifFalse: [aWindow paneColorToUse]
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowInactiveLabelFillStyleFor: aWindow [
+	"Return the window inactive label fillStyle for the given window."
+	
+	^self settings fadedBackgroundWindows
+		ifTrue: [aWindow paneColorToUse alphaMixed: 0.6 with: Color black]
+		ifFalse: [self windowActiveLabelFillStyleFor: aWindow]
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowInactiveTitleFillStyleFor: aWindow [
+	"Return the window inactive title fillStyle for the given color."
+	
+	^self windowActiveTitleFillStyleFor: aWindow
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowLabelFor: aWindow [
+	"Answer the label to use for the given window."
+
+	^self windowLabelForText: aWindow labelString
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowLabelForText: aTextOrString [
+	"Answer the window label to use for the given text."
+	^ LabelMorph new
+		contents: aTextOrString;
+		font: StandardFonts windowTitleFont emphasis: 0
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowLeftOffset [
+
+	^ 0
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowMaximizeForm [
+	"Answer the form to use for the maximize button of a window."
+
+	^self forms at: #windowMaximize ifAbsent: [Form extent: 10@10 depth: Display depth]
+]
+
+{
+	#category : #sounds,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowMaximizeSound [
+	"Answer the window maximize sound."
+
+	^self soundTheme windowMaximizeSound
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowMenuForm [
+	"Answer the form to use for the menu button of a window."
+
+	^self forms at: #windowMenu ifAbsent: [Form extent: 10@10 depth: Display depth]
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowMenuIconFor: aWindow [
+	"Answer the menu icon for the given window."
+
+	^ aWindow taskbarIcon ifNil: [self windowMenuForm]
+]
+
+{
+	#category : #label-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowMinimizeForm [
+	"Answer the form to use for the minimize button of a window."
+
+	^self forms at: #windowMinimize ifAbsent: [Form extent: 10@10 depth: Display depth]
+]
+
+{
+	#category : #sounds,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowMinimizeSound [
+	"Answer the window minimize sound."
+
+	^self soundTheme windowMinimizeSound
+]
+
+{
+	#category : #sounds,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowOpenSound [
+	"Answer the window open sound."
+
+	^self soundTheme windowOpenSound
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowPaneBorderStyleFor: aMorph in: aSystemWindow [
+	"Answer the border style for a morph that is to be added
+	as a pane in the given system window,"
+
+	^BorderStyle inset
+		color: aSystemWindow paneColor;
+		width: (aMorph borderWidth = 0 ifTrue: [0] ifFalse: [1])
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowPlainDropShadowOffsetRectangleFor: aSystemWindow [
+	"Answer a rectangle describing the offsets for each corner
+	of the the active window bounds for the drop shadow area
+	when the plain style is used."
+	
+	^aSystemWindow shadowOffset negated corner: aSystemWindow shadowOffset
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowPreferredCornerStyleFor: aWindow [
+	"Answer the preferred corner style for the given window."
+
+	aWindow isEmbedded ifTrue: [^#square].
+	^(self settings preferRoundCorner  or: [
+			aWindow cornerStyle == #rounded])
+		ifTrue: [#rounded]
+		ifFalse: [#square]
+]
+
+{
+	#category : #sounds,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowRestoreDownSound [
+	"Answer the window restore down sound."
+
+	^self soundTheme windowRestoreDownSound
+]
+
+{
+	#category : #sounds,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowRestoreUpSound [
+	"Answer the window restore up sound."
+
+	^self soundTheme windowRestoreUpSound
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowRightOffset [
+
+	^ 0
+]
+
+{
+	#category : #'accessing colors',
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowShadowColor [
+	"Answer the window shadow color to use."
+
+	^Color black alpha: 0.5
+]
+
+{
+	#category : #defaults,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>windowTopOffset [
+
+	^ 0
+]
+
+{
+	#category : #border-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>worldMainDockingBarBorderStyleFor: aDockingBar [
+	"Return the world main docking bar borderStyle for the given docking bar."
+
+	^BorderStyle raised
+		width: 2;
+		color: aDockingBar color
+]
+
+{
+	#category : #basic-colors,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>worldMainDockingBarColorFor: aDockingBar [
+	"Answer the base colour to use for a world main docking bar in this theme."
+
+	^self settings derivedMenuColor 
+]
+
+{
+	#category : #fill-styles,
+	#timestamp : ' 8/31/2017 05:26:15'
+}
+UITheme>>worldMainDockingBarNormalFillStyleFor: aDockingBar [
+	"Return the world main docking bar fillStyle for the given docking bar."
+	
+	|aColor|
+	aColor := aDockingBar originalColor.
+	^(GradientFillStyle ramp: {0.0 -> aColor muchLighter. 1.0 -> aColor})
+		origin: aDockingBar topLeft;
+		direction: (aDockingBar isVertical
+			ifTrue: [aDockingBar width @ 0]
+			ifFalse: [0 @ aDockingBar height]);
+		radial: false
+]

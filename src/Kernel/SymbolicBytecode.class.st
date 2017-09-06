@@ -1,0 +1,116 @@
+"
+I model a single bytecode. I know my value and my offset in the compiledMethod and know the compiledMethod I come from
+
+I am a relatively heavyweight object, I am created on demand for inspecting bytecodes.
+
+See #symbolicBytecode.
+"
+Class {
+	#name : #SymbolicBytecode,
+	#superclass : #Object,
+	#instVars : [
+		'description',
+		'method',
+		'offset',
+		'bytes'
+	],
+	#category : #Kernel-Methods,
+	#timestamp : 'MarcusDenker 10/13/2014 15:54'
+}
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:33'
+}
+SymbolicBytecode>>bytes [
+	^ bytes
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:33'
+}
+SymbolicBytecode>>bytes: anObject [
+	bytes := anObject
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:33'
+}
+SymbolicBytecode>>description [
+	^ description
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:33'
+}
+SymbolicBytecode>>description: anObject [
+	description := anObject
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:33'
+}
+SymbolicBytecode>>method [
+	^ method
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:33'
+}
+SymbolicBytecode>>method: anObject [
+	method := anObject
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:33'
+}
+SymbolicBytecode>>offset [
+	^ offset
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:33'
+}
+SymbolicBytecode>>offset: anObject [
+	offset := anObject
+]
+
+{
+	#category : #printing,
+	#timestamp : ' 8/31/2017 07:16:33'
+}
+SymbolicBytecode>>printOn: aStream [
+	aStream print: offset; space.
+	aStream nextPut: $<.
+	bytes do: [:each | | code |
+		code := each radix: 16.
+			aStream nextPut: (code size < 2
+				ifTrue: [$0]
+				ifFalse: [code at: 1]).
+			aStream nextPut: code last] separatedBy: [ aStream space].
+	aStream nextPut: $>;space.
+	aStream nextPutAll: description
+]
+
+{
+	#category : #mapping,
+	#timestamp : ' 8/31/2017 07:16:33'
+}
+SymbolicBytecode>>sourceInterval [
+	^self sourceNode sourceInterval
+]
+
+{
+	#category : #mapping,
+	#timestamp : ' 8/31/2017 07:16:33'
+}
+SymbolicBytecode>>sourceNode [
+	^self method sourceNode sourceNodeForPC: self offset
+]

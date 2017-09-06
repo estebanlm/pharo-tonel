@@ -1,0 +1,99 @@
+"
+
+"
+Class {
+	#name : #CommandLineHandlerTest,
+	#superclass : #TestCase,
+	#category : #Tests-System-CommandLine,
+	#timestamp : ''
+}
+
+{
+	#category : #utility,
+	#timestamp : ' 8/31/2017 05:26:29'
+}
+CommandLineHandlerTest>>argumentsWith: aCollection [
+	^ CommandLineArguments withArguments: aCollection
+]
+
+{
+	#category : #tests,
+	#timestamp : ' 8/31/2017 05:26:29'
+}
+CommandLineHandlerTest>>testBasicCommandlineHandler [
+	
+	| args |
+	args := self argumentsWith: #().
+	"BasicCommandLineHandler gets activated by default on image startup, so there is no need to activate it in a nother case"
+	self deny: (BasicCommandLineHandler isResponsibleFor: args).
+	"The BasicCommandLineHandler should always delegate to the PharoCommandLineHandler if it is present"
+	self 
+		assert: BasicCommandLineHandler new selectedHandler
+		equals: PharoCommandLineHandler
+]
+
+{
+	#category : #tests,
+	#timestamp : ' 8/31/2017 05:26:29'
+}
+CommandLineHandlerTest>>testResponsibilityDefault [
+	| args |
+	args := self argumentsWith: #('--help').
+	self assert: (PharoCommandLineHandler isResponsibleFor: args).
+	self deny: (STCommandLineHandler isResponsibleFor: args).
+	self deny: (EvaluateCommandLineHandler isResponsibleFor: args).
+]
+
+{
+	#category : #tests,
+	#timestamp : ' 8/31/2017 05:26:29'
+}
+CommandLineHandlerTest>>testResponsibilityEval [
+	| args |
+	args := self argumentsWith: #('eval' '1+2').
+	self assert: (PharoCommandLineHandler isResponsibleFor: args).
+	self deny: (STCommandLineHandler isResponsibleFor: args).
+	self assert: (EvaluateCommandLineHandler isResponsibleFor: args).
+	
+	args := self argumentsWith: #('-e' '1+2').
+	self assert: (PharoCommandLineHandler isResponsibleFor: args).
+	self deny: (STCommandLineHandler isResponsibleFor: args).
+	self assert: (EvaluateCommandLineHandler isResponsibleFor: args).
+	
+	args := self argumentsWith: #('--evaluate' '1+2').
+	self assert: (PharoCommandLineHandler isResponsibleFor: args).
+	self deny: (STCommandLineHandler isResponsibleFor: args).
+	self assert: (EvaluateCommandLineHandler isResponsibleFor: args).
+]
+
+{
+	#category : #tests,
+	#timestamp : ' 8/31/2017 05:26:29'
+}
+CommandLineHandlerTest>>testResponsibilitySt [
+	| args |
+	args := self argumentsWith: #('/foo/bar/myScript.st').
+	self assert: (PharoCommandLineHandler isResponsibleFor: args).
+	self assert: (STCommandLineHandler isResponsibleFor: args).
+	self deny: (EvaluateCommandLineHandler isResponsibleFor: args).
+	
+	args := self argumentsWith: #('st' '/foo/bar/myScript.st').
+	self assert: (PharoCommandLineHandler isResponsibleFor: args).
+	self assert: (STCommandLineHandler isResponsibleFor: args).
+	self deny: (EvaluateCommandLineHandler isResponsibleFor: args).
+]
+
+{
+	#category : #tests,
+	#timestamp : ' 8/31/2017 05:26:29'
+}
+CommandLineHandlerTest>>testSelectHandlersCodeLoader [
+	| args handlers |
+	args := self argumentsWith: #('/foo/bar/myScript.st').
+	handlers := CommandLineHandler selectHandlersFor: args.
+	self assert: handlers first = STCommandLineHandler.
+	
+	args := self argumentsWith: #('/foo/bar/myScript.st' '--verbose').
+	handlers := CommandLineHandler selectHandlersFor: args.
+	self assert: handlers first = STCommandLineHandler.
+]

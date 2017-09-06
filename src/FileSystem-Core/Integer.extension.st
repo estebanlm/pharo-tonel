@@ -1,0 +1,30 @@
+Extension {
+	#name : #Integer
+}
+
+{
+	#category : #'*FileSystem-Core',
+	#timestamp : ' 8/31/2017 07:16:22'
+}
+Integer>>humanReadableSIByteSize [
+	^ String streamContents: [ :s|
+		self humanReadableSIByteSizeOn: s ]
+]
+
+{
+	#category : #'*FileSystem-Core',
+	#timestamp : ' 8/31/2017 07:16:22'
+}
+Integer>>humanReadableSIByteSizeOn: s [
+	| exponent base |
+	"Print a string with an SI binary unit represation of myself."
+	base := 1000.
+	self < base
+		ifTrue: [ ^ s print: self; space; nextPut: $B ].
+	exponent := (self log / base log) asInteger.
+	(self / (base ** exponent)) printOn: s showingDecimalPlaces: 2.
+	s 
+		space;
+		nextPut: ('kMGTPE' at: exponent);
+		nextPut: $B.
+]

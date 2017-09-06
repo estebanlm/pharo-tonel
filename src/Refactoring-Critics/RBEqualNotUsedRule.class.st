@@ -1,0 +1,46 @@
+"
+Checks for senders of comparator messages that do not use the result of the comparison.
+"
+Class {
+	#name : #RBEqualNotUsedRule,
+	#superclass : #RBParseTreeLintRule,
+	#category : #Refactoring-Critics-ParseTreeRules,
+	#timestamp : 'StephaneDucasse 11/29/2014 21:30'
+}
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:27'
+}
+RBEqualNotUsedRule class>>uniqueIdentifierName [
+	"This number should be unique and should change only when the rule completely change semantics"
+	
+	^'EqualNotUsedRule'
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:27'
+}
+RBEqualNotUsedRule>>group [
+	^ 'Potential Bugs'
+]
+
+{
+	#category : #initialization,
+	#timestamp : ' 8/31/2017 05:26:27'
+}
+RBEqualNotUsedRule>>initialize [
+	super initialize.
+	self matcher 
+		matches: '`{:node | node isMessage and: [node isUsed not and: [#(#= #== #~= #~~ #< #> #<= #>=) includes: node selector]]}'
+		do: [ :node :answer | node ]
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:27'
+}
+RBEqualNotUsedRule>>name [
+	^ 'Doesn''t use the result of a =, ~=, etc.'
+]

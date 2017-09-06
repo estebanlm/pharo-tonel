@@ -1,0 +1,120 @@
+"
+Parent class of all Pharo tutorials.
+
+To create your own tutorial:
+- subclass AbstractTutorial
+- implement a few methods which returns a Lesson instance
+- implement tutorial which returns a Collection of selectors to the methods you've created.
+
+For example, see MockTutorial (minimalist) and PharoySntaxTutorial (default PharoTutorial one).
+
+See the PharoTutorial class comment to execute your own tutorial.
+"
+Class {
+	#name : #AbstractTutorial,
+	#superclass : #Object,
+	#category : #ProfStef-Core,
+	#timestamp : 'CamilloBruni 2/22/2014 19:03'
+}
+
+{
+	#category : #'tutorial metainfo',
+	#timestamp : ' 8/31/2017 05:26:23'
+}
+AbstractTutorial class>>contentsOfTutorials [
+	^ String
+		streamContents: [ :aStream | 
+			self tutorials
+				do: [ :aTutorial | 
+					aStream
+						nextPutAll: aTutorial title;
+						cr;
+						tab;
+						nextPutAll: 'ProfStef goOn: ';
+						nextPutAll: aTutorial name;
+						cr;
+						cr ] ]
+]
+
+{
+	#category : #'tutorial metainfo',
+	#timestamp : ' 8/31/2017 05:26:23'
+}
+AbstractTutorial class>>title	 [
+	"Return the title of the tutorial by parsing the class name 	
+	like a Wiki link and interspersing whitespaces between the tokens"	
+	| className separators groups |	
+			
+	className := self name.	
+	separators := 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.	
+	groups := className findTokens: separators keep: separators.	
+	^' ' join: (groups pairsCollect: [ :sep :rest | sep , rest ]).
+
+]
+
+{
+	#category : #'tutorial metainfo',
+	#timestamp : ' 8/31/2017 05:26:23'
+}
+AbstractTutorial class>>tutorials [
+	^ (self subclasses 
+		sort: [:a :b |  a name < b name]) 
+		select: [:aTutorial |
+			(aTutorial category = 'ProfStef-Tests') not ].
+
+]
+
+{
+	#category : #tutorial,
+	#timestamp : ' 8/31/2017 05:26:23'
+}
+AbstractTutorial>>indexOfLesson: aSelector [
+	^self tutorial indexOf: aSelector.
+]
+
+{
+	#category : #tutorial,
+	#timestamp : ' 8/31/2017 05:26:23'
+}
+AbstractTutorial>>lessonAt: anInteger [
+	| lessonSelector |
+	lessonSelector := self tutorial at: anInteger.
+	^ self perform: lessonSelector.
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:23'
+}
+AbstractTutorial>>lessons [
+	^ self tutorial collect: [:aSelector| self perform: aSelector]
+]
+
+{
+	#category : #printing,
+	#timestamp : ' 8/31/2017 05:26:23'
+}
+AbstractTutorial>>printOn: aStream [
+	aStream 
+		nextPutAll: 'a Pharo Tutorial (';
+		nextPutAll: self class title;
+		nextPutAll: ')'.    
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:23'
+}
+AbstractTutorial>>size [
+	^ self tutorial size
+]
+
+{
+	#category : #tutorial,
+	#timestamp : ' 8/31/2017 05:26:23'
+}
+AbstractTutorial>>tutorial [
+	"Should return an Array of selectors which returns Lesson instances.
+	See SmalltalkSyntaxTutorial."
+	^ self shouldBeImplemented.
+]

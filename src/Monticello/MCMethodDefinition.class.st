@@ -1,0 +1,534 @@
+"
+A MCMethodDefinition represents a method definition. 
+It captures the following information.
+
+Instance Variables
+	category:		<Object>
+	classIsMeta:		<Object>
+	className:		<Object>
+	selector:		<Object>
+	source:		<Object>
+	timeStamp:		<Object>
+
+
+"
+Class {
+	#name : #MCMethodDefinition,
+	#superclass : #MCDefinition,
+	#instVars : [
+		'classIsMeta',
+		'source',
+		'category',
+		'selector',
+		'className',
+		'timeStamp'
+	],
+	#classVars : [
+		'Definitions',
+		'InitializersEnabled'
+	],
+	#category : #Monticello-Modeling,
+	#timestamp : '<historical>'
+}
+
+{
+	#category : #initialization,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition class>>cachedDefinitions [
+	^ Definitions 
+		ifNil: [ Definitions := WeakIdentityKeyDictionary new ]
+]
+
+{
+	#category : #'instance creation',
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition class>>className: classString
+classIsMeta: metaBoolean
+selector: selectorString
+category: catString
+timeStamp: timeString
+source: sourceString [
+	^ self instanceLike:
+		(self new initializeWithClassName: classString
+					classIsMeta: metaBoolean
+					selector: selectorString
+					category: catString
+					timeStamp: timeString
+					source: sourceString)
+]
+
+{
+	#category : #'instance creation',
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition class>>className: classString
+selector: selectorString
+category: catString
+timeStamp: timeString
+source: sourceString [
+	^ self	className: classString
+			classIsMeta: false
+			selector: selectorString
+			category: catString
+			timeStamp: timeString
+			source: sourceString
+]
+
+{
+	#category : #cleanup,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition class>>cleanUp [
+	"Flush caches"
+
+	self shutDown.
+]
+
+{
+	#category : #initialization,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition class>>flushMethodCache [
+	"We do not named this method flushCache because it would override an important class methods."
+	Definitions := nil.
+]
+
+{
+	#category : #initialization,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition class>>initialize [
+	SessionManager default
+		registerSystemClassNamed: self name
+]
+
+{
+	#category : #settings,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition class>>initializersEnabled [
+
+	^ InitializersEnabled ifNil: [true]
+]
+
+{
+	#category : #settings,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition class>>initializersEnabled: aBoolean [
+
+	InitializersEnabled := aBoolean
+]
+
+{
+	#category : #'instance creation',
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition class>>instanceLike: aDefinition [
+	"The cache is playing havoc with the equality between methods. Methods of the same code but with different timestamps are considered equal. This breaks havoc with some filetree testing code which looks at timestamps."
+
+	| aMCMethodDefinition |
+	aMCMethodDefinition := super instanceLike: aDefinition.
+	^ aMCMethodDefinition timeStamp ~= aDefinition timeStamp
+		ifTrue: [ Instances add: aDefinition ]
+		ifFalse: [ aMCMethodDefinition ]
+]
+
+{
+	#category : #'system startup',
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition class>>shutDown [
+	"Free up all cached monticello method definitions"
+	self flushMethodCache 
+]
+
+{
+	#category : #comparing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>= aDefinition [
+	^ super = aDefinition
+		and: [ 
+			aDefinition category = self category
+				and: [ aDefinition source withSqueakLineEndings = self source withSqueakLineEndings ] ]
+]
+
+{
+	#category : #visiting,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>accept: aVisitor [
+	^ aVisitor visitMethodDefinition: self
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>actualClass [
+	^ Smalltalk globals
+		at: className
+		ifPresent: [ :class | 
+			classIsMeta
+				ifTrue: [ class classSide ]
+				ifFalse: [ class ] ]
+]
+
+{
+	#category : #installing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>addMethodAdditionTo: aCollection [
+	| methodAddition |
+	methodAddition := MethodAddition new
+		compile: source
+		classified: category
+		withStamp: timeStamp
+		notifying: nil
+		logSource: true
+		inClass: self actualClass.
+	"This might raise an exception and never return"
+	methodAddition createCompiledMethod.
+	aCollection add: methodAddition.
+
+]
+
+{
+	#category : #accessing-backward,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>category [
+	"Please favor protocol instead of category. We want to have method protocol and class package and tag = a category"
+	^ category
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>classIsMeta [
+	^ classIsMeta
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>className [
+	^className
+]
+
+{
+	#category : #printing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>description [
+	^ Array	
+		with: className
+		with: selector
+		with: classIsMeta
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>diffSource [
+	^'"protocol: ', self protocol,'"
+', self source.
+]
+
+{
+	#category : #printing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>fullClassName [
+	"Using #class selector for classes for backwards compatibility"
+
+	^ self classIsMeta
+		ifFalse: [self className]
+		ifTrue: [
+			(self actualClass isNil or: [ self actualClass isTrait ])
+				ifFalse: [self className, ' class']
+				ifTrue: [self className, ' classSide']]
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>fullTimeStamp [
+	^ DateAndTime fromMethodTimeStamp: timeStamp
+]
+
+{
+	#category : #comparing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>hash [
+	| hash |
+	hash := String stringHash: classIsMeta asString initialHash: 0.
+	hash := String stringHash: source initialHash: hash.
+	hash := String stringHash: category initialHash: hash.
+	hash := String stringHash: className initialHash: hash.
+	^ hash
+]
+
+{
+	#category : #serializing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>initializeWithClassName: classString
+classIsMeta: metaBoolean
+selector: selectorString
+category: catString
+timeStamp: timeString
+source: sourceString [
+	className := classString asSymbol.
+	selector := selectorString asSymbol.
+	category := catString asSymbol.
+	timeStamp := timeString.
+	classIsMeta := metaBoolean.
+	source := sourceString withSqueakLineEndings.
+
+]
+
+{
+	#category : #testing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>isCodeDefinition [
+	^ true
+]
+
+{
+	#category : #installing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>isExtensionMethod [
+	^ category beginsWith: '*'
+]
+
+{
+	#category : #installing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>isExternalStructureFieldDefinition [
+	"Really belongs in the FFI package, for now, include in base even if FFI is not loaded due to the dire consequences if its not here and an FFI package is loaded (incorrect field compilation can cause VM crashes).
+	
+	If in the future other external packages are found to need custom post-load blocks as well, a pluggable way of doing so should be investigated, but for now it's not worth the effort and coordination required with external package maintainers"
+	^ selector = #fields
+		and: [classIsMeta
+			and: [
+				(Smalltalk globals at: #ExternalStructure ifPresent: [:externalStructure |
+					self actualClass theNonMetaClass inheritsFrom: externalStructure]) == true]]
+
+]
+
+{
+	#category : #testing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>isInitializer [
+	^ selector = #initialize and: [classIsMeta]
+	
+]
+
+{
+	#category : #testing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>isLoadable [
+	^self actualClass notNil
+]
+
+{
+	#category : #testing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>isMethodDefinition [
+	^true
+]
+
+{
+	#category : #installing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>isOverrideMethod [
+	"this oughta check the package"
+	^ self isExtensionMethod and: [category endsWith: '-override']
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>load [
+	self actualClass
+		compile: source
+		classified: category
+		withStamp: timeStamp
+		notifying: nil
+]
+
+{
+	#category : #installing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>overridenMethodOrNil [
+	"Answer the method that I've overriden on load. 
+
+	Preconditions: 
+	  - self actualClass is installed in the System Dictionary.
+	  - self isOverrideMethod is true."
+	
+	| realMethod |
+	realMethod := self actualClass
+		compiledMethodAt: self selector
+		ifAbsent: [ ^ nil ].
+		
+	^ SourceFiles
+		changeRecordsFor: realMethod asRingDefinition
+		detect: [ :protocol | protocol ~= category ]
+]
+
+{
+	#category : #installing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>postloadOver: aDefinition [
+	super postloadOver: aDefinition.
+	self class initializersEnabled ifTrue: [
+		(self isInitializer
+			and: [ self actualClass isTrait not 
+					and: [ aDefinition isNil or: [ self source ~= aDefinition source ]]]) ifTrue: [
+				self actualClass theNonMetaClass initialize ] ].
+	"Postloading of FFI fields. This code will be called when loading FFI structures that are not by default in the image. This is NOT dead code."
+	self isExternalStructureFieldDefinition
+		ifTrue: [self actualClass theNonMetaClass compileFields].
+]
+
+{
+	#category : #annotations,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>printAnnotations: requests on: aStream [
+	"Add a string for an annotation pane, trying to fulfill the browser annotationRequests."
+	
+	requests do: [ :aRequest |
+		aRequest == #timeStamp ifTrue: [ aStream nextPutAll: self timeStamp ].
+		aRequest == #messageCategory ifTrue: [ aStream nextPutAll: self category ].
+		aRequest == #requirements ifTrue: [
+			self requirements do: [ :req |
+				aStream nextPutAll: req ] separatedBy: [ aStream space ]].
+	] separatedBy: [ aStream space ].
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>protocol [
+	"Return in which protocol (conceptual groups of methods) the receiver is grouped into."
+	^ category
+]
+
+{
+	#category : #installing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>removeSelector: aSelector fromClass: aClass [
+	"Safely remove the given selector from the target class.
+	Be careful not to remove the selector when it has wandered
+	to another package, but remove the category if it is empty."
+
+	| newProtocol |
+	newProtocol := aClass organization categoryOfElement: aSelector.
+	newProtocol
+		ifNotNil: [ 
+			"If moved to and fro extension, ignore removal"
+			(category beginsWith: '*') = (newProtocol beginsWith: '*')
+				ifFalse: [ ^ self ].	"Check if moved between different extension categories"
+			((category beginsWith: '*') and: [ category ~= newProtocol ])
+				ifTrue: [ ^ self ] ].
+	aClass removeSelector: aSelector.
+	aClass organization removeProtocolIfEmpty: category
+]
+
+{
+	#category : #comparing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>requirements [
+	^ Array with: className
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>selector [
+	^selector
+]
+
+{
+	#category : #printing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>shortSummaryPrefix [
+
+	^ self definition selector asString
+]
+
+{
+	#category : #comparing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>sortKey [
+	^ self className, '.', (self classIsMeta ifTrue: ['meta'] ifFalse: ['nonmeta']), '.', self selector
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>source [
+	^ source
+]
+
+{
+	#category : #printing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>summary [
+
+	^ className asString , '>>' , selector printString
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>timeStamp [
+	^ timeStamp
+]
+
+{
+	#category : #installing,
+	#timestamp : ' 8/31/2017 07:17:01'
+}
+MCMethodDefinition>>unload [
+	"Unload me. If I represent an override method, then restore the overriden version. If not, just remove the selector from the class."
+
+	| previousVersion |
+	self isOverrideMethod ifTrue: [ previousVersion := self overridenMethodOrNil ].
+
+	previousVersion
+		ifNil: [ 
+			self actualClass ifNotNil: [ :class | 
+				self removeSelector: selector fromClass: class ] ]
+		ifNotNil: [ previousVersion fileIn ]
+]

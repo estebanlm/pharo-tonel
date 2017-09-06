@@ -1,0 +1,80 @@
+"
+I announce a strong selection happened (this is a double-click)
+
+Description
+-------------------
+
+I store the index of the row and the event (doubleClick) the FTTableMorph received.
+I should be use by the user to defined an action to execute when a DoubleClic happen on a Table.
+
+Public API and Key Messages
+-------------------
+
+- #rowIndex: anIndex event: anEvent 		is the commun constructor.
+ 
+Internal Representation and Key Implementation Points.
+------------------
+
+    Instance Variables
+	event:		An event received by the FTTableMorph.
+	selectedRowIndex:		The index of the row in the table that was selected. 
+
+			
+From the index you can get an object from the FTTableMorph with: 
+
+aFTTableMorph dataSource elementAt: selectedRowIndex  
+
+"
+Class {
+	#name : #FTStrongSelectionChanged,
+	#superclass : #FTAnnouncement,
+	#instVars : [
+		'selectedRowIndex',
+		'event'
+	],
+	#category : #Morphic-Widgets-FastTable-Announcement,
+	#timestamp : 'CyrilFerlicot 11/17/2015 12:45'
+}
+
+{
+	#category : #'instance creation',
+	#timestamp : ' 8/31/2017 05:26:21'
+}
+FTStrongSelectionChanged class>>rowIndex: aNumber event: anEvent [
+	^ self new 
+		selectedRowIndex: aNumber;
+		event: anEvent;
+		yourself
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:21'
+}
+FTStrongSelectionChanged>>event [
+	^ event 
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:21'
+}
+FTStrongSelectionChanged>>event: anEvent [
+	event := anEvent
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:21'
+}
+FTStrongSelectionChanged>>selectedRowIndex [
+	^ selectedRowIndex
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:21'
+}
+FTStrongSelectionChanged>>selectedRowIndex: anObject [
+	selectedRowIndex := anObject
+]

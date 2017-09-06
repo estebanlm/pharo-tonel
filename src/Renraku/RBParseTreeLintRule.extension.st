@@ -1,0 +1,38 @@
+Extension {
+	#name : #RBParseTreeLintRule
+}
+
+{
+	#category : #'*renraku',
+	#timestamp : ' 8/31/2017 05:26:37'
+}
+RBParseTreeLintRule>>check: aMethod forCritiquesDo: aCriticBlock [
+
+	(self matcher canMatchMethod: aMethod) ifTrue: [
+		| node |
+		node := self matcher
+			executeTree: aMethod ast
+			initialAnswer: nil.
+		node ifNotNil: [ 
+			^ aCriticBlock cull: ( 
+				self critiqueFor: node about: aMethod) ] ].
+]
+
+{
+	#category : #'*renraku',
+	#timestamp : ' 8/31/2017 05:26:37'
+}
+RBParseTreeLintRule>>critiqueFor: aNode about: aMethod [
+	| anchor | 
+
+	anchor := (aNode isKindOf: RBProgramNode)
+		ifFalse: [ ReSourceAnchor entity: aMethod ]
+		ifTrue: [
+			ReIntervalSourceAnchor
+				entity: aMethod
+				interval: aNode sourceInterval ].
+			
+	^ ReTrivialCritique
+		withAnchor: anchor 
+		by: self
+]

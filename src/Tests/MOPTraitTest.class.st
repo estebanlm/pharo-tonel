@@ -1,0 +1,64 @@
+"
+
+"
+Class {
+	#name : #MOPTraitTest,
+	#superclass : #TestCase,
+	#category : #Tests-Traits-MOP,
+	#timestamp : ''
+}
+
+{
+	#category : #tests,
+	#timestamp : ' 8/31/2017 05:26:29'
+}
+MOPTraitTest>>testClass [
+	"self debug: #testClass"
+	"The class of a compiled method is the class that contains it.
+	A compiled method is shared."
+	"methodClass could call 
+		-> methodClassOrTrait"
+	
+	self assert: (Trait1>>#c) methodClass = Trait1.
+	self assert: (Trait2>>#c) methodClass = Trait2.
+	self assert: (MOPTestClassC>>#c) methodClass = MOPTestClassC.
+	self assert: (MOPTestClassC>>#c2) methodClass = MOPTestClassC.
+	self assert: (MOPTestClassD>>#c) methodClass = MOPTestClassD.
+	self assert: (MOPTestClassD>>#c2) methodClass = MOPTestClassD.
+	self assert: (MOPTestClassD>>#c3) methodClass = MOPTestClassD.
+	self assert: (MOPTestClassA>>#c2) methodClass = MOPTestClassA.
+	
+]
+
+{
+	#category : #tests,
+	#timestamp : ' 8/31/2017 05:26:29'
+}
+MOPTraitTest>>testOrigin [
+	"self debug: #testClass"
+	"The origin of a compiledMethod is its defining class or trait."
+	
+	self assert: (MOPTestClassC>>#c) origin = MOPTestClassC.
+	self assert: (MOPTestClassA>>#c) origin = Trait3.
+	self assert: (Trait3>>#c2) origin = Trait2.
+	self assert: (MOPTestClassA>>#c2) origin = Trait2.
+	self assert: (MOPTestClassB>>#c) origin = Trait1.
+	self assert: (MOPTestClassD>>#c3) origin = Trait2.
+	self assert: (MOPTestClassD>>#c2) origin = Trait2.
+]
+
+{
+	#category : #tests,
+	#timestamp : ' 8/31/2017 05:26:29'
+}
+MOPTraitTest>>testSelector [
+	"self debug: #testSelector"
+	"The selector of a compiled method should be its name. 
+	An aliased method should have the name of its alias name."
+	
+	self assert: (MOPTestClassA>>#c) selector = #c.
+	self assert: (MOPTestClassC>>#c) selector = #c.
+	self assert: (Trait3>>#c) selector = #c.
+	self assert: (Trait3>>#c2) selector = #c2.
+	self assert: (MOPTestClassD>>#c3) selector = #c3.
+]

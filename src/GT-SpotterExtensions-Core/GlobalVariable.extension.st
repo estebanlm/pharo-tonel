@@ -1,0 +1,37 @@
+Extension {
+	#name : #GlobalVariable
+}
+
+{
+	#category : #'*GT-SpotterExtensions-Core',
+	#timestamp : ' 8/31/2017 05:26:36'
+}
+GlobalVariable>>spotterActDefault [
+	self value inspect
+]
+
+{
+	#category : #'*GT-SpotterExtensions-Core',
+	#timestamp : ' 8/31/2017 05:26:36'
+}
+GlobalVariable>>spotterClassFor: aStep [
+	<spotterOrder: 50>
+	aStep listProcessor
+			title: 'Class';
+			allCandidates: [ { self value class }];
+			itemIcon: #systemIcon;
+			filter: GTFilterSubstring
+]
+
+{
+	#category : #'*GT-SpotterExtensions-Core',
+	#timestamp : ' 8/31/2017 05:26:36'
+}
+GlobalVariable>>spotterForReferencesFor: aStep [
+	<spotterOrder: 130>
+	aStep listProcessor
+			title: 'References';
+			allCandidates: [ (SystemNavigation default allReferencesTo: self) collect: #compiledMethod ];
+			itemName: [ :method | method gtDisplayString ];
+			filter: GTFilterSubstring
+]

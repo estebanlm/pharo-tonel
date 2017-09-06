@@ -1,0 +1,17 @@
+"
+
+"
+Class {
+	#name : #OpenOnIntExampleTest,
+	#superclass : #SpecTestCase,
+	#category : #Spec-Tests-Examples-Wrapper,
+	#timestamp : ''
+}
+
+{
+	#category : #running,
+	#timestamp : ' 8/31/2017 05:26:46'
+}
+OpenOnIntExampleTest>>classToTest [
+	^ OpenOnIntExample
+]

@@ -1,0 +1,58 @@
+"
+I am a refactory change for a instance variable renaming. The RBRefactory api is implemented in my super class, I just define
+the concrete ""instance variable"" renaming.
+"
+Class {
+	#name : #RBRenameInstanceVariableChange,
+	#superclass : #RBRenameVariableChange,
+	#category : #Refactoring-Changes,
+	#timestamp : 'NicolaiHess 9/8/2016 23:50'
+}
+
+{
+	#category : #private,
+	#timestamp : ' 8/31/2017 05:26:23'
+}
+RBRenameInstanceVariableChange>>addNewVariable [
+	(RBAddInstanceVariableChange add: newName to: self changeClass)
+		execute
+]
+
+{
+	#category : #private,
+	#timestamp : ' 8/31/2017 05:26:23'
+}
+RBRenameInstanceVariableChange>>copyOldValuesToNewVariable [
+	| newIndex oldIndex |
+	oldIndex := self changeClass allInstVarNames indexOf: oldName asString.
+	newIndex := self changeClass allInstVarNames indexOf: newName asString.
+	self changeClass withAllSubclasses do: [ :class |
+		class allInstances 
+			do: [ :each | each instVarAt: newIndex put: (each instVarAt: oldIndex) ] ]
+]
+
+{
+	#category : #printing,
+	#timestamp : ' 8/31/2017 05:26:23'
+}
+RBRenameInstanceVariableChange>>printOn: aStream [
+	aStream
+		nextPutAll: self displayClassName;
+		nextPutAll: ' removeInstVarName: ';
+		print: self oldName;
+		nextPut: $!; cr.
+	aStream
+		nextPutAll: self displayClassName;
+		nextPutAll: ' addInstVarName: ';
+		print: self newName;
+		nextPut: $!
+]
+
+{
+	#category : #private,
+	#timestamp : ' 8/31/2017 05:26:23'
+}
+RBRenameInstanceVariableChange>>removeOldVariable [
+	(RBRemoveInstanceVariableChange remove: oldName from: self changeClass) 
+		execute
+]

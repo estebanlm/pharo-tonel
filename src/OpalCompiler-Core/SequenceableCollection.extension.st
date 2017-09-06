@@ -1,0 +1,16 @@
+Extension {
+	#name : #SequenceableCollection
+}
+
+{
+	#category : #'*opalcompiler-core',
+	#timestamp : ' 8/31/2017 07:16:23'
+}
+SequenceableCollection>>literalIndexOf: anElement ifAbsent: exceptionBlock [
+	"Answer the index of anElement within the receiver. If the receiver does 
+	not contain anElement, answer the result of evaluating the argument, 
+	exceptionBlock."
+	1 to: self size do:
+		[:i | ((self at: i) literalEqual: anElement) ifTrue: [^ i]].
+	^ exceptionBlock value
+]

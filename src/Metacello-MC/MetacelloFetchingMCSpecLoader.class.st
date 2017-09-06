@@ -1,0 +1,351 @@
+"
+
+"
+Class {
+	#name : #MetacelloFetchingMCSpecLoader,
+	#superclass : #MetacelloCommonMCSpecLoader,
+	#category : #Metacello-MC-Loaders,
+	#timestamp : ''
+}
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>actionLabel [
+
+	^'Fetching '
+]
+
+{
+	#category : #versionInfo,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>ancestorsFor: packageSpec [
+
+	^self loadData
+		ancestorsFor: packageSpec 
+		ifAbsent: [ super ancestorsFor: packageSpec ]
+]
+
+{
+	#category : #private,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>atomicLoadPackageSpecs: packageSpecs repositories: repositories [
+
+	self loaderPolicy 
+		pushAtomicLoadDirectivesDuring: [ super linearLoadPackageSpecs: packageSpecs repositories: repositories ]
+		for: self
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>cacheRepository [
+
+	^self loaderPolicy cacheRepository
+]
+
+{
+	#category : #versionInfo,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>currentVersionInfoFor: packageSpec [
+
+	^self loadData
+		currentVersionInfoFor: packageSpec 
+		ifAbsent: [ super currentVersionInfoFor: packageSpec ]
+]
+
+{
+	#category : #actions,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>doLoad [
+
+	self loaderPolicy copy load
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>ensureSpecLoader [
+	^ (MetacelloEnsureFetchingMCSpecLoader on: self spec)
+		shouldDisablePackageCache: self shouldDisablePackageCache;
+		loaderPolicy: self loaderPolicy; "explicitly share the loaderPolicy"
+		yourself
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>ensuredMap [
+
+	^self loaderPolicy ensuredMap
+]
+
+{
+	#category : #private,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>explicitLoadPackageSpecs: packageSpecs repositories: repositories [
+	
+	| directive |
+	directive := self loaderPolicy 
+		pushExplicitLoadDirectivesDuring: [ super linearLoadPackageSpecs: packageSpecs repositories: repositories ]
+		for: self.
+	directive explicitLoadWithPolicy: self loaderPolicy.
+]
+
+{
+	#category : #actions,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>linearLoadPackageSpec: packageSpec gofer: gofer [
+  MetacelloPlatform current
+    do: [ 
+      | references nearestReference cachedReference externalReference mcVersion loadedVersionInfos |
+      "check to see if mcz file is already in cacheRepository"
+      cachedReference := self
+        resolvePackageSpec: packageSpec
+        cachedGofer: self loaderPolicy cacheGofer.
+      (cachedReference ~~ nil and: [ packageSpec getFile ~~ nil ])
+        ifTrue: [ 
+          cachedReference name = packageSpec file
+            ifTrue: [ 
+              "exact match between packageSpec file and cache"
+              ^ self
+                scheduleFetchFor: packageSpec
+                cachedReference: cachedReference ] ].	"look up mcz file"
+      references := self
+        retryingResolvePackageSpecReferences: packageSpec
+        gofer: gofer.
+      nearestReference := references last asMetacelloCachingResolvedReference.	"If the mcz is already in the cacheRepository, no need to copy"
+      (cachedReference ~~ nil
+        and: [ cachedReference name = nearestReference name ])
+        ifTrue: [ 
+          "latest reference in repository matches cachedReference ... "
+          ^ self
+            scheduleFetchFor: packageSpec
+            nearestReference: nearestReference ].	"If the mcz is already loaded into the image, no need to copy"
+      (self ignoreImage not
+        and: [ (loadedVersionInfos := self ancestorsFor: packageSpec) ~~ nil ])
+        ifTrue: [ 
+          loadedVersionInfos
+            do: [ :info | 
+              info name = nearestReference name
+                ifTrue: [ 
+                  | spc |
+                  spc := packageSpec copy.
+                  spc file: info name.
+                  (MetacelloIgnorePackageLoaded signal: spc)
+                    ifFalse: [ ^ self ] ] ] ].
+      externalReference := (references
+        select: [ :ref | ref name = nearestReference name ]) first
+        asMetacelloCachingResolvedReference.
+      self repositoryMap
+        at: externalReference name
+        put: externalReference repository.
+      (self
+        resolveDependencies: externalReference
+        nearest: nearestReference
+        into: (OrderedCollection with: nearestReference))
+        do: [ :reference | 
+          | pSpec l |
+          mcVersion := reference version.
+          (l := (GoferVersionReference name: reference name)
+            resolveAllWith: self loaderPolicy cacheGofer) isEmpty
+            ifTrue: [ 
+              self cacheRepository storeVersion: mcVersion.
+              reference == nearestReference
+                ifTrue: [ pSpec := packageSpec ]
+                ifFalse: [ 
+                  pSpec := packageSpec project packageSpec.
+                  pSpec name: mcVersion package name ].
+              self loadData
+                addVersion: mcVersion
+                versionInfo: mcVersion info
+                resolvedReference: reference
+                packageSpec: pSpec ] ].
+      self scheduleFetchFor: packageSpec externalReference: externalReference ]
+    displaying: 'Fetching ' , packageSpec file
+]
+
+{
+	#category : #private,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>linearLoadPackageSpecs: packageSpecs repositories: repositories [
+	
+	self loaderPolicy 
+		pushLinearLoadDirectivesDuring: [ super linearLoadPackageSpecs: packageSpecs repositories: repositories ]
+		 for: self
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>loadData [
+
+	^self loaderPolicy loadData
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>loadDirective [
+
+	^self loaderPolicy loadDirective
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>loadingSpecLoader [
+
+	^(MetacelloLoadingMCSpecLoader on: self spec)
+		shouldDisablePackageCache: self shouldDisablePackageCache;
+		loaderPolicy: self loaderPolicy copy;
+		yourself
+]
+
+{
+	#category : #doits,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>postLoad: packageOrVersionSpec [
+
+	(MetacelloDirective postLoadSpec: packageOrVersionSpec loader: self)  addTo: self loadDirective
+]
+
+{
+	#category : #doits,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>preLoad: packageOrVersionSpec [
+
+	(MetacelloDirective preLoadSpec: packageOrVersionSpec loader: self) addTo: self loadDirective
+]
+
+{
+	#category : #printing,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>printOn: aStream [
+	super printOn: aStream.
+	aStream nextPut: $(.
+	self loadDirective printOn: aStream.
+	aStream nextPut: $)
+]
+
+{
+	#category : #private,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>resolveDependencies: aResolvedReference nearest: nearestReference into: aCollection [
+  | block retryCount coll notDone |
+  self flag: 'Not used, but retained to avoid upgrade issues'.
+  block := [ :dependency | 
+  | reference |
+  reference := MetacelloCachingGoferResolvedReference
+    name: dependency versionInfo name
+    repository: aResolvedReference repository.
+  coll add: reference.
+  Transcript
+    cr;
+    show:
+        'Fetched dependency -> ' , reference name , ' --- '
+            , reference repository repositoryDescription.
+  self resolveDependencies: reference nearest: reference into: coll ].
+  retryCount := 0.
+  notDone := true.
+  coll := OrderedCollection new.
+  [ notDone and: [ retryCount < 3 ] ]
+    whileTrue: [ 
+      retryCount > 0
+        ifTrue: [ 
+          Transcript
+            cr;
+            show: '...RETRY' ].
+      [ 
+      "ensure that all resolved references have cached their version while wrapped by error handler"
+      aCollection do: [ :each | each version ].
+      nearestReference version dependencies do: block.
+      notDone := false ]
+        on: Error
+        do: [ :ex | 
+          retryCount := retryCount + 1.
+          retryCount >= 3
+            ifTrue: [ ex pass ].
+          coll := OrderedCollection new ] ].
+  aCollection addAll: coll.
+  ^ aCollection
+]
+
+{
+	#category : #private,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>resolvePackageSpec: packageSpec cachedGofer: gofer [
+
+	|  versionReference references |
+	versionReference := packageSpec goferLoaderReference.
+	(references := versionReference resolveAllWith: gofer) isEmpty 
+		ifTrue: [ ^nil ].
+	^references last asMetacelloCachingResolvedReference.
+]
+
+{
+	#category : #private,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>scheduleFetchFor: packageSpec cachedReference: reference [
+	"reference already in the cache during fetch ...no need to schedule fetch"
+
+	^ self
+]
+
+{
+	#category : #private,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>scheduleFetchFor: packageSpec externalReference: reference [
+  ^ self
+    scheduleFetchFor: packageSpec
+    reference: reference
+    message:
+      'Fetched -> ' , reference name , ' --- '
+        , reference repository repositoryDescription , ' --- '
+        , reference repository description
+]
+
+{
+	#category : #private,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>scheduleFetchFor: packageSpec nearestReference: reference [
+	"latest version in repository already matches the cached reference...no need to schedule fetch"
+
+	^ self
+]
+
+{
+	#category : #private,
+	#timestamp : ' 8/31/2017 07:16:20'
+}
+MetacelloFetchingMCSpecLoader>>scheduleFetchFor: packageSpec reference: reference message: message [
+	self loaderPolicy resetCacheGofer.
+	self preLoad: packageSpec.
+	(MetacelloDirective loadPackage: packageSpec externalReference: reference loader: self) addTo: self loadDirective.
+	self postLoad: packageSpec.
+	Transcript
+		cr;
+		show: message
+]

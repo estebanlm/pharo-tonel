@@ -1,0 +1,54 @@
+"
+I am the adapter used to bridge a TabModel and a Tab
+"
+Class {
+	#name : #MorphicTabAdapter,
+	#superclass : #AbstractMorphicAdapter,
+	#category : #Spec-MorphicAdapters,
+	#timestamp : 'PeterUhnak 3/16/2015 23:29'
+}
+
+{
+	#category : #initialization,
+	#timestamp : ' 8/31/2017 05:26:18'
+}
+MorphicTabAdapter>>adapt: aComposableModel [
+	widget := self buildWidgetWith: aComposableModel.
+	aComposableModel addDependent: widget.
+	self bindModel: aComposableModel andWidget: widget
+]
+
+{
+	#category : #updating,
+	#timestamp : ' 8/31/2017 05:26:18'
+}
+MorphicTabAdapter>>bindModel: aTabModel andWidget: aWidget [
+	"bind change propagation between Spec TabModel and Morphic Tab"
+
+	aWidget when: #tabSelected send: #tabSelected to: aTabModel.
+	aTabModel actionsHolder whenChangedDo: [ :new | aWidget actions: new ].
+	aTabModel closeableHolder whenChangedDo: [ :new | aWidget closeable: new ].
+	aTabModel iconHolder whenChangedDo: [ :new | aWidget icon: new ].
+	aTabModel labelHolder whenChangedDo: [ :new | aWidget label: new ].
+	aTabModel menuHolder whenChangedDo: [ :new | aWidget menu: new ].
+	aTabModel morphHolder whenChangedDo: [ :new | aWidget morph: new ].
+	aTabModel retrievingBlockHolder whenChangedDo: [ :new | aWidget retrievingBlock: new ].
+	aTabModel selectedHolder whenChangedDo: [ :new | aWidget selected: new ]
+]
+
+{
+	#category : #factory,
+	#timestamp : ' 8/31/2017 05:26:18'
+}
+MorphicTabAdapter>>buildWidgetWith: aTabModel [
+	^ TabMorph new
+		model: aTabModel;
+		label: aTabModel label;
+		icon: aTabModel icon;
+		retrievingBlock: aTabModel retrievingBlock;
+		morph: aTabModel contents;
+		menu: aTabModel menu;
+		closeable: aTabModel closeable;
+		setActionsFrom: [ aTabModel actions ];
+		yourself
+]

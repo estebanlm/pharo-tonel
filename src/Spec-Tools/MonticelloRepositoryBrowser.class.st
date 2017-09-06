@@ -1,0 +1,306 @@
+"
+MonticelloRepositoryBrowser example
+"
+Class {
+	#name : #MonticelloRepositoryBrowser,
+	#superclass : #ComposableModel,
+	#instVars : [
+		'repositories',
+		'workingCopies',
+		'order'
+	],
+	#classVars : [
+		'Order'
+	],
+	#category : #Spec-Tools-Monticello,
+	#timestamp : '<historical>'
+}
+
+{
+	#category : #utils,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser class>>allManagers  [
+
+	^ MCWorkingCopy allManagers 
+]
+
+{
+	#category : #specs,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser class>>defaultSpec [
+	<spec: #default>
+	^ SpecLayout composed
+		add: #(model workingCopies) right: 0.5;
+		add: #(model repositories) left: 0.5;
+		yourself.
+
+]
+
+{
+	#category : #example,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser class>>example [
+	"self example"
+	
+	self new 
+		openWithSpec ; 
+		workingCopies: (self allManagers)
+]
+
+{
+	#category : #utils,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser class>>order [
+	^ Order ifNil: [ Order := 1 ]
+]
+
+{
+	#category : #utils,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser class>>order: anInteger [
+	Order := anInteger
+]
+
+{
+	#category : #spec,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser class>>title [
+
+	^ 'Monticello Browser'
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser>>allManagers [
+
+	^ self class allManagers 
+	
+]
+
+{
+	#category : #private,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser>>allRepositories [
+
+	^ MCRepositoryGroup default repositories
+]
+
+{
+	#category : #actions,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser>>browseWorkingCopy [
+	| workingCopy |
+	workingCopy := self workingCopy.
+	workingCopy
+		ifNotNil: [ 
+			(MCSnapshotBrowser forSnapshot: workingCopy completeSnapshot)
+				label: 'Snapshot Browser: ' , workingCopy packageName;
+				show ]
+]
+
+{
+	#category : #private,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser>>defaultOrderingBlock [
+
+	^ (self orderSpecs at: self class order) value
+]
+
+{
+	#category : #initialization,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser>>initialExtent [
+
+	^ 600@200
+]
+
+{
+	#category : #initialization,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser>>initialize [
+
+	super initialize.
+	order := self class order
+]
+
+{
+	#category : #initialization,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser>>initializePresenter [
+
+	workingCopies whenSelectedItemChanged: 
+			[ :item | repositories items: (self repositoriesOfWorkingCopy: item) ].
+]
+
+{
+	#category : #initialization,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser>>initializeWidgets [
+
+	repositories := self newList.
+	workingCopies := self newList.
+		
+	workingCopies sortingBlock: self defaultOrderingBlock.
+	workingCopies displayBlock: [ :item | item description ].
+	workingCopies menu: [ :aMenu | self workingCopiesMenu: aMenu ].
+		
+	repositories displayBlock: [ :item | item description ].
+	repositories items: self allRepositories.
+
+	"so that when we tab we go from working copies to repositories"
+	self focusOrder
+		add: workingCopies;
+		add: repositories
+]
+
+{
+	#category : #actions,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser>>openRepository [
+	self repository ifNotNil: [:repos | repos morphicOpen: self workingCopy ]
+]
+
+{
+	#category : #menu,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser>>order [
+
+	^ order
+]
+
+{
+	#category : #menu,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser>>order: anInteger [
+
+	order := anInteger.
+	self workingCopies sortingBlock: (self orderSpecs at: order) value.
+	self order = 4 "dirty only"
+		ifTrue: [self workingCopies filteringBlock: [:col | col select: #modified]]
+		ifFalse: [self workingCopies resetFilteringBlock]. 
+]
+
+{
+	#category : #menu,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser>>orderSpecs [
+	^ {
+		'Sort alphabetically' -> [ :a :b | a package name <= b package name ].
+		'Sort dirty first' -> [ :a :b | 
+			a needsSaving = b needsSaving
+				ifTrue: [ a package name <= b package name ]
+				ifFalse: [ a needsSaving ] ].
+		'Sort dirty last' -> [ :a :b | 
+			a needsSaving = b needsSaving
+				ifTrue: [ a package name <= b package name ]
+				ifFalse: [ b needsSaving ] ].
+		'Only dirty' -> [ :a :b | a package name <= b package name ]}
+]
+
+{
+	#category : #menu,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser>>orderString: anIndex [
+	^ String streamContents: [ :stream |
+		order = anIndex
+			ifTrue: [ stream nextPutAll: '<yes>' ]
+			ifFalse: [ stream nextPutAll: '<no>' ].
+		stream nextPutAll: (self orderSpecs at: anIndex) key ]
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser>>repositories [
+
+	^ repositories
+]
+
+{
+	#category : #private,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser>>repositoriesOfWorkingCopy: aWorkingCopy [
+	
+	^ aWorkingCopy isNil
+		ifFalse: [ aWorkingCopy repositoryGroup repositories]
+		ifTrue: [ self allRepositories]	
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser>>workingCopies [
+
+	^ workingCopies
+]
+
+{
+	#category : #api,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser>>workingCopies: aCollection [
+	"Set the value of the list widget"
+	
+	workingCopies items: aCollection 
+]
+
+{
+	#category : #menu,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser>>workingCopiesFromMC [
+	^ (self orderSpecs size = order
+		ifTrue: [ self allManagers select: [ :each | each modified ] ]
+		ifFalse: [ self allManagers ])
+			asSortedCollection: (self orderSpecs at: order) value.
+]
+
+{
+	#category : #menu,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser>>workingCopiesMenu: aMenu [
+
+
+	aMenu target: self;
+		add: 'Browse working copy' selector: #browseWorkingCopy.
+
+	1 to: self orderSpecs size do: [ :index | 
+		aMenu
+			addUpdating: #orderString:
+			target: self
+			selector: #order:
+			argumentList: {index} ].
+	^ aMenu
+]
+
+{
+	#category : #accessing,
+	#timestamp : ' 8/31/2017 05:26:19'
+}
+MonticelloRepositoryBrowser>>workingCopy [
+	^ workingCopies selectedItem
+]
