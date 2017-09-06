@@ -84,8 +84,7 @@ GLMScrollPaneBrick class>>defaultScrollVelocity [
 	#category : #examples,
 	#timestamp : ' 8/31/2017 05:26:34'
 }
-GLMScrollPaneBrick class>>"protocol: examples" [
-example
+GLMScrollPaneBrick class>>example[
 	|foundation scrollPane|
 	
 	scrollPane := self new.
@@ -109,8 +108,7 @@ example
 	#category : #examples,
 	#timestamp : ' 8/31/2017 05:26:34'
 }
-GLMScrollPaneBrick class>>"protocol: examples"
-exampleLarge [
+GLMScrollPaneBrick class>>exampleLarge [
 	|foundation scrollPane|
 	
 	scrollPane := self new.
