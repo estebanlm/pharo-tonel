@@ -78,8 +78,7 @@ BalloonCanvas>>deferred: aBoolean [
 	#category : #'balloon drawing',
 	#timestamp : ' 8/31/2017 05:26:11'
 }
-BalloonCanvas>>drawBezier3Shape: vertices color: c borderWidth: borderWidth borderColor: [
-borderColor
+BalloonCanvas>>drawBezier3Shape: vertices color: c borderWidth: borderWidth borderColor: borderColor [
 	self drawBezierShape: (Bezier3Segment convertBezier3ToBezier2:
 vertices) color: c borderWidth: borderWidth borderColor: borderColor
 ]
