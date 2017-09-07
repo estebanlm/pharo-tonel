@@ -51,7 +51,7 @@ FTTableRowMorph>>handlesMouseOver: evt [
 	#category : #initialization,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTTableRowMorph>>initialize  [
+FTTableRowMorph>>initialize [
 	super initialize.
 	self
 		clipSubmorphs:true;
@@ -65,7 +65,7 @@ FTTableRowMorph>>initialize  [
 	#category : #initialization,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTTableRowMorph>>initializeTable: tableMorph  [
+FTTableRowMorph>>initializeTable: tableMorph [
 	self initialize.
 	self 
 		cellInset: tableMorph intercellSpacing";

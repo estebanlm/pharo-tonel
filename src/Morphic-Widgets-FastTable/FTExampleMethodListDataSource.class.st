@@ -29,7 +29,7 @@ FTExampleMethodListDataSource class>>for: aClass [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTExampleMethodListDataSource>>cellColumn: column row: rowIndex  [
+FTExampleMethodListDataSource>>cellColumn: column row: rowIndex [
 	^ FTCellMorph new
 		cellInset: 5;
 		addMorphBack: (self iconFor: rowIndex) asMorph;

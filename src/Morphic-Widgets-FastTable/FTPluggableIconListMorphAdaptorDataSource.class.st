@@ -38,7 +38,7 @@ FTPluggableIconListMorphAdaptorDataSource>>cellColumn: column row: rowIndex [
 	#category : #private,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTPluggableIconListMorphAdaptorDataSource>>createCellText: aString icon: anIcon  [
+FTPluggableIconListMorphAdaptorDataSource>>createCellText: aString icon: anIcon [
 	| text icon cell |
 	text := aString.
 	icon := anIcon.

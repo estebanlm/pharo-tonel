@@ -38,7 +38,7 @@ Class {
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTSelectionChanged class>>from: oldArray to: newArray  [
+FTSelectionChanged class>>from: oldArray to: newArray [
 	^ self new 
 		oldSelectedRowIndexes: oldArray;
 		newSelectedRowIndexes: newArray;

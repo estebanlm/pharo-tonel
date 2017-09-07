@@ -25,7 +25,7 @@ FTSimpleDataSource class>>elements: aCollection [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTSimpleDataSource>>cellColumn: column row: rowIndex  [
+FTSimpleDataSource>>cellColumn: column row: rowIndex [
 	^ FTCellMorph new
 		addMorphBack: (self elementAt: rowIndex) asMorph;
 		yourself
@@ -84,7 +84,7 @@ FTSimpleDataSource>>newDataSourceMatching: aFTFilter [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTSimpleDataSource>>numberOfRows  [
+FTSimpleDataSource>>numberOfRows [
 	^ self elements 
 		ifNotNil: [ self elements size ]
 		ifNil: [ 0 ]

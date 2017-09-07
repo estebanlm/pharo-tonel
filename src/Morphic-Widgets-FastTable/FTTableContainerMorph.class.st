@@ -291,7 +291,7 @@ FTTableContainerMorph>>exposedRows [
 	#category : #initialization,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTTableContainerMorph>>initialize  [
+FTTableContainerMorph>>initialize [
 	super initialize.
 	needsRefreshExposedRows := false
 ]
@@ -342,7 +342,7 @@ FTTableContainerMorph>>needsRefreshExposedRows [
 	#category : #geometry,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTTableContainerMorph>>outerBounds  [
+FTTableContainerMorph>>outerBounds [
 	^ self bounds
 ]
 

@@ -39,7 +39,7 @@ FTPluggableIconListMorphAdaptor class>>on: anObject list: listSel primarySelecti
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTPluggableIconListMorphAdaptor class>>on: anObject list: listSel primarySelection: getSelectionSel changePrimarySelection: setSelectionSel listSelection: getListSel changeListSelection: setListSel menu: getMenuSel keystroke: keyActionSel  [
+FTPluggableIconListMorphAdaptor class>>on: anObject list: listSel primarySelection: getSelectionSel changePrimarySelection: setSelectionSel listSelection: getListSel changeListSelection: setListSel menu: getMenuSel keystroke: keyActionSel [
 	^ self new
 		on: anObject
 		list: listSel
@@ -342,7 +342,7 @@ FTPluggableIconListMorphAdaptor>>initialize [
 	#category : #initialization,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTPluggableIconListMorphAdaptor>>initializeKeyBindings  [
+FTPluggableIconListMorphAdaptor>>initializeKeyBindings [
 	super initializeKeyBindings.
 	self 
 		bindKeyCombination: Character space asKeyCombination
@@ -471,7 +471,7 @@ FTPluggableIconListMorphAdaptor>>model [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTPluggableIconListMorphAdaptor>>model: anObject  [
+FTPluggableIconListMorphAdaptor>>model: anObject [
 	| oldModel |
 	oldModel := self dataSource model. 
 	oldModel ifNotNil: [ oldModel removeDependent: self ].
@@ -502,7 +502,7 @@ FTPluggableIconListMorphAdaptor>>on: anObject list: listSel primarySelection: ge
 	#category : #initialization,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTPluggableIconListMorphAdaptor>>on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel keystroke: keyActionSel  [
+FTPluggableIconListMorphAdaptor>>on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel keystroke: keyActionSel [
 	self model: anObject.
 	self getListSelector: getListSel.
 	self getIndexSelector: getSelectionSel.

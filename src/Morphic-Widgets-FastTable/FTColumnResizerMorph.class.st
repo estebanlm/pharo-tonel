@@ -90,7 +90,7 @@ FTColumnResizerMorph>>initializeContainer: aTableContainerMorph left: aColumn ri
 	#category : #'event handling',
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTColumnResizerMorph>>mouseDown: anEvent  [
+FTColumnResizerMorph>>mouseDown: anEvent [
 	"A mouse button has been pressed.
 	Update the color for feedback and store the mouse
 	position and relative offset to the receiver."
@@ -126,7 +126,7 @@ FTColumnResizerMorph>>mouseLeave: anEvent [
 	#category : #'event handling',
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTColumnResizerMorph>>mouseMove: anEvent  [
+FTColumnResizerMorph>>mouseMove: anEvent [
 	self canResizeColumn ifFalse: [^ self].
 	anEvent hand temporaryCursor ifNil: [^ self].
 	traceMorph ifNil: [
@@ -231,7 +231,7 @@ FTColumnResizerMorph>>themeChanged [
 	#category : #'event handling',
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTColumnResizerMorph>>updateFromEvent: anEvent  [
+FTColumnResizerMorph>>updateFromEvent: anEvent [
 	"Update the splitter and attached morph positions from
 	the mouse event.
 	Take into account the mouse down offset."

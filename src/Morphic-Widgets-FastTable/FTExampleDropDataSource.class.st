@@ -26,7 +26,7 @@ FTExampleDropDataSource>>dropElements: aCollection index: rowIndex [
 	#category : #initialization,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTExampleDropDataSource>>initialize  [
+FTExampleDropDataSource>>initialize [
 	super initialize.
 	self elements: #()
 ]

@@ -65,7 +65,7 @@ FTTableMorph class>>defaultBackgroundColor [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTTableMorph class>>defaultColumn	 [
+FTTableMorph class>>defaultColumn [
 	^ FTColumn new
 ]
 
@@ -256,7 +256,7 @@ FTTableMorph>>columns [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTTableMorph>>columns: aCollection  [
+FTTableMorph>>columns: aCollection [
 	columns := aCollection asArray
 ]
 
@@ -264,7 +264,7 @@ FTTableMorph>>columns: aCollection  [
 	#category : #private,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTTableMorph>>container  [
+FTTableMorph>>container [
 	^ container
 ]
 
@@ -343,7 +343,7 @@ FTTableMorph>>doubleClick: event [
 	#category : #drawing,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTTableMorph>>drawSubmorphsOn: aCanvas  [
+FTTableMorph>>drawSubmorphsOn: aCanvas [
 	"Draw the focus here since we are using inset bounds
 	for the focus rectangle."
 	"1haltOnce."
@@ -594,7 +594,7 @@ FTTableMorph>>highlightedRowIndexes [
 	#category : #initialization,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTTableMorph>>initialize  [
+FTTableMorph>>initialize [
 	super initialize.
 	showIndex := 0.
 	showColumnHeaders := true.
@@ -660,7 +660,7 @@ FTTableMorph>>initializeScrollBars [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTTableMorph>>intercellSpacing  [
+FTTableMorph>>intercellSpacing [
 	^ intercellSpacing ifNil: [ self class defaultIntercellSpacing ]
 ]
 
@@ -800,7 +800,7 @@ FTTableMorph>>keyboardFocusChange: aBoolean [
 	#category : #layout,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTTableMorph>>minHeight  [
+FTTableMorph>>minHeight [
 
 	^ 100
 ]
@@ -937,7 +937,7 @@ FTTableMorph>>moveShowIndexTo: aNumber [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTTableMorph>>numberOfColumns  [
+FTTableMorph>>numberOfColumns [
 	^ columns size
 ]
 
@@ -1126,7 +1126,7 @@ FTTableMorph>>scrollBarThickness [
 	#category : #'accessing colors',
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTTableMorph>>secondarySelectionColor  [
+FTTableMorph>>secondarySelectionColor [
 	^ secondarySelectionColor ifNil: [ self class defaultSecondarySelectionColor ]
 ]
 
@@ -1270,7 +1270,7 @@ FTTableMorph>>showFirstRowSelection [
 	#category : #private,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTTableMorph>>showIndex  [
+FTTableMorph>>showIndex [
 	^ showIndex
 ]
 

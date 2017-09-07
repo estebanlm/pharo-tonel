@@ -47,7 +47,7 @@ FTMultipleSelection>>selectRowIndex: rowIndex event: event [
 	#category : #private,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTMultipleSelection>>selectRowIndexes: rowIndex previous: oldSelection		 [
+FTMultipleSelection>>selectRowIndexes: rowIndex previous: oldSelection [
 	"I ensure the selected row index is the first in selection range so I can handle it better. 
 	 I do not like to assume and probably I will need the concept of 'selection', but for now 
 	 let's not abuse :)"

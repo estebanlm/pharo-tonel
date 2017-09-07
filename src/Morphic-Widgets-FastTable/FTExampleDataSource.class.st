@@ -15,7 +15,7 @@ Class {
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 05:26:21'
 }
-FTExampleDataSource>>cellColumn: column row: rowIndex  [
+FTExampleDataSource>>cellColumn: column row: rowIndex [
 	^ FTCellMorph new
 		color: (self colorFor: rowIndex);
 		cellInset: 5;

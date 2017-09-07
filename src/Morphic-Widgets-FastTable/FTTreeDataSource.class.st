@@ -342,10 +342,12 @@ FTTreeDataSource>>rootItem: anObject [
 
 {
 	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
+	#timestamp : 'EstebanLorenzano 9/6/2017 15:23'
 }
 FTTreeDataSource>>rootsItems [
-	^ rootItem children
+	^ rootItem 
+		ifNotNil: #children
+		ifNil: [ #() ]
 ]
 
 {
