@@ -16,7 +16,7 @@ Class {
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ProtoObject>>== anObject  [
+ProtoObject>>== anObject [
 	"Primitive. Answer whether the receiver and the argument are the same 
 	object (have the same object pointer). Do not redefine the message == in 
 	any other class! Essential. No Lookup. Do not override in any subclass. 
@@ -46,7 +46,7 @@ ProtoObject>>basicIdentityHash [
 	#category : #'reflective operations',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ProtoObject>>become: otherObject  [
+ProtoObject>>become: otherObject [
 	"Primitive. Swap the object pointers of the receiver and the argument.
 	All variables in the entire system that used to point to the 
 	receiver now point to the argument, and vice-versa.
@@ -61,7 +61,7 @@ ProtoObject>>become: otherObject  [
 	#category : #'reflective operations',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ProtoObject>>cannotInterpret: aMessage  [
+ProtoObject>>cannotInterpret: aMessage [
 	 "Handle the fact that there was an attempt to send the given message to the receiver but a null methodDictionary was encountered while looking up the message selector.  Hopefully this is the result of encountering a stub for a swapped out class which induces this exception on purpose."
 
 "If this is the result of encountering a swap-out stub, then simulating the lookup in Smalltalk should suffice to install the class properly, and the message may be resent."
@@ -182,7 +182,7 @@ ProtoObject>>ifNotNil: ifNotNilBlock [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ProtoObject>>ifNotNil: ifNotNilBlock ifNil: nilBlock  [
+ProtoObject>>ifNotNil: ifNotNilBlock ifNil: nilBlock [
 	"If I got here, I am not nil, so evaluate the block ifNotNilBlock"
 
 	^ ifNotNilBlock cull: self

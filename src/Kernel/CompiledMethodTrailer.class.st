@@ -233,7 +233,7 @@ CompiledMethodTrailer>>compressedSourceCode [
 	#category : #'creating a method',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-CompiledMethodTrailer>>createMethod: numberOfBytesForAllButTrailer class: aCompiledMethodClass header: headerWord  [
+CompiledMethodTrailer>>createMethod: numberOfBytesForAllButTrailer class: aCompiledMethodClass header: headerWord [
 	| meth |
 	"Instantiates a compiled method with this trailer.
 	- numberOfBytesForAllButTrailer specifies the number of bytes needed to encode the literals and the bytecode.
@@ -681,7 +681,7 @@ CompiledMethodTrailer>>qCompress: string [
 	#category : #decoding,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-CompiledMethodTrailer>>qDecompress  [
+CompiledMethodTrailer>>qDecompress [
 	"Trailer is compressed string using qCompress method + length field + 1 byte
 	
 	Decompress strings compressed by qCompress:.

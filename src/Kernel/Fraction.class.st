@@ -25,7 +25,7 @@ Class {
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Fraction class>>numerator: numInteger denominator: denInteger  [
+Fraction class>>numerator: numInteger denominator: denInteger [
 	"Answer an instance of me (numInteger/denInteger).
 	NOTE: This primitive initialization method will not reduce improper fractions,
 	so normal usage should be coded as, eg,
@@ -40,7 +40,7 @@ Fraction class>>numerator: numInteger denominator: denInteger  [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Fraction>>* aNumber  [
+Fraction>>* aNumber [
 	"Answer the result of multiplying the receiver by aNumber."
 	| d1 d2 |
 	aNumber isFraction ifTrue: 
@@ -57,7 +57,7 @@ Fraction>>* aNumber  [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Fraction>>+ aNumber  [
+Fraction>>+ aNumber [
 	"Answer the sum of the receiver and aNumber."
 	| n d d1 d2 |
 	aNumber isInteger ifTrue:
@@ -221,7 +221,7 @@ Fraction>>asFloat [
 	#category : #converting,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Fraction>>asFraction	 [
+Fraction>>asFraction [
 	"Answer the receiver itself."
 
 	^self
@@ -333,7 +333,7 @@ Fraction>>isPowerOfTwo [
 	#category : #'self evaluating',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Fraction>>isSelfEvaluating  [
+Fraction>>isSelfEvaluating [
 	^ true
 ]
 
@@ -371,7 +371,7 @@ Fraction>>log [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Fraction>>negated  [
+Fraction>>negated [
 	"Refer to the comment in Number|negated."
 
 	^ Fraction
@@ -471,7 +471,7 @@ Fraction>>printOn: aStream showingDecimalPlaces: placesDesired [
 	#category : #'mathematical functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Fraction>>raisedToInteger: anInteger  [
+Fraction>>raisedToInteger: anInteger [
 	"See Number | raisedToInteger:"
 	anInteger = 0 ifTrue: [^ 1].
 	anInteger < 0 ifTrue: [^ self reciprocal raisedToInteger: anInteger negated].
@@ -572,7 +572,7 @@ Fraction>>storeOn: aStream base: base [
 	#category : #'truncation and round off',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Fraction>>truncated  [
+Fraction>>truncated [
 	"Refer to the comment in Number|truncated."
 
 	^numerator quo: denominator

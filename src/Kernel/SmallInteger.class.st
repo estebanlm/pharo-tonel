@@ -93,7 +93,7 @@ SmallInteger class>>startUp: isImageStarting [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>* aNumber  [
+SmallInteger>>* aNumber [
 	"Primitive. Multiply the receiver by the argument and answer with the
 	result if it is a SmallInteger. Fail if the argument or the result is not a
 	SmallInteger. Essential. No Lookup. See Object documentation whatIsAPrimitive."
@@ -106,7 +106,7 @@ SmallInteger>>* aNumber  [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>+ aNumber  [
+SmallInteger>>+ aNumber [
 	"Primitive. Add the receiver to the argument and answer with the result
 	if it is a SmallInteger. Fail if the argument or the result is not a
 	SmallInteger  Essential  No Lookup. See Object documentation whatIsAPrimitive."
@@ -119,7 +119,7 @@ SmallInteger>>+ aNumber  [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>- aNumber  [
+SmallInteger>>- aNumber [
 	"Primitive. Subtract the argument from the receiver and answer with the
 	result if it is a SmallInteger. Fail if the argument or the result is not a
 	SmallInteger. Essential. No Lookup. See Object documentation
@@ -133,7 +133,7 @@ SmallInteger>>- aNumber  [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>/ aNumber  [
+SmallInteger>>/ aNumber [
 	"Primitive. This primitive (for /) divides the receiver by the argument
 	and returns the result if the division is exact. Fail if the result is not a
 	whole integer. Fail if the argument is 0 or is not a SmallInteger. Optional.
@@ -150,7 +150,7 @@ SmallInteger>>/ aNumber  [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>// aNumber  [
+SmallInteger>>// aNumber [
 	"Primitive. Divide the receiver by the argument and answer with the
 	result. Round the result down towards negative infinity to make it a
 	whole integer. Fail if the argument is 0 or is not a SmallInteger.
@@ -164,7 +164,7 @@ SmallInteger>>// aNumber  [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>< aNumber  [
+SmallInteger>>< aNumber [
 	"Primitive. Compare the receiver with the argument and answer with
 	true if the receiver is less than the argument. Otherwise answer false.
 	Fail if the argument is not a SmallInteger. Essential. No Lookup. See
@@ -178,7 +178,7 @@ SmallInteger>>< aNumber  [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>><= aNumber  [
+SmallInteger>><= aNumber [
 	"Primitive. Compare the receiver with the argument and answer true if
 	the receiver is less than or equal to the argument. Otherwise answer
 	false. Fail if the argument is not a SmallInteger. Optional. No Lookup.
@@ -192,7 +192,7 @@ SmallInteger>><= aNumber  [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>= aNumber  [
+SmallInteger>>= aNumber [
 	"Primitive. Compare the receiver with the argument and answer true if
 	the receiver is equal to the argument. Otherwise answer false. Fail if the
 	argument is not a SmallInteger. Essential. No Lookup. See Object
@@ -206,7 +206,7 @@ SmallInteger>>= aNumber  [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>> aNumber  [
+SmallInteger>>> aNumber [
 	"Primitive. Compare the receiver with the argument and answer true if
 	the receiver is greater than the argument. Otherwise answer false. Fail if
 	the argument is not a SmallInteger. Essential. No Lookup. See Object
@@ -220,7 +220,7 @@ SmallInteger>>> aNumber  [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>>= aNumber  [
+SmallInteger>>>= aNumber [
 	"Primitive. Compare the receiver with the argument and answer true if
 	the receiver is greater than or equal to the argument. Otherwise answer
 	false. Fail if the argument is not a SmallInteger. Optional. No Lookup.
@@ -234,7 +234,7 @@ SmallInteger>>>= aNumber  [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>\\ aNumber  [
+SmallInteger>>\\ aNumber [
 	"Primitive. Take the receiver modulo the argument. The result is the
 	remainder rounded towards negative infinity, of the receiver divided by
 	the argument Fail if the argument is 0 or is not a SmallInteger. Optional.
@@ -289,7 +289,7 @@ SmallInteger>>basicIdentityHash [
 	#category : #'bit manipulation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>bitAnd: arg  [
+SmallInteger>>bitAnd: arg [
 	"Primitive. Answer an Integer whose bits are the logical AND of the
 	receiver's bits and those of the argument, arg.
 	Numbers are interpreted as having 2's-complement representation.
@@ -304,7 +304,7 @@ SmallInteger>>bitAnd: arg  [
 	#category : #'bit manipulation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>bitOr: arg  [
+SmallInteger>>bitOr: arg [
 	"Primitive. Answer an Integer whose bits are the logical OR of the
 	receiver's bits and those of the argument, arg.
 	Numbers are interpreted as having 2's-complement representation.
@@ -321,7 +321,7 @@ SmallInteger>>bitOr: arg  [
 	#category : #'bit manipulation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>bitShift: arg  [
+SmallInteger>>bitShift: arg [
 	"Primitive. Answer an Integer whose value is the receiver's value shifted
 	left by the number of bits indicated by the argument. Negative arguments
 	shift right. The receiver is interpreted as having 2's-complement representation.
@@ -348,7 +348,7 @@ SmallInteger>>bitStringLength [
 	#category : #'bit manipulation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>bitXor: arg  [
+SmallInteger>>bitXor: arg [
 	"Primitive. Answer an Integer whose bits are the logical XOR of the
 	receiver's bits and those of the argument, arg.
 	Numbers are interpreted as having 2's-complement representation.
@@ -431,7 +431,7 @@ SmallInteger>>digitAt: n [
 	#category : #'system primitives',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>digitAt: n put: value  [
+SmallInteger>>digitAt: n put: value [
 	"Fails. The digits of a small integer can not be modified."
 
 	self error: 'You can''t store in a SmallInteger'
@@ -474,7 +474,7 @@ SmallInteger>>even [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>gcd: anInteger  [
+SmallInteger>>gcd: anInteger [
 	"See SmallInteger (Integer) | gcd:"
 	| n m |
 	n := self.
@@ -631,7 +631,7 @@ SmallInteger>>nextObject [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>numberOfDigitsInBase: b  [
+SmallInteger>>numberOfDigitsInBase: b [
 	"Return how many digits are necessary to print this number in base b.
 	Mostly same as super but an optimized version for base 10 case"
 	
@@ -663,7 +663,7 @@ SmallInteger>>pointsTo: anObject [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>printOn: stream base: base  [
+SmallInteger>>printOn: stream base: base [
 	"Append a representation of this number in base b on aStream."
 
 	self printOn: stream base: base length: 0 padded: false
@@ -707,7 +707,7 @@ SmallInteger>>printOn: stream base: base length: minimumLength padded: padWithZe
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>printOn: aStream base: b nDigits: n  [
+SmallInteger>>printOn: aStream base: b nDigits: n [
 	"Append a representation of this number in base b on aStream using nDigits.
 	self must be positive."
 
@@ -741,7 +741,7 @@ SmallInteger>>printString [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>printStringBase: b  [
+SmallInteger>>printStringBase: b [
 	"Return a String representation of this number in base b.
 	For SmallIntegers, it is more efficient to print directly in a String,
 	rather than using a Stream like super."
@@ -777,7 +777,7 @@ SmallInteger>>printStringBase: b nDigits: n [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>quo: aNumber  [
+SmallInteger>>quo: aNumber [
 	"Primitive. Divide the receiver by the argument and answer with the 
 	result. Round the result down towards zero to make it a whole integer. 
 	Fail if the argument is 0 or is not a SmallInteger. Optional. See Object 
@@ -851,7 +851,7 @@ SmallInteger>>veryDeepCopyWith: deepCopier [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallInteger>>~= aNumber  [
+SmallInteger>>~= aNumber [
 	"Primitive. Compare the receiver with the argument and answer true if
 	the receiver is not equal to the argument. Otherwise answer false. Fail if
 	the argument is not a SmallInteger. Essential. No Lookup. See Object

@@ -22,7 +22,7 @@ Boolean class>>new [
 	#category : #'logical operations',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Boolean>>& aBoolean  [
+Boolean>>& aBoolean [
 	"Evaluating conjunction. Evaluate the argument. Then answer true if 
 	both the receiver and the argument are true."
 
@@ -61,7 +61,7 @@ Boolean>>==> aBlock [
 	#category : #controlling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Boolean>>and: alternativeBlock  [
+Boolean>>and: alternativeBlock [
 	"Nonevaluating conjunction. If the receiver is true, answer the value of 
 	the argument, alternativeBlock; otherwise answer false without 
 	evaluating the argument."
@@ -82,7 +82,7 @@ Boolean>>asBit [
 	#category : #copying,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Boolean>>deepCopy  [
+Boolean>>deepCopy [
 	"Receiver has two concrete subclasses, True and False.
 	Only one instance of each should be made, so return self."
 ]
@@ -91,7 +91,7 @@ Boolean>>deepCopy  [
 	#category : #'logical operations',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Boolean>>eqv: aBoolean  [
+Boolean>>eqv: aBoolean [
 	"Answer true if the receiver is equivalent to aBoolean."
 
 	^self == aBoolean
@@ -101,7 +101,7 @@ Boolean>>eqv: aBoolean  [
 	#category : #controlling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Boolean>>ifFalse: alternativeBlock  [
+Boolean>>ifFalse: alternativeBlock [
 	"If the receiver is true (i.e., the condition is true), then the value is the 
 	true alternative, which is nil. Otherwise answer the result of evaluating 
 	the argument, alternativeBlock. Create an error notification if the 
@@ -115,7 +115,7 @@ Boolean>>ifFalse: alternativeBlock  [
 	#category : #controlling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Boolean>>ifFalse: falseAlternativeBlock ifTrue: trueAlternativeBlock  [
+Boolean>>ifFalse: falseAlternativeBlock ifTrue: trueAlternativeBlock [
 	"Same as ifTrue:ifFalse:."
 
 	self subclassResponsibility
@@ -125,7 +125,7 @@ Boolean>>ifFalse: falseAlternativeBlock ifTrue: trueAlternativeBlock  [
 	#category : #controlling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Boolean>>ifTrue: alternativeBlock  [
+Boolean>>ifTrue: alternativeBlock [
 	"If the receiver is false (i.e., the condition is false), then the value is the 
 	false alternative, which is nil. Otherwise answer the result of evaluating 
 	the argument, alternativeBlock. Create an error notification if the 
@@ -153,7 +153,7 @@ Boolean>>ifTrue: trueAlternativeBlock ifFalse: falseAlternativeBlock [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Boolean>>isLiteral  [
+Boolean>>isLiteral [
 	^ true
 ]
 
@@ -180,7 +180,7 @@ Boolean>>not [
 	#category : #controlling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Boolean>>or: alternativeBlock  [
+Boolean>>or: alternativeBlock [
 	"Nonevaluating disjunction. If the receiver is false, answer the value of 
 	the argument, alternativeBlock; otherwise answer true without 
 	evaluating the argument."
@@ -192,7 +192,7 @@ Boolean>>or: alternativeBlock  [
 	#category : #copying,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Boolean>>shallowCopy  [
+Boolean>>shallowCopy [
 	"Receiver has two concrete subclasses, True and False.
 	Only one instance of each should be made, so return self."
 ]
@@ -201,7 +201,7 @@ Boolean>>shallowCopy  [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Boolean>>storeOn: aStream  [
+Boolean>>storeOn: aStream [
 	"Refer to the comment in Object|storeOn:."
 
 	self printOn: aStream
@@ -219,7 +219,7 @@ Boolean>>veryDeepCopyWith: deepCopier [
 	#category : #controlling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Boolean>>xor: alternativeBlock  [
+Boolean>>xor: alternativeBlock [
 	"Nonevaluating conjunction. If the receiver is true, answer the opposite of the 
 	the argument, alternativeBlock; otherwise answer the value of the alternativeBlock."
 
@@ -230,7 +230,7 @@ Boolean>>xor: alternativeBlock  [
 	#category : #'logical operations',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Boolean>>| aBoolean  [
+Boolean>>| aBoolean [
 	"Evaluating disjunction (OR). Evaluate the argument. Then answer true 
 	if either the receiver or the argument is true."
 

@@ -23,7 +23,7 @@ TComparable>>< aComparable [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-TComparable>><= aComparable  [
+TComparable>><= aComparable [
 	"Answer whether the receiver is less than or equal to the argument."
 
 	^(self > aComparable) not
@@ -33,7 +33,7 @@ TComparable>><= aComparable  [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-TComparable>>= aComparable  [
+TComparable>>= aComparable [
 	"Compare the receiver with the argument and answer with true if the 
 	receiver is equal to the argument. Otherwise answer false."
 
@@ -44,7 +44,7 @@ TComparable>>= aComparable  [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-TComparable>>> aComparable  [
+TComparable>>> aComparable [
 	"Answer whether the receiver is greater than the argument."
 
 	^aComparable < self
@@ -54,7 +54,7 @@ TComparable>>> aComparable  [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-TComparable>>>= aComparable  [
+TComparable>>>= aComparable [
 	"Answer whether the receiver is greater than or equal to the argument."
 
 	^aComparable <= self
@@ -64,7 +64,7 @@ TComparable>>>= aComparable  [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-TComparable>>between: min and: max  [
+TComparable>>between: min and: max [
 	"Answer whether the receiver is less than or equal to the argument, max, 
 	and greater than or equal to the argument, min."
 
@@ -85,7 +85,7 @@ TComparable>>hash [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-TComparable>>max: aComparable  [
+TComparable>>max: aComparable [
 	"Answer the receiver or the argument, whichever is greater."
 
 	self > aComparable
@@ -97,7 +97,7 @@ TComparable>>max: aComparable  [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-TComparable>>min: aComparable  [
+TComparable>>min: aComparable [
 	"Answer the receiver or the argument, whichever is lesser."
 
 	self < aComparable
@@ -109,7 +109,7 @@ TComparable>>min: aComparable  [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-TComparable>>min: aMin max: aMax  [
+TComparable>>min: aMin max: aMax [
 
 	^ (self min: aMin) max: aMax
 ]

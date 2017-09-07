@@ -82,7 +82,7 @@ ProtocolOrganizer>>allProtocolsNames [
 	#category : #'protocol - adding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ProtocolOrganizer>>classify: aSymbol inProtocolNamed: aProtocolName  [
+ProtocolOrganizer>>classify: aSymbol inProtocolNamed: aProtocolName [
 	| name protocol |
 	
 	name := aProtocolName.
@@ -132,7 +132,7 @@ ProtocolOrganizer>>fromSpec: aSpec [
 	#category : #protocol,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ProtocolOrganizer>>getProtocolNamed: aByteString ifNone: aBlockClosure  [
+ProtocolOrganizer>>getProtocolNamed: aByteString ifNone: aBlockClosure [
 	
 	^ protocols detect: [:e | e name = aByteString ] ifNone: aBlockClosure 
 ]
@@ -150,7 +150,7 @@ ProtocolOrganizer>>hasProtocolNamed: aString [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ProtocolOrganizer>>includesSelector: selector  [
+ProtocolOrganizer>>includesSelector: selector [
 	^ protocols anySatisfy: [ :each | each includesSelector: selector ]
 ]
 
@@ -205,7 +205,7 @@ ProtocolOrganizer>>protocolNamed: aName [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ProtocolOrganizer>>protocolNamed: aString ifAbsent: aBlock  [
+ProtocolOrganizer>>protocolNamed: aString ifAbsent: aBlock [
 	^  self allProtocols 
 		detect: [ :e | e name = aString ] 
 		ifNone: aBlock

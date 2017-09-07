@@ -84,7 +84,7 @@ ClassDescription>>addCategory: newName before: aCategory [
 	#category : #'instance variables',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassDescription>>addInstVarNamed: aString  [
+ClassDescription>>addInstVarNamed: aString [
 	"Add the argument, aString, as one of the receiver's instance variables."
 
 	self subclassResponsibility
@@ -173,7 +173,7 @@ ClassDescription>>allProtocolsUpTo: mostGenericClass [
 	#category : #'accessing method dictionary',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassDescription>>allSelectorsInProtocol: aName  [
+ClassDescription>>allSelectorsInProtocol: aName [
 	"Answer a list of all the methods of the receiver and all its 
 	superclasses that are in the protocol named aName"
 	
@@ -499,7 +499,7 @@ ClassDescription>>commentStamp: changeStamp [
 	#category : #compiling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassDescription>>compile: code classified: heading  [
+ClassDescription>>compile: code classified: heading [
 	"Compile the argument, code, as source code in the context of the 
 	receiver and install the result in the receiver's method dictionary under 
 	the classification indicated by the second argument, heading. nil is to be 
@@ -581,7 +581,7 @@ ClassDescription>>compile: text classified: category withStamp: changeStamp noti
 	#category : #compiling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassDescription>>compile: code notifying: requestor  [
+ClassDescription>>compile: code notifying: requestor [
 	"Refer to the comment in Behavior|compile:notifying:." 
 
 	^self compile: code
@@ -614,7 +614,7 @@ ClassDescription>>compileSilently: code classified: category notifying: requesto
 	#category : #copying,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassDescription>>copy: sel from: class  [
+ClassDescription>>copy: sel from: class [
 	"Install the method associated with the first argument, sel, a message 
 	selector, found in the method dictionary of the second argument, class, 
 	as one of the receiver's methods. Classify the message under -As yet not 
@@ -629,7 +629,7 @@ ClassDescription>>copy: sel from: class  [
 	#category : #copying,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassDescription>>copy: sel from: class classified: cat  [
+ClassDescription>>copy: sel from: class classified: cat [
 	"Install the method associated with the first arugment, sel, a message 
 	selector, found in the method dictionary of the second argument, class, 
 	as one of the receiver's methods. Classify the message under the third 
@@ -655,7 +655,7 @@ ClassDescription>>copy: sel from: class classified: cat  [
 	#category : #copying,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassDescription>>copyAll: selArray from: class  [
+ClassDescription>>copyAll: selArray from: class [
 	"Install all the methods found in the method dictionary of the second 
 	argument, class, as the receiver's methods. Classify the messages under 
 	-As yet not classified-."
@@ -669,7 +669,7 @@ ClassDescription>>copyAll: selArray from: class  [
 	#category : #copying,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassDescription>>copyAll: selArray from: class classified: cat  [
+ClassDescription>>copyAll: selArray from: class classified: cat [
 	"Install all the methods found in the method dictionary of the second 
 	argument, class, as the receiver's methods. Classify the messages under 
 	the third argument, cat."
@@ -685,7 +685,7 @@ ClassDescription>>copyAll: selArray from: class classified: cat  [
 	#category : #copying,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassDescription>>copyAllCategoriesFrom: aClass  [
+ClassDescription>>copyAllCategoriesFrom: aClass [
 	"Specify that the categories of messages for the receiver include all of 
 	those found in the class, aClass. Install each of the messages found in 
 	these categories into the method dictionary of the receiver, classified 
@@ -698,7 +698,7 @@ ClassDescription>>copyAllCategoriesFrom: aClass  [
 	#category : #copying,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassDescription>>copyCategory: cat from: class  [
+ClassDescription>>copyCategory: cat from: class [
 	"Specify that one of the categories of messages for the receiver is cat, as 
 	found in the class, class. Copy each message found in this category."
 
@@ -711,7 +711,7 @@ ClassDescription>>copyCategory: cat from: class  [
 	#category : #copying,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassDescription>>copyCategory: cat from: aClass classified: newCat  [
+ClassDescription>>copyCategory: cat from: aClass classified: newCat [
 	"Specify that one of the categories of messages for the receiver is the 
 	third argument, newCat. Copy each message found in the category cat in 
 	class aClass into this new category."
@@ -1049,7 +1049,7 @@ ClassDescription>>isTaggedWith: aSymbol [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassDescription>>linesOfCode  [
+ClassDescription>>linesOfCode [
 	"An approximate measure of lines of code.
 	Includes comments, but excludes blank lines."
 
@@ -1340,7 +1340,7 @@ ClassDescription>>organization: aClassOrg [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassDescription>>printOn: aStream  [
+ClassDescription>>printOn: aStream [
 	aStream nextPutAll: self name
 ]
 
@@ -1348,7 +1348,7 @@ ClassDescription>>printOn: aStream  [
 	#category : #'accessing class hierarchy',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassDescription>>printSubclassesOn: aStream level: level  [
+ClassDescription>>printSubclassesOn: aStream level: level [
 
 		self printSubclassesOn: aStream level: level filter: nil
 ]
@@ -1390,7 +1390,7 @@ ClassDescription>>reformatAll [
 	#category : #'instance variables',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassDescription>>removeInstVarNamed: aString  [
+ClassDescription>>removeInstVarNamed: aString [
 	"Remove the argument, aString, as one of the receiver's instance 
 	variables. Create an error notification if the argument is not found."
 
@@ -1412,7 +1412,7 @@ ClassDescription>>removeMethodTag: aSymbol [
 	#category : #'accessing method dictionary',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassDescription>>removeProtocol: aString  [
+ClassDescription>>removeProtocol: aString [
 	"Remove each of the messages categorized under aString in the method 
 	dictionary of the receiver. Then remove the category aString."
 	| categoryName |
@@ -1426,7 +1426,7 @@ ClassDescription>>removeProtocol: aString  [
 	#category : #'accessing method dictionary',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassDescription>>removeSelector: selector  [
+ClassDescription>>removeSelector: selector [
 	"Remove the message whose selector is given from the method 
 	dictionary of the receiver, if it is there. Answer nil otherwise."
 	
@@ -1454,7 +1454,7 @@ ClassDescription>>reorganize [
 	#category : #'accessing method dictionary',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassDescription>>selectorsInCategory: aName  [
+ClassDescription>>selectorsInCategory: aName [
 	"Answer a list of the selectors of the receiver that are in category named aName"
 	
 	| aColl |
@@ -1466,7 +1466,7 @@ ClassDescription>>selectorsInCategory: aName  [
 	#category : #'accessing method dictionary',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassDescription>>selectorsInProtocol: aName  [
+ClassDescription>>selectorsInProtocol: aName [
 	"Answer a list of the selectors of the receiver that are in category named aName"
 	
 	| aColl |
@@ -1912,7 +1912,7 @@ ClassDescription>>wantsRecompilationProgressReported [
 	#category : #organization,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassDescription>>whichCategoryIncludesSelector: aSelector  [
+ClassDescription>>whichCategoryIncludesSelector: aSelector [
 	"Answer the category of the argument, aSelector, in the organization of 
 	the receiver, or answer nil if the receiver does not inlcude this selector."
 

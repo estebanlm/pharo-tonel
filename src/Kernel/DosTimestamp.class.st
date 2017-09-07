@@ -48,7 +48,7 @@ DosTimestamp class>>epoch [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-DosTimestamp class>>fromDateAndTime: aDateAndTime  [
+DosTimestamp class>>fromDateAndTime: aDateAndTime [
 
 	| dateValue timeValue local |
 	local := aDateAndTime asLocal.
@@ -144,7 +144,7 @@ DosTimestamp>>high16Bits [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-DosTimestamp>>initializeValue: anInteger  [
+DosTimestamp>>initializeValue: anInteger [
 
 	value := anInteger.
 	^ self.

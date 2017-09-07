@@ -132,7 +132,7 @@ ScaledDecimal>>adaptToInteger: rcvr andSend: selector [
 	#category : #converting,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ScaledDecimal>>asFraction	 [
+ScaledDecimal>>asFraction [
 	"Convert the receiver to a Fraction.
 	Avoid using numerator / denominator to save a useless and costly gcd: computation"
 
@@ -317,7 +317,7 @@ ScaledDecimal>>squared [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ScaledDecimal>>storeOn: aStream  [
+ScaledDecimal>>storeOn: aStream [
 	"ScaledDecimal sometimes have more digits than they print (potentially an infinity).
 	In this case, do not use printOn: because it would loose some extra digits"
 	

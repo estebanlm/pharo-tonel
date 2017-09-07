@@ -87,7 +87,7 @@ Process class>>allocatePSKey: aPSVariable [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Process class>>forContext: aContext priority: anInteger  [
+Process class>>forContext: aContext priority: anInteger [
 	"Answer an instance of me that has suspended aContext at priority 
 	anInteger."
 
@@ -138,7 +138,7 @@ Process>>browserPrintString [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Process>>browserPrintStringWith: anObject  [
+Process>>browserPrintStringWith: anObject [
 	| stream |
 	stream := (String new: 100) writeStream.
 	stream nextPut: $(.
@@ -169,7 +169,7 @@ Process>>calleeOf: aContext [
 	#category : #'changing suspended state',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Process>>complete: aContext  [
+Process>>complete: aContext [
 	"Run self until aContext is popped or an unhandled error is raised.  Return self's new top context, unless an unhandled error was raised then return the signaler context (rather than open a debugger)."
 	
 	| ctxt pair error |
@@ -192,7 +192,7 @@ Process>>complete: aContext  [
 	#category : #'changing suspended state',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Process>>completeStep: aContext  [
+Process>>completeStep: aContext [
 	"Resume self until aContext is on top, or if already on top, complete next step"
 
 	| callee |
@@ -208,7 +208,7 @@ Process>>completeStep: aContext  [
 	#category : #'changing suspended state',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Process>>completeTo: aContext  [
+Process>>completeTo: aContext [
 	"Resume self until aContext is on top"
 
 	self suspendedContext == aContext ifTrue: [^ aContext].
@@ -286,7 +286,7 @@ Process>>effectiveProcess [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Process>>environmentKeyNotFound  [
+Process>>environmentKeyNotFound [
 	self error: 'Environment key not found'
 ]
 
@@ -318,7 +318,7 @@ Process>>initialize [
 	#category : #'changing suspended state',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Process>>install: aContext  [
+Process>>install: aContext [
 	"Replace the suspendedContext with aContext."
 
 	self == Processor activeProcess
@@ -447,7 +447,7 @@ Process>>on: exception do: handlerAction [
 	#category : #'changing suspended state',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Process>>popTo: aContext  [
+Process>>popTo: aContext [
 	"Pop self down to aContext by remote returning from aContext's callee.  Unwind blocks will be executed on the way.
 	This is done by pushing a new context on top which executes 'aContext callee return' then resuming self until aContext is reached.  This way any errors raised in an unwind block will get handled by senders in self and not by senders in the activeProcess.
 	If an unwind block raises an error that is not handled then the popping stops at the error and the signalling context is returned, othewise aContext is returned."
@@ -722,7 +722,7 @@ Process>>step [
 	#category : #'changing suspended state',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Process>>step: aContext  [
+Process>>step: aContext [
 	"Resume self until aContext is on top, or if already on top, do next step"
 
 	^Processor activeProcess
@@ -754,7 +754,7 @@ Process>>stepToCallee [
 	#category : #'changing suspended state',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Process>>stepToHome: aContext  [
+Process>>stepToHome: aContext [
 	| ctxt pair error |
 	ctxt := suspendedContext.
 	suspendedContext := nil.
@@ -836,7 +836,7 @@ Process>>suspendingList [
 	#category : #'changing process state',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Process>>terminate  [
+Process>>terminate [
 	"Stop the process that the receiver represents forever.  Unwind to execute pending ensure:/ifCurtailed: blocks before terminating."
 
 	| ctxt unwindBlock oldList |

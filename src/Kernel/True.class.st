@@ -14,7 +14,7 @@ Class {
 	#category : #'logical operations',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-True>>& aBoolean  [
+True>>& aBoolean [
 	"Evaluating conjunction -- answer aBoolean since receiver is true."
 
 	^aBoolean
@@ -24,7 +24,7 @@ True>>& aBoolean  [
 	#category : #controlling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-True>>and: alternativeBlock  [
+True>>and: alternativeBlock [
 	"Nonevaluating conjunction -- answer the value of alternativeBlock since
 	the receiver is true."
 
@@ -44,7 +44,7 @@ True>>asBit [
 	#category : #controlling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-True>>ifFalse: alternativeBlock  [
+True>>ifFalse: alternativeBlock [
 	"Since the condition is true, the value is the true alternative, which is nil. 
 	Execution does not actually reach here because the expression is compiled 
 	in-line."
@@ -56,7 +56,7 @@ True>>ifFalse: alternativeBlock  [
 	#category : #controlling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-True>>ifFalse: falseAlternativeBlock ifTrue: trueAlternativeBlock  [
+True>>ifFalse: falseAlternativeBlock ifTrue: trueAlternativeBlock [
 	"Answer the value of trueAlternativeBlock. Execution does not 
 	actually reach here because the expression is compiled in-line."
 
@@ -67,7 +67,7 @@ True>>ifFalse: falseAlternativeBlock ifTrue: trueAlternativeBlock  [
 	#category : #controlling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-True>>ifTrue: alternativeBlock  [
+True>>ifTrue: alternativeBlock [
 	"Answer the value of alternativeBlock. Execution does not actually 
 	reach here because the expression is compiled in-line."
 
@@ -78,7 +78,7 @@ True>>ifTrue: alternativeBlock  [
 	#category : #controlling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-True>>ifTrue: trueAlternativeBlock ifFalse: falseAlternativeBlock  [
+True>>ifTrue: trueAlternativeBlock ifFalse: falseAlternativeBlock [
 	"Answer with the value of trueAlternativeBlock. Execution does not 
 	actually reach here because the expression is compiled in-line."
 
@@ -99,7 +99,7 @@ True>>not [
 	#category : #controlling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-True>>or: alternativeBlock  [
+True>>or: alternativeBlock [
 	"Nonevaluating disjunction -- answer true since the receiver is true."
 
 	^self
@@ -109,7 +109,7 @@ True>>or: alternativeBlock  [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-True>>printOn: aStream  [
+True>>printOn: aStream [
 
 	aStream nextPutAll: 'true'
 ]
@@ -126,7 +126,7 @@ True>>xor: aBoolean [
 	#category : #'logical operations',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-True>>| aBoolean  [
+True>>| aBoolean [
 	"Evaluating disjunction (OR) -- answer true since the receiver is true."
 
 	^self

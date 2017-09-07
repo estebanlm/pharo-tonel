@@ -223,7 +223,7 @@ Monitor>>queueDict [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Monitor>>queueFor: aSymbol  [
+Monitor>>queueFor: aSymbol [
 	aSymbol ifNil: [^self defaultQueue].
 	^self queueDict at: aSymbol ifAbsentPut: [OrderedCollection new]
 ]

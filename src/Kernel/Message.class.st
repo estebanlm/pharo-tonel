@@ -29,7 +29,7 @@ Message class>>selector: aSymbol [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Message class>>selector: aSymbol argument: anObject  [
+Message class>>selector: aSymbol argument: anObject [
 	"Answer an instance of me whose selector is aSymbol and single 
 	argument is anObject."
 
@@ -40,7 +40,7 @@ Message class>>selector: aSymbol argument: anObject  [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Message class>>selector: aSymbol arguments: anArray  [
+Message class>>selector: aSymbol arguments: anArray [
 	"Answer an instance of me with selector, aSymbol, and arguments, 
 	anArray."
 
@@ -216,7 +216,7 @@ Message>>setSelector: aSymbol arguments: anArray [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Message>>storeOn: aStream  [
+Message>>storeOn: aStream [
 	"Refer to the comment in Object|storeOn:."
 
 	aStream nextPut: $(;

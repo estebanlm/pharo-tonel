@@ -23,7 +23,7 @@ Month class>>current [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Month class>>daysInMonth: indexOrName forYear: yearInteger  [
+Month class>>daysInMonth: indexOrName forYear: yearInteger [
 
 	| index |
 	index := indexOrName isInteger 
@@ -39,7 +39,7 @@ Month class>>daysInMonth: indexOrName forYear: yearInteger  [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Month class>>indexOfMonth: aMonthName  [
+Month class>>indexOfMonth: aMonthName [
 
 	1 to: 12 do: [ :i |  (aMonthName, '*' match: (MonthNames at: i)) ifTrue: [^i] ].
  	self error: aMonthName , ' is not a recognized month name'.
@@ -102,7 +102,7 @@ Month class>>readFrom: aStream [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Month class>>starting: aDateAndTime duration: aDuration  [
+Month class>>starting: aDateAndTime duration: aDuration [
 	"Override - a each month has a defined duration"
 	| start adjusted days |
 	start := aDateAndTime asDateAndTime.
@@ -162,7 +162,7 @@ Month>>index [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Month>>name  [
+Month>>name [
 
 	^ self monthName 
 ]
@@ -171,7 +171,7 @@ Month>>name  [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Month>>previous  [
+Month>>previous [
 
 	^ self class starting: (self start - 1) 
 ]
@@ -180,7 +180,7 @@ Month>>previous  [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Month>>printOn: aStream  [
+Month>>printOn: aStream [
 
 	aStream nextPutAll: self monthName, ' ', self year printString.
 ]

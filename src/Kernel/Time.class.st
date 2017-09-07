@@ -141,7 +141,7 @@ Running this benchmark will not give any useful result.'].
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Time class>>current  [
+Time class>>current [
 
 	^ self now
 ]
@@ -242,7 +242,7 @@ Time class>>microsecondsSince: lastTimeInMicroSeconds [
 	#category : #'general inquiries',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Time class>>microsecondsToRun: timedBlock  [
+Time class>>microsecondsToRun: timedBlock [
 	"Answer the number of milliseconds timedBlock takes to return its value."
 
 	| initialMicroseconds |
@@ -304,7 +304,7 @@ Time class>>millisecondsSince: lastTime [
 	#category : #'general inquiries',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Time class>>millisecondsToRun: timedBlock  [
+Time class>>millisecondsToRun: timedBlock [
 	"Answer the number of milliseconds timedBlock takes to return its value."
 
 	^(self microsecondsToRun: timedBlock) // 1e3
@@ -527,7 +527,7 @@ Time>>= aTime [
 	#category : #adding,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Time>>addSeconds: nSeconds  [
+Time>>addSeconds: nSeconds [
 	"Answer a Time that is nSeconds after the receiver."
 
 	^ self class seconds: self asSeconds + nSeconds
@@ -566,7 +566,7 @@ Time>>asDateAndTime [
 	#category : #converting,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Time>>asDuration  [
+Time>>asDuration [
 	"Answer the duration since midnight"
 
 	^ Duration seconds: seconds nanoSeconds: nanos 
@@ -691,7 +691,7 @@ Time>>hour12 [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Time>>hour24  [
+Time>>hour24 [
 	"Answer a number that represents the number of complete hours in the receiver, 
 	after the number of complete days has been removed."
  
@@ -757,7 +757,7 @@ Time>>minutes [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Time>>nanoSecond  [
+Time>>nanoSecond [
 
 	^ nanos 
 ]
@@ -779,7 +779,7 @@ Time>>print24 [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Time>>print24: hr24 on: aStream  [
+Time>>print24: hr24 on: aStream [
  	"Format is 'hh:mm:ss' or 'h:mm:ss am' "
  
  	| h m s |
@@ -806,7 +806,7 @@ Time>>print24: hr24 on: aStream  [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Time>>print24: hr24 showSeconds: showSeconds on: aStream  [
+Time>>print24: hr24 showSeconds: showSeconds on: aStream [
 	"Format is 'hh:mm:ss.nnnnnnnnn' or 'h:mm:ss.nnnnnnnnn am'  or, if showSeconds is false, 'hh:mm' or 'h:mm am'"
 
 	| h m s |
@@ -853,7 +853,7 @@ Time>>printMinutes [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Time>>printOn: aStream  [
+Time>>printOn: aStream [
 
 	self 
 		print24: false
@@ -865,7 +865,7 @@ Time>>printOn: aStream  [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Time>>second  [
+Time>>second [
 	"Answer a number that represents the number of complete seconds in the receiver, 
 	after the number of complete minutes has been removed."
  
@@ -896,7 +896,7 @@ Time>>seconds: secondCount [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Time>>seconds: secondCount nanoSeconds: nanoCount  [
+Time>>seconds: secondCount nanoSeconds: nanoCount [
 	"Private - only used by Time class."
 
 	seconds := secondCount.
@@ -916,7 +916,7 @@ Time>>storeOn: aStream [
 	#category : #adding,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Time>>subtractTime: timeAmount  [
+Time>>subtractTime: timeAmount [
 	"Answer a Time that is timeInterval before the receiver. timeInterval is  
 	an instance of Date or Time."
 

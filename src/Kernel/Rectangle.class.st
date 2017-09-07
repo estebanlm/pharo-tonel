@@ -35,7 +35,7 @@ Class {
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle class>>center: centerPoint extent: extentPoint  [
+Rectangle class>>center: centerPoint extent: extentPoint [
 	"Answer an instance of me whose center is centerPoint and width 
 	by height is extentPoint.  "
 
@@ -46,7 +46,7 @@ Rectangle class>>center: centerPoint extent: extentPoint  [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle class>>encompassing: listOfPoints  [
+Rectangle class>>encompassing: listOfPoints [
 	"A number of callers of encompass: should use this method."
 	| topLeft bottomRight |
 	topLeft := bottomRight := listOfPoints first.
@@ -60,7 +60,7 @@ Rectangle class>>encompassing: listOfPoints  [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle class>>left: left right: right top: top bottom: bottom  [
+Rectangle class>>left: left right: right top: top bottom: bottom [
 	"Answer an instance of me whose left, right, top, and bottom coordinates 
 	are determined by the arguments."
 
@@ -71,7 +71,7 @@ Rectangle class>>left: left right: right top: top bottom: bottom  [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle class>>merging: listOfRects  [
+Rectangle class>>merging: listOfRects [
 	"A number of callers of merge: should use this method."
 	| minX minY maxX maxY |
 	listOfRects do: 
@@ -94,7 +94,7 @@ Rectangle class>>merging: listOfRects  [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle class>>origin: originPoint corner: cornerPoint  [
+Rectangle class>>origin: originPoint corner: cornerPoint [
 	"Answer an instance of me whose corners (top left and bottom right) are 
 	determined by the arguments."
 
@@ -105,7 +105,7 @@ Rectangle class>>origin: originPoint corner: cornerPoint  [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle class>>origin: originPoint extent: extentPoint  [
+Rectangle class>>origin: originPoint extent: extentPoint [
 	"Answer an instance of me whose top left corner is originPoint and width by height is extentPoint. Note that extentPoint should be non negative since it represents the size of the rectangle"
 
 	
@@ -118,7 +118,7 @@ Rectangle class>>origin: originPoint extent: extentPoint  [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle class>>point: pt1 point: pt2  [
+Rectangle class>>point: pt1 point: pt2 [
 	"Answer an instance of me constructed from two points."
 
 	^self basicNew setPoint: pt1 point: pt2
@@ -128,7 +128,7 @@ Rectangle class>>point: pt1 point: pt2  [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>= aRectangle  [
+Rectangle>>= aRectangle [
 	"Answer true if the receiver's species, origin and corner match aRectangle's."
 
 	self species = aRectangle species
@@ -150,7 +150,7 @@ Rectangle>>aboveCenter [
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>adjustTo: newRect along: side  [
+Rectangle>>adjustTo: newRect along: side [
 	"Return a copy adjusted to fit a neighbor that has changed size."
 	side = #left ifTrue: [^ self withRight: newRect left].
 	side = #right ifTrue: [^ self withLeft: newRect right].
@@ -162,7 +162,7 @@ Rectangle>>adjustTo: newRect along: side  [
 	#category : #transforming,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>align: aPoint1 with: aPoint2  [
+Rectangle>>align: aPoint1 with: aPoint2 [
 	"Answer a Rectangle that is a translated by aPoint2 - aPoint1."
 
 	^self translateBy: aPoint2 - aPoint1
@@ -182,7 +182,7 @@ Rectangle>>allAreasOutsideList: aCollection do: aBlock [
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>allAreasOutsideList: aCollection startingAt: startIndex do: aBlock  [
+Rectangle>>allAreasOutsideList: aCollection startingAt: startIndex do: aBlock [
 	"Enumerate aBlock with all areas of the receiver not overlapping 
 	any rectangle in the given collection"
 	| yOrigin yCorner aRectangle index rr |
@@ -229,7 +229,7 @@ Rectangle>>allAreasOutsideList: aCollection startingAt: startIndex do: aBlock  [
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>amountToTranslateWithin: aRectangle  [
+Rectangle>>amountToTranslateWithin: aRectangle [
 	"Answer a Point, delta, such that self + delta is forced within aRectangle.
 	Keep self topLeft inside when all of self cannot be made to fit"
 	| dx dy |
@@ -257,7 +257,7 @@ Rectangle>>area [
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>areasOutside: aRectangle  [
+Rectangle>>areasOutside: aRectangle [
 	"Answer an Array of Rectangles comprising the parts of the receiver not 
 	intersecting aRectangle."
 	"Make sure the intersection is non-empty"
@@ -292,7 +292,7 @@ Rectangle>>asMargin [
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>bordersOn: her along: herSide  [
+Rectangle>>bordersOn: her along: herSide [
 	((herSide = #right and: [self left = her right])
 	or: [herSide = #left and: [self right = her left]])
 		ifTrue:
@@ -424,7 +424,7 @@ Rectangle>>compressed [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>containsPoint: aPoint  [
+Rectangle>>containsPoint: aPoint [
 	"Answer whether aPoint is within the receiver."
 
 	^origin <= aPoint and: [aPoint < corner]
@@ -470,7 +470,7 @@ Rectangle>>corners [
 	#category : #fmp,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>deltaToEnsureInOrCentered: r extra: aNumber  [
+Rectangle>>deltaToEnsureInOrCentered: r extra: aNumber [
 	| dX dY halfXDiff halfYDiff |
 	dX := dY := 0.
 	halfXDiff := ((r width - self width) * aNumber) truncated.
@@ -490,7 +490,7 @@ Rectangle>>deltaToEnsureInOrCentered: r extra: aNumber  [
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>encompass: aPoint  [
+Rectangle>>encompass: aPoint [
 	"Answer a Rectangle that contains both the receiver and aPoint."
 
 	^ Rectangle 
@@ -502,7 +502,7 @@ Rectangle>>encompass: aPoint  [
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>expandBy: delta  [
+Rectangle>>expandBy: delta [
 	"Answer a Rectangle that is outset from the receiver by delta. delta is a 
 	Rectangle, Point, or scalar."
 	
@@ -538,7 +538,7 @@ Rectangle>>expanded [
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>extendBy: deltaMargin  [
+Rectangle>>extendBy: deltaMargin [
 	"Answer a Rectangle with the same origin as the receiver, but whose corner is offset by deltaMargin."
 
 	^ deltaMargin asMargin extendRectangle: self
@@ -558,7 +558,7 @@ Rectangle>>extent [
 	#category : #transforming,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>flipBy: direction centerAt: aPoint  [
+Rectangle>>flipBy: direction centerAt: aPoint [
 	"Return a copy flipped #vertical or #horizontal, about aPoint."
 	^ (origin flipBy: direction centerAt: aPoint)
 		rectangle: (corner flipBy: direction centerAt: aPoint)
@@ -581,7 +581,7 @@ Rectangle>>floor [
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>forPoint: aPoint closestSideDistLen: sideDistLenBlock  [
+Rectangle>>forPoint: aPoint closestSideDistLen: sideDistLenBlock [
 	"Evaluate the block with my side (symbol) closest to aPoint,
 		the approx distance of aPoint from that side, and
 		the length of the side (or 0 if aPoint is beyond the side)"
@@ -674,7 +674,7 @@ Rectangle>>innerCorners [
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>insetBy: delta  [
+Rectangle>>insetBy: delta [
 	"Answer a Rectangle that is inset from the receiver by delta. delta is a 
 	Rectangle, Point, or scalar."
 	
@@ -685,7 +685,7 @@ Rectangle>>insetBy: delta  [
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>insetOriginBy: originDeltaPoint cornerBy: cornerDeltaPoint  [
+Rectangle>>insetOriginBy: originDeltaPoint cornerBy: cornerDeltaPoint [
 	"Answer a Rectangle that is inset from the receiver by a given amount in 
 	the origin and corner."
 
@@ -709,7 +709,7 @@ Rectangle>>interpolateTo: end at: amountDone [
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>intersect: aRectangle  [
+Rectangle>>intersect: aRectangle [
 	"Answer a Rectangle that is the area in which the receiver overlaps with 
 	aRectangle."
 	^ self intersect: aRectangle ifNone:[0@0 extent:0@0]
@@ -741,7 +741,7 @@ Rectangle>>intersect: aRectangle ifNone: aBlock [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>intersects: aRectangle  [
+Rectangle>>intersects: aRectangle [
 	"Answer whether aRectangle intersects the receiver anywhere."
 	"Optimized; old code answered:
 		(origin max: aRectangle origin) < (corner min: aRectangle corner)"
@@ -837,7 +837,7 @@ Rectangle>>leftCenter [
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>merge: aRectangle  [
+Rectangle>>merge: aRectangle [
 	"Answer a Rectangle that contains both the receiver and aRectangle."
 
 	^Rectangle 
@@ -875,7 +875,7 @@ Rectangle>>pointAtSideOrCorner: loc [
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>pointNearestTo: aPoint  [
+Rectangle>>pointNearestTo: aPoint [
 	"Return the point on my border closest to aPoint"
 	| side |
 	(self containsPoint: aPoint) 
@@ -892,7 +892,7 @@ Rectangle>>pointNearestTo: aPoint  [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>printOn: aStream  [
+Rectangle>>printOn: aStream [
 	"Refer to the comment in Object|printOn:."
 
 	origin printOn: aStream.
@@ -904,7 +904,7 @@ Rectangle>>printOn: aStream  [
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>quickMerge: aRectangle  [
+Rectangle>>quickMerge: aRectangle [
 	"Answer the receiver if it encloses the given rectangle or the merge of the two rectangles if it doesn't. THis method is an optimization to reduce extra rectangle creations."
 	| useRcvr rOrigin rCorner minX maxX minY maxY |
 	
@@ -1033,7 +1033,7 @@ Rectangle>>rounded [
 	#category : #transforming,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>scaleBy: scale  [
+Rectangle>>scaleBy: scale [
 	"Answer a Rectangle scaled by scale, a Point or a scalar."
 
 	^Rectangle origin: origin * scale corner: corner * scale
@@ -1068,7 +1068,7 @@ Rectangle>>scaledAndCenteredIn: aRect [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>setLeft: left right: right top: top bottom: bottom  [
+Rectangle>>setLeft: left right: right top: top bottom: bottom [
 
 	origin := (left min: right) @ (top min: bottom).
 	corner := (left max: right) @ (top max: bottom).
@@ -1091,7 +1091,7 @@ Rectangle>>setPoint: pt1 point: pt2 [
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>sideNearestTo: aPoint  [
+Rectangle>>sideNearestTo: aPoint [
 	| distToLeft distToRight distToTop distToBottom closest side |
 	distToLeft := aPoint x - self left.
 	distToRight := self right - aPoint x.
@@ -1134,7 +1134,7 @@ Rectangle>>squishedWithin: aRectangle [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>storeOn: aStream  [
+Rectangle>>storeOn: aStream [
 	"printed form is good for storing too"
 	
 	aStream nextPut: $(.
@@ -1196,7 +1196,7 @@ Rectangle>>topRight [
 	#category : #transforming,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>translateBy: factor  [
+Rectangle>>translateBy: factor [
 	"Answer a Rectangle translated by factor, a Point or a scalar."
 
 	^Rectangle origin: origin + factor corner: corner + factor
@@ -1266,7 +1266,7 @@ Rectangle>>width [
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>withBottom: y  [
+Rectangle>>withBottom: y [
 	"Return a copy of me with a different bottom y"
 	^ origin x @ origin y corner: corner x @ (y max: origin y)
 ]
@@ -1275,7 +1275,7 @@ Rectangle>>withBottom: y  [
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>withHeight: height  [
+Rectangle>>withHeight: height [
 	"Return a copy of me with a different height"
 	^ origin corner: corner x @ (origin y + height)
 ]
@@ -1284,7 +1284,7 @@ Rectangle>>withHeight: height  [
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>withLeft: x  [
+Rectangle>>withLeft: x [
 	"Return a copy of me with a different left x (but not going over right side)"
 	^ (x min: corner x) @ origin y corner: corner x @ corner y
 ]
@@ -1293,7 +1293,7 @@ Rectangle>>withLeft: x  [
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>withRight: x  [
+Rectangle>>withRight: x [
 	"Return a copy of me with a different right x"
 	^ origin x @ origin y corner: (x max: origin x) @ corner y
 ]
@@ -1348,7 +1348,7 @@ Rectangle>>withSideOrCorner: side setToPoint: newPoint minExtent: minExtent limi
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>withTop: y  [
+Rectangle>>withTop: y [
 	"Return a copy of me with a different top y"
 	^ origin x @ (y min: corner y) corner: corner x @ corner y
 ]
@@ -1357,7 +1357,7 @@ Rectangle>>withTop: y  [
 	#category : #'rectangle functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Rectangle>>withWidth: width  [
+Rectangle>>withWidth: width [
 	"Return a copy of me with a different width"
 	^ origin corner: (origin x + width) @ corner y
 ]

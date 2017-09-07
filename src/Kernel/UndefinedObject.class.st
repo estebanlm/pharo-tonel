@@ -40,7 +40,7 @@ UndefinedObject class>>new [
 	#category : #'dependents access',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-UndefinedObject>>addDependent: ignored  [
+UndefinedObject>>addDependent: ignored [
 	"Refer to the comment in Object|dependents."
 
 	self error: 'Nil should not have dependents'
@@ -58,7 +58,7 @@ UndefinedObject>>addSubclass: aClass [
 	#category : #'class hierarchy',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-UndefinedObject>>allSuperclassesDo: aBlockContext  [
+UndefinedObject>>allSuperclassesDo: aBlockContext [
 	"Ignored -- necessary to support disjoint class hierarchies"
 ]
 
@@ -174,7 +174,7 @@ UndefinedObject>>ifNotNil: aBlock [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-UndefinedObject>>ifNotNil: ifNotNilBlock ifNil: nilBlock  [
+UndefinedObject>>ifNotNil: ifNotNilBlock ifNil: nilBlock [
 	"If I got here, I am nil, so evaluate the block nilBlock"
 
 	^ nilBlock value
@@ -201,7 +201,7 @@ UndefinedObject>>isLiteral [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-UndefinedObject>>isNil  [
+UndefinedObject>>isNil [
 	"Refer to the comment in Object|isNil."
 
 	^true
@@ -211,7 +211,7 @@ UndefinedObject>>isNil  [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-UndefinedObject>>isNotNil  [
+UndefinedObject>>isNotNil [
 	"Refer to the comment in Object|isNotNil."
 
 	^false
@@ -221,7 +221,7 @@ UndefinedObject>>isNotNil  [
 	#category : #'class hierarchy',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-UndefinedObject>>literalScannedAs: scannedLiteral notifying: requestor  [
+UndefinedObject>>literalScannedAs: scannedLiteral notifying: requestor [
 	^ scannedLiteral
 ]
 
@@ -229,7 +229,7 @@ UndefinedObject>>literalScannedAs: scannedLiteral notifying: requestor  [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-UndefinedObject>>notNil  [
+UndefinedObject>>notNil [
 	"Refer to the comment in Object|notNil."
 
 	^false
@@ -239,7 +239,7 @@ UndefinedObject>>notNil  [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-UndefinedObject>>printOn: aStream  [
+UndefinedObject>>printOn: aStream [
 	"Refer to the comment in Object|printOn:." 
 
 	aStream nextPutAll: 'nil'
@@ -266,7 +266,7 @@ UndefinedObject>>shallowCopy [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-UndefinedObject>>storeOn: aStream  [
+UndefinedObject>>storeOn: aStream [
 	"Refer to the comment in Object|storeOn:." 
 
 	aStream nextPutAll: 'nil'

@@ -13,7 +13,7 @@ Class {
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-InstructionClient>>blockReturnConstant: value  [
+InstructionClient>>blockReturnConstant: value [
 	"Return Constant From Block bytecode."
 ]
 
@@ -91,7 +91,7 @@ InstructionClient>>jump: offset [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-InstructionClient>>jump: offset if: condition  [
+InstructionClient>>jump: offset if: condition [
 	"Conditional Jump bytecode."
 
 
@@ -101,7 +101,7 @@ InstructionClient>>jump: offset if: condition  [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-InstructionClient>>methodReturnConstant: value  [
+InstructionClient>>methodReturnConstant: value [
 	"Return Constant bytecode."
 
 ]
@@ -128,7 +128,7 @@ InstructionClient>>methodReturnTop [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-InstructionClient>>popIntoLiteralVariable: anAssociation  [
+InstructionClient>>popIntoLiteralVariable: anAssociation [
 	"Remove Top Of Stack And Store Into Literal Variable bytecode."
 
 ]
@@ -137,7 +137,7 @@ InstructionClient>>popIntoLiteralVariable: anAssociation  [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-InstructionClient>>popIntoReceiverVariable: offset  [
+InstructionClient>>popIntoReceiverVariable: offset [
 	"Remove Top Of Stack And Store Into Instance Variable bytecode."
 
 ]
@@ -154,7 +154,7 @@ InstructionClient>>popIntoRemoteTemp: remoteTempIndex inVectorAt: tempVectorInde
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-InstructionClient>>popIntoTemporaryVariable: offset  [
+InstructionClient>>popIntoTemporaryVariable: offset [
 	"Remove Top Of Stack And Store Into Temporary Variable bytecode."
 
 ]
@@ -216,7 +216,7 @@ InstructionClient>>pushConstant: value [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-InstructionClient>>pushFullClosure: aCollection numCopied: anInteger receiverOnStack: aFalse ignoreOuterContext: aFalse4  [
+InstructionClient>>pushFullClosure: aCollection numCopied: anInteger receiverOnStack: aFalse ignoreOuterContext: aFalse4 [
 	"Push Full Closure bytecode."
 ]
 
@@ -233,7 +233,7 @@ InstructionClient>>pushLiteralVariable: anAssociation [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-InstructionClient>>pushNewArrayOfSize: numElements  [
+InstructionClient>>pushNewArrayOfSize: numElements [
 	"Push New Array of size numElements bytecode."
 
 ]
@@ -292,7 +292,7 @@ InstructionClient>>send: selector super: supered numArgs: numberArguments [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-InstructionClient>>storeIntoLiteralVariable: anAssociation  [
+InstructionClient>>storeIntoLiteralVariable: anAssociation [
 	"Store Top Of Stack Into Literal Variable Of Method bytecode."
 
 ]
@@ -301,7 +301,7 @@ InstructionClient>>storeIntoLiteralVariable: anAssociation  [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-InstructionClient>>storeIntoReceiverVariable: offset  [
+InstructionClient>>storeIntoReceiverVariable: offset [
 	"Store Top Of Stack Into Instance Variable Of Method bytecode."
 
 ]
@@ -318,7 +318,7 @@ InstructionClient>>storeIntoRemoteTemp: remoteTempIndex inVectorAt: tempVectorIn
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-InstructionClient>>storeIntoTemporaryVariable: offset  [
+InstructionClient>>storeIntoTemporaryVariable: offset [
 	"Store Top Of Stack Into Temporary Variable Of Method bytecode."
 
 ]
@@ -336,7 +336,7 @@ InstructionClient>>trap [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-InstructionClient>>trapIfNotInstanceOf: behaviorOrArrayOfBehavior  [
+InstructionClient>>trapIfNotInstanceOf: behaviorOrArrayOfBehavior [
 	"If the top of stack is not an instance of either the argument, or, if the
 	argument is an Array,
 	any of the elements of the argument, send the class trap message

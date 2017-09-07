@@ -106,7 +106,7 @@ LargePositiveInteger>>mightBeASquare [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-LargePositiveInteger>>negated  [
+LargePositiveInteger>>negated [
 	^ (self copyto: (LargeNegativeInteger new: self digitLength))
 		normalize  "Need to normalize to catch SmallInteger minVal"
 ]

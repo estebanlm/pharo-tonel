@@ -141,7 +141,7 @@ Halt class>>now: aString [
 	#category : #halting,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Halt class>>onCount: anInteger  [
+Halt class>>onCount: anInteger [
 	"Halt on the anInteger-th time through"
 	<debuggerCompleteToSender>	
 	| callingContext node | 

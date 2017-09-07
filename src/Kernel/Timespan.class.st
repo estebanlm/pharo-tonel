@@ -17,7 +17,7 @@ Class {
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Timespan class>>current  [
+Timespan class>>current [
 
 	^ self starting: DateAndTime now 
 ]
@@ -37,7 +37,7 @@ Timespan class>>new [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Timespan class>>starting: aDateAndTime  [
+Timespan class>>starting: aDateAndTime [
 
 	^ self starting: aDateAndTime duration: Duration zero 
 ]
@@ -112,7 +112,7 @@ Timespan>>= comparand [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Timespan>>asDate  [
+Timespan>>asDate [
 
 	^ start asDate 
 ]
@@ -130,7 +130,7 @@ Timespan>>asDateAndTime [
 	#category : #conversion,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Timespan>>asDosTimestamp  [
+Timespan>>asDosTimestamp [
 
 	^ start asDosTimestamp 
 ]
@@ -148,7 +148,7 @@ Timespan>>asDuration [
 	#category : #conversion,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Timespan>>asMonth  [
+Timespan>>asMonth [
 
 	^ start asMonth 
 ]
@@ -185,7 +185,7 @@ Timespan>>asWeek [
 	#category : #conversion,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Timespan>>asYear  [
+Timespan>>asYear [
 
 	^ start asYear
 ]
@@ -208,7 +208,7 @@ Timespan>>dates [
 	#category : #enumerating,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Timespan>>datesDo: aBlock  [
+Timespan>>datesDo: aBlock [
 
 	self do: aBlock with: start asDate. 
 ]
@@ -266,7 +266,7 @@ Timespan>>dayOfYear [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Timespan>>daysInMonth  [
+Timespan>>daysInMonth [
 
 	^ start daysInMonth 
 ]
@@ -339,7 +339,7 @@ Timespan>>duration: aDuration [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Timespan>>end  [
+Timespan>>end [
 
 	^ self duration asNanoSeconds = 0
 		ifTrue: [ self start ]
@@ -384,7 +384,7 @@ Timespan>>hash [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Timespan>>includes: aDateAndTime  [
+Timespan>>includes: aDateAndTime [
 
 	^ (aDateAndTime isKindOf: Timespan)
 			ifTrue: [ 
@@ -408,7 +408,7 @@ Timespan>>includesAll: aCollection [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Timespan>>includesAllOf: aCollection  [
+Timespan>>includesAllOf: aCollection [
 
 	self
 		deprecated: 'Please use #includesAll: instead'
@@ -432,7 +432,7 @@ Timespan>>includesAny: aCollection [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Timespan>>includesAnyOf: aCollection  [
+Timespan>>includesAnyOf: aCollection [
 	
 	self flag: 'use includesAny: instead'.
 	
@@ -469,7 +469,7 @@ Timespan>>isLeapYear [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Timespan>>julianDayNumber  [
+Timespan>>julianDayNumber [
 
 	^ start julianDayNumber 
 ]
@@ -495,7 +495,7 @@ Timespan>>month [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Timespan>>monthAbbreviation  [
+Timespan>>monthAbbreviation [
 
 	^ start monthAbbreviation 
 ]
@@ -513,7 +513,7 @@ Timespan>>monthIndex [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Timespan>>monthName  [
+Timespan>>monthName [
 
 	^ start monthName 
 ]
@@ -574,7 +574,7 @@ Timespan>>offset: anOffset [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Timespan>>previous  [
+Timespan>>previous [
 
 	^ self class starting: (start - duration) duration: duration 
 ]
@@ -583,7 +583,7 @@ Timespan>>previous  [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Timespan>>printOn: aStream  [
+Timespan>>printOn: aStream [
 
 	super printOn: aStream.
 	aStream 
@@ -645,7 +645,7 @@ Timespan>>translateTo: aTimeZone [
 	#category : #conversion,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Timespan>>translateToUTC  [
+Timespan>>translateToUTC [
 	" Move this represenation to UTC"
 	^ self translateTo: 0
 ]
@@ -701,7 +701,7 @@ Timespan>>workDatesDo: aBlock [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Timespan>>year  [
+Timespan>>year [
 
 	^ start year 
 ]

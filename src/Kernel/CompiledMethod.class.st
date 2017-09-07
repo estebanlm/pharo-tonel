@@ -498,7 +498,7 @@ CompiledMethod>>debuggerMap [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-CompiledMethod>>defaultSelector  [
+CompiledMethod>>defaultSelector [
 	"Invent and answer an appropriate message selector (a Symbol) for me, 
 	that is, one that will parse with the correct number of arguments."
 
@@ -1060,7 +1060,7 @@ CompiledMethod>>primitive [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-CompiledMethod>>printOn: aStream  [
+CompiledMethod>>printOn: aStream [
 	"Overrides method inherited from the byte arrayed collection."
 
 	aStream print: self methodClass; nextPutAll: '>>'; print: self selector.
@@ -1241,7 +1241,7 @@ CompiledMethod>>protocol: aString [
 	#category : #scanning,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-CompiledMethod>>readsField: varIndex  [
+CompiledMethod>>readsField: varIndex [
 	"Answer whether the receiver loads the instance variable indexed by the argument."
 	self isReturnField ifTrue: [^self returnField = (varIndex - 1)].
 	^ super readsField: varIndex 
@@ -1462,7 +1462,7 @@ CompiledMethod>>untagFrom: aSymbol [
 	#category : #evaluating,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-CompiledMethod>>valueWithReceiver: aReceiver arguments: anArray  [
+CompiledMethod>>valueWithReceiver: aReceiver arguments: anArray [
 	"This should be changed when all the VM will support passign of extra arguments
 		^self receiver: aReceiver withArguments: anArray executeMethod: self"
 	

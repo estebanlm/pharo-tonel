@@ -120,7 +120,7 @@ ProcessorScheduler>>activeProcess [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ProcessorScheduler>>anyProcessesAbove: highestPriority  [
+ProcessorScheduler>>anyProcessesAbove: highestPriority [
 	"Do any instances of Process exist with higher priorities?"
 
 	^(Process allInstances "allSubInstances" select: [:aProcess | 
@@ -249,7 +249,7 @@ ProcessorScheduler>>printOn: aStream [
 	#category : #removing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ProcessorScheduler>>remove: aProcess ifAbsent: aBlock  [
+ProcessorScheduler>>remove: aProcess ifAbsent: aBlock [
 	"Remove aProcess from the list on which it is waiting for the processor 
 	and answer aProcess. If it is not waiting, evaluate aBlock."
 
@@ -278,7 +278,7 @@ ProcessorScheduler>>scanSchedule: aBlock startingAt: topPriority [
 	#category : #'process state change',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ProcessorScheduler>>suspendFirstAt: aPriority  [
+ProcessorScheduler>>suspendFirstAt: aPriority [
 	"Suspend the first Process that is waiting to run with priority aPriority."
 
 	^self suspendFirstAt: aPriority
@@ -289,7 +289,7 @@ ProcessorScheduler>>suspendFirstAt: aPriority  [
 	#category : #'process state change',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ProcessorScheduler>>suspendFirstAt: aPriority ifNone: noneBlock  [
+ProcessorScheduler>>suspendFirstAt: aPriority ifNone: noneBlock [
 	"Suspend the first Process that is waiting to run with priority aPriority. If 
 	no Process is waiting, evaluate the argument, noneBlock."
 

@@ -38,7 +38,7 @@ Year class>>isLeapYear: aYearInteger [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Year class>>starting: aDateAndTime duration: aDuration  [
+Year class>>starting: aDateAndTime duration: aDuration [
 	"Return a new year, starting from the beginning the year the given DateAndTime is in."
 	| aYear |
 	aYear := aDateAndTime asDateAndTime year.
@@ -61,7 +61,7 @@ Year class>>year: aYear [
 	#category : #conversion,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Year>>asYear  [
+Year>>asYear [
 
 	^ self 
 ]
@@ -70,7 +70,7 @@ Year>>asYear  [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Year>>daysInMonth  [
+Year>>daysInMonth [
 
 	^ Date daysInMonth  
 ]

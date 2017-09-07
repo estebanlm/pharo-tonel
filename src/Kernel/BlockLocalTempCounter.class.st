@@ -98,7 +98,7 @@ BlockLocalTempCounter>>jump: offset [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-BlockLocalTempCounter>>jump: offset if: condition  [
+BlockLocalTempCounter>>jump: offset if: condition [
 	"Conditional Jump bytecode."
 	stackPointer := stackPointer - 1.
 	offset > 0 ifTrue:
@@ -109,7 +109,7 @@ BlockLocalTempCounter>>jump: offset if: condition  [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-BlockLocalTempCounter>>methodReturnConstant: value  [
+BlockLocalTempCounter>>methodReturnConstant: value [
 	"Return Constant bytecode."
 	self doJoin
 ]
@@ -137,7 +137,7 @@ BlockLocalTempCounter>>methodReturnTop [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-BlockLocalTempCounter>>popIntoLiteralVariable: anAssociation  [
+BlockLocalTempCounter>>popIntoLiteralVariable: anAssociation [
 	"Remove Top Of Stack And Store Into Literal Variable bytecode."
 	stackPointer := stackPointer - 1
 ]
@@ -146,7 +146,7 @@ BlockLocalTempCounter>>popIntoLiteralVariable: anAssociation  [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-BlockLocalTempCounter>>popIntoReceiverVariable: offset  [
+BlockLocalTempCounter>>popIntoReceiverVariable: offset [
 	"Remove Top Of Stack And Store Into Instance Variable bytecode."
 	stackPointer := stackPointer - 1
 ]
@@ -164,7 +164,7 @@ BlockLocalTempCounter>>popIntoRemoteTemp: remoteTempIndex inVectorAt: tempVector
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-BlockLocalTempCounter>>popIntoTemporaryVariable: offset  [
+BlockLocalTempCounter>>popIntoTemporaryVariable: offset [
 	"Remove Top Of Stack And Store Into Temporary Variable bytecode."
 	stackPointer := stackPointer - 1
 ]
@@ -223,7 +223,7 @@ BlockLocalTempCounter>>pushLiteralVariable: anAssociation [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-BlockLocalTempCounter>>pushNewArrayOfSize: numElements  [
+BlockLocalTempCounter>>pushNewArrayOfSize: numElements [
 	"Push New Array of size numElements bytecode."
 	stackPointer := stackPointer + 1
 ]

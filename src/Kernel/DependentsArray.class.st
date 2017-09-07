@@ -27,7 +27,7 @@ DependentsArray class>>with: anObject [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-DependentsArray class>>with: firstObject with: secondObject  [
+DependentsArray class>>with: firstObject with: secondObject [
 	^(self basicNew: 2)
 		basicAt: 1 put: firstObject;
 		basicAt: 2 put: secondObject;
@@ -38,7 +38,7 @@ DependentsArray class>>with: firstObject with: secondObject  [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-DependentsArray class>>with: firstObject with: secondObject with: thirdObject  [
+DependentsArray class>>with: firstObject with: secondObject with: thirdObject [
 	^(self basicNew: 3)
 		basicAt: 1 put: firstObject;
 		basicAt: 2 put: secondObject;
@@ -50,7 +50,7 @@ DependentsArray class>>with: firstObject with: secondObject with: thirdObject  [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-DependentsArray class>>with: firstObject with: secondObject with: thirdObject with: fourthObject  [
+DependentsArray class>>with: firstObject with: secondObject with: thirdObject with: fourthObject [
 	^(self basicNew: 4)
 		basicAt: 1 put: firstObject;
 		basicAt: 2 put: secondObject;
@@ -136,7 +136,7 @@ DependentsArray>>at: anIndex put: anObject [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-DependentsArray>>basicReplaceFrom: start to: stop with: replacement startingAt: repStart  [
+DependentsArray>>basicReplaceFrom: start to: stop with: replacement startingAt: repStart [
 	"Primitive. This destructively replaces elements from start to stop in the receiver starting at index, repStart, in the collection, replacement. Answer the receiver. Range checks are performed in the primitive only. Optional. See Object documentation whatIsAPrimitive."
 	<primitive: 105>
 	start to: stop do: [:i |
@@ -147,7 +147,7 @@ DependentsArray>>basicReplaceFrom: start to: stop with: replacement startingAt: 
 	#category : #enumerating,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-DependentsArray>>collect: aBlock  [
+DependentsArray>>collect: aBlock [
 	"Refer to the comment in Collection|select:."
 	| basicSize newSelf size dep selection |
 	basicSize := self basicSize.
@@ -164,7 +164,7 @@ DependentsArray>>collect: aBlock  [
 	#category : #copying,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-DependentsArray>>copyWith: newElement  [
+DependentsArray>>copyWith: newElement [
 	"Re-implemented to not copy any niled out dependents."
 	| copy i |
 	copy := self class new: self size + 1.
@@ -218,7 +218,7 @@ DependentsArray>>reverseDo: aBlock [
 	#category : #enumerating,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-DependentsArray>>select: aBlock  [
+DependentsArray>>select: aBlock [
 	"Refer to the comment in Collection|select:."
 	| basicSize newSelf size selection |
 	basicSize := self basicSize.

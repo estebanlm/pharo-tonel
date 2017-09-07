@@ -29,7 +29,7 @@ Integer class>>basicNew [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer class>>byte1: byte1 byte2: byte2 byte3: byte3 byte4: byte4  [
+Integer class>>byte1: byte1 byte2: byte2 byte3: byte3 byte4: byte4 [
 	"Depending on high-order byte copy directly into a LargeInteger,
 	or build up a SmallInteger by shifting"
 	| value |
@@ -260,7 +260,7 @@ Integer>>/ aNumber [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>// aNumber  [
+Integer>>// aNumber [
 	| q |
 	aNumber = 0 ifTrue: [^ (ZeroDivide dividend: self) signal"<- Chg"].
 	self = 0 ifTrue: [^ 0].
@@ -368,7 +368,7 @@ Integer>>>> shiftAmount [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>\\\ anInteger  [
+Integer>>\\\ anInteger [
 	"a modulo method for use in DSA. Be careful if you try to use this elsewhere."
 
 	^self \\ anInteger
@@ -400,7 +400,7 @@ Integer>>alignedTo: anInteger [
 	#category : #'bit manipulation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>allMask: mask  [
+Integer>>allMask: mask [
 	"Treat the argument as a bit mask. Answer whether all of the bits that 
 	are 1 in the argument are 1 in the receiver."
 
@@ -411,7 +411,7 @@ Integer>>allMask: mask  [
 	#category : #'bit manipulation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>anyBitOfMagnitudeFrom: start to: stopArg  [
+Integer>>anyBitOfMagnitudeFrom: start to: stopArg [
 	"Tests for any magnitude bits in the interval from start to stopArg."
 	"Primitive fixed in LargeIntegers v1.2. If you have an earlier version 
 	comment out the primitive call (using this ST method then)."
@@ -455,7 +455,7 @@ Integer>>anyBitOfMagnitudeFrom: start to: stopArg  [
 	#category : #'bit manipulation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>anyMask: mask  [
+Integer>>anyMask: mask [
 	"Treat the argument as a bit mask. Answer whether any of the bits that 
 	are 1 in the argument are 1 in the receiver."
 
@@ -502,7 +502,7 @@ Integer>>asByteArray [
 	#category : #converting-arrays,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>asByteArrayOfSize: aSize  [
+Integer>>asByteArrayOfSize: aSize [
 	"Answer a ByteArray of aSize with my value, most-significant byte first."
 	| answer digitPos |
 	aSize < self digitLength ifTrue: [ self error: 'number to large for byte array' ].
@@ -745,7 +745,7 @@ Integer>>benchmark  "Handy bytecode-heavy benchmark" [
 	#category : #'bit manipulation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>bitAnd: n  [
+Integer>>bitAnd: n [
 	"Answer an Integer whose bits are the logical AND of the receiver's bits  
 	and those of the argument, n."
 	| norm |
@@ -794,7 +794,7 @@ Integer>>bitAt: anInteger put: value [
 	#category : #'bit manipulation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>bitClear: aMask  [
+Integer>>bitClear: aMask [
 	"Answer an Integer equal to the receiver, except with all bits cleared that are set in aMask."
 
 	^ (self bitOr: aMask) - aMask
@@ -825,7 +825,7 @@ Integer>>bitInvert32 [
 	#category : #'bit manipulation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>bitOr: n  [
+Integer>>bitOr: n [
 	"Answer an Integer whose bits are the logical OR of the receiver's bits  
 	and those of the argument, n."
 	| norm |
@@ -841,7 +841,7 @@ Integer>>bitOr: n  [
 	#category : #'bit manipulation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>bitShift: shiftCount  [
+Integer>>bitShift: shiftCount [
 	"Answer an Integer whose value (in twos-complement representation) is  
 	the receiver's value (in twos-complement representation) shifted left by 
 	the number of bits indicated by the argument. Negative arguments  
@@ -858,7 +858,7 @@ Integer>>bitShift: shiftCount  [
 	#category : #'bit manipulation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>bitShiftMagnitude: shiftCount  [
+Integer>>bitShiftMagnitude: shiftCount [
 	"Answer an Integer whose value (in magnitude representation) is  
 	the receiver's value (in magnitude representation) shifted left by  
 	the number of bits indicated by the argument. Negative arguments
@@ -908,7 +908,7 @@ Integer>>bitStringLength [
 	#category : #'bit manipulation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>bitXor: n  [
+Integer>>bitXor: n [
 	"Answer an Integer whose bits are the logical XOR of the receiver's bits  
 	and those of the argument, n."
 	| norm |
@@ -924,7 +924,7 @@ Integer>>bitXor: n  [
 	#category : #'truncation and round off',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>ceiling  [
+Integer>>ceiling [
 	"Refer to the comment in Number|ceiling."
 ]
 
@@ -999,7 +999,7 @@ Integer>>denominator [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>digitAdd: arg  [
+Integer>>digitAdd: arg [
 	| len arglen accum sum |
 	<primitive: 'primDigitAdd' module:'LargeIntegers'>
 	accum := 0.
@@ -1039,7 +1039,7 @@ Integer>>digitAt: anExponent base: base [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>digitCompare: arg  [
+Integer>>digitCompare: arg [
 	"Compare the magnitude of self with that of arg.   
 	Return a code of 1, 0, -1 for self >, = , < arg"
 	| len arglen argDigit selfDigit |
@@ -1063,7 +1063,7 @@ Integer>>digitCompare: arg  [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>digitDiv: arg neg: ng  [
+Integer>>digitDiv: arg neg: ng [
 	"Answer with an array of (quotient, remainder)."
 	| quo rem ql d div dh dnh dl qhi qlo j l hi lo r3 a t |
 	<primitive: 'primDigitDivNegative' module:'LargeIntegers'>
@@ -1189,7 +1189,7 @@ Integer>>digitLength [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>digitLogic: arg op: op length: len  [
+Integer>>digitLogic: arg op: op length: len [
 	| i result neg1 neg2 rneg z1 z2 rz b1 b2 b |
 	neg1 := self negative.
 	neg2 := arg negative.
@@ -1243,7 +1243,7 @@ Integer>>digitLogic: arg op: op length: len  [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>digitLshift: shiftCount  [
+Integer>>digitLshift: shiftCount [
 	| carry rShift mask len result digit byteShift bitShift highBit |
 	(highBit := self highBitOfMagnitude) = 0 ifTrue: [^ 0].
 	len := highBit + shiftCount + 7 // 8.
@@ -1274,7 +1274,7 @@ Integer>>digitLshift: shiftCount  [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>digitMultiply: arg neg: ng  [
+Integer>>digitMultiply: arg neg: ng [
 	| prod prodLen carry digit k ab |
 	<primitive: 'primDigitMultiplyNegative' module:'LargeIntegers'>
 	(arg digitLength = 1 and: [(arg digitAt: 1)
@@ -1306,7 +1306,7 @@ Integer>>digitMultiply: arg neg: ng  [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>digitRshift: anInteger bytes: b lookfirst: a  [
+Integer>>digitRshift: anInteger bytes: b lookfirst: a [
 	 "Shift right 8*b+anInteger bits, 0<=n<8.
 	Discard all digits beyond a, and all zeroes at or below a."
 	| n x r f m digit count i |
@@ -1336,7 +1336,7 @@ Integer>>digitRshift: anInteger bytes: b lookfirst: a  [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>digitSubtract: arg  [
+Integer>>digitSubtract: arg [
 	| smaller larger z sum sl al ng |
 	<primitive: 'primDigitSubtract' module:'LargeIntegers'>
 	sl := self digitLength.
@@ -1375,7 +1375,7 @@ Integer>>digitSubtract: arg  [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>even  [
+Integer>>even [
 	"Refer to the comment in Number|even."
 
 	^((self digitAt: 1) bitAnd: 1) = 0
@@ -1397,7 +1397,7 @@ Integer>>factorial [
 	#category : #'truncation and round off',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>floor  [
+Integer>>floor [
 	"Refer to the comment in Number|floor."
 ]
 
@@ -1650,7 +1650,7 @@ Integer>>lastDigit [
 	#category : #'mathematical functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>lcm: n  [
+Integer>>lcm: n [
 	"Answer the least common multiple of the receiver and n."
 
 	^self // (self gcd: n) * n
@@ -1784,7 +1784,7 @@ Integer>>montgomeryTimes: a modulo: m mInvModB: mInv [
 	#category : #'bit manipulation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>noMask: mask  [
+Integer>>noMask: mask [
 	"Treat the argument as a bit mask. Answer whether none of the bits that 
 	are 1 in the argument are 1 in the receiver."
 
@@ -1795,7 +1795,7 @@ Integer>>noMask: mask  [
 	#category : #'truncation and round off',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>normalize  [
+Integer>>normalize [
 	"SmallInts OK; LgInts override"
 	^ self
 ]
@@ -1878,7 +1878,7 @@ Integer>>numberOfDigits [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>numberOfDigitsInBase: b  [
+Integer>>numberOfDigitsInBase: b [
 	"Return how many digits are necessary to print this number in base b.
 	This does not count any place for minus sign, radix prefix or whatever.
 	Note that this algorithm may cost a few operations on LargeInteger."
@@ -1992,7 +1992,7 @@ Integer>>printOn: aStream base: base length: minimum padded: zeroFlag [
 	#category : #printing-numerative,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>printOn: aStream base: b nDigits: n  [
+Integer>>printOn: aStream base: b nDigits: n [
 	"Append a representation of this number in base b on aStream using nDigits.
 	self must be positive."
 
@@ -2003,7 +2003,7 @@ Integer>>printOn: aStream base: b nDigits: n  [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>printOn: outputStream base: baseInteger showRadix: flagBoolean  [
+Integer>>printOn: outputStream base: baseInteger showRadix: flagBoolean [
 	"Write a sequence of characters that describes the receiver in radix 
 	baseInteger with optional radix specifier. 
 	The result is undefined if baseInteger less than 2 or greater than 36."
@@ -2038,7 +2038,7 @@ Integer>>printOn: aStream showingDecimalPlaces: placesDesired [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>printPaddedWith: aCharacter to: anInteger  [
+Integer>>printPaddedWith: aCharacter to: anInteger [
 	"Answer the string containing the ASCII representation of the receiver 
 	padded on the left with aCharacter to be at least anInteger characters."
 	
@@ -2052,7 +2052,7 @@ Integer>>printPaddedWith: aCharacter to: anInteger  [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>printPaddedWith: aCharacter to: anInteger base: aRadix  [
+Integer>>printPaddedWith: aCharacter to: anInteger base: aRadix [
 	"Answer the string containing the ASCII representation of the receiver 
 	padded on the left with aCharacter to be at least anInteger characters."
 	| aStream padding digits |
@@ -2157,7 +2157,7 @@ Integer>>printStringPadded: minimal [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>printStringRadix: baseInteger  [
+Integer>>printStringRadix: baseInteger [
 	"Return a string containing a sequence of characters that represents the 
 	numeric value of the receiver in the radix specified by the argument.  
 	If the receiver is negative, a minus sign ('-') is prepended to the 
@@ -2226,7 +2226,7 @@ Integer>>putOn: aStream [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>quo: aNumber  [
+Integer>>quo: aNumber [
 	"Refer to the comment in Number quo: "
 	| ng quo |
 	aNumber isInteger ifTrue: 
@@ -2240,7 +2240,7 @@ Integer>>quo: aNumber  [
 	#category : #printing-numerative,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>radix: base  [
+Integer>>radix: base [
 	^ self printStringBase: base
 ]
 
@@ -2360,7 +2360,7 @@ Integer>>round: numberOfWishedDecimal [
 	#category : #'truncation and round off',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>rounded  [
+Integer>>rounded [
 	"Refer to the comment in Number|rounded."
 ]
 
@@ -2538,7 +2538,7 @@ Integer>>take: kk [
 	#category : #enumerating,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>timesRepeat: aBlock  [
+Integer>>timesRepeat: aBlock [
 	"Evaluate the argument, aBlock, the number of times represented by the 
 	receiver."
 
@@ -2577,6 +2577,6 @@ Integer>>tinyBenchmarks [
 	#category : #'truncation and round off',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Integer>>truncated  [
+Integer>>truncated [
 	"Refer to the comment in Number|truncated."
 ]

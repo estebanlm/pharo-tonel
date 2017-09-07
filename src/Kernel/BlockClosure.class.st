@@ -384,7 +384,7 @@ BlockClosure>>forkAndWait [
 	#category : #scheduling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-BlockClosure>>forkAt: priority  [
+BlockClosure>>forkAt: priority [
 	"Create and schedule a Process running the code in the receiver at the given priority. Answer the newly created process."
 
 	^ self newProcess
@@ -583,7 +583,7 @@ BlockClosure>>newProcess [
 	#category : #scheduling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-BlockClosure>>newProcessWith: anArray  [
+BlockClosure>>newProcessWith: anArray [
 	"Answer a Process running the code in the receiver. The receiver's block 
 	arguments are bound to the contents of the argument, anArray. The 
 	process is not scheduled."
@@ -965,7 +965,7 @@ BlockClosure>>valueAfterWaiting: aDelay [
 	#category : #evaluating,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-BlockClosure>>valueAt: blockPriority  [
+BlockClosure>>valueAt: blockPriority [
 	"Evaluate the receiver (block), with another priority as the actual one 
 	and restore it afterwards. The caller should be careful with using 
 	higher priorities."
@@ -1159,7 +1159,7 @@ BlockClosure>>valueWithEnoughArguments: anArray [
 	#category : #evaluating,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-BlockClosure>>valueWithExit  [
+BlockClosure>>valueWithExit [
 	  self value: [ ^nil ]
 ]
 
@@ -1184,7 +1184,7 @@ BlockClosure>>valueWithInterval: aDelay [
 	#category : #evaluating,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-BlockClosure>>valueWithPossibleArgs: anArray  [
+BlockClosure>>valueWithPossibleArgs: anArray [
 	"Execute the receiver with the correct number of arguments taken from the argument."
 	"([:x | x + 1] valueWithPossibleArgs: #( 13 12 15))
 	>>> 14
@@ -1214,7 +1214,7 @@ BlockClosure>>valueWithPossibleArgs: anArray  [
 	#category : #evaluating,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-BlockClosure>>valueWithPossibleArgument: anArg  [
+BlockClosure>>valueWithPossibleArgument: anArg [
 	"Evaluate the block represented by the receiver. 
 	 If the block requires one argument, use anArg, if it requires more than one,
 	 fill up the rest with nils."
@@ -1280,7 +1280,7 @@ BlockClosure>>whileFalse [
 	#category : #controlling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-BlockClosure>>whileFalse: aBlock  [
+BlockClosure>>whileFalse: aBlock [
 	"Ordinarily compiled in-line, and therefore not overridable.
 	This is in case the message is sent to other than a literal block.
 	Evaluate the argument, aBlock, as long as the value of the receiver is false."
@@ -1292,7 +1292,7 @@ BlockClosure>>whileFalse: aBlock  [
 	#category : #controlling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-BlockClosure>>whileNil: aBlock  [
+BlockClosure>>whileNil: aBlock [
 	"Unlike #whileTrue/False: this is not compiled inline."
 	^ [self value isNil] whileTrue: [aBlock value]
 	
@@ -1302,7 +1302,7 @@ BlockClosure>>whileNil: aBlock  [
 	#category : #controlling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-BlockClosure>>whileNotNil: aBlock  [
+BlockClosure>>whileNotNil: aBlock [
 	"Unlike #whileTrue/False: this is not compiled inline."
 	^ [self value notNil] whileTrue: [aBlock value]
 	
@@ -1324,7 +1324,7 @@ BlockClosure>>whileTrue [
 	#category : #controlling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-BlockClosure>>whileTrue: aBlock  [
+BlockClosure>>whileTrue: aBlock [
 	"Ordinarily compiled in-line, and therefore not overridable.
 	This is in case the message is sent to other than a literal block.
 	Evaluate the argument, aBlock, as long as the value of the receiver is true."

@@ -58,7 +58,7 @@ Categorizer class>>allCategory [
 	#category : #'class initialization',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Categorizer class>>default  [
+Categorizer class>>default [
 	^ Default
 ]
 
@@ -66,7 +66,7 @@ Categorizer class>>default  [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Categorizer class>>defaultList: aSortedCollection  [
+Categorizer class>>defaultList: aSortedCollection [
 	"Answer an instance of me with initial elements from the argument, 
 	aSortedCollection."
 
@@ -180,7 +180,7 @@ Categorizer>>assertInvariant [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Categorizer>>basicRemoveElement: element  [
+Categorizer>>basicRemoveElement: element [
 	"Remove the selector, element, from all categories."
 	| categoryIndex elementIndex nextStop newElements |
 	categoryIndex := 1.
@@ -259,7 +259,7 @@ Categorizer>>categories: anArray [
 	#category : #queries,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Categorizer>>categoryOfElement: element  [
+Categorizer>>categoryOfElement: element [
 	"Answer the category associated with the argument, element."
 
 	| index |
@@ -325,7 +325,7 @@ Categorizer>>changeFromCategorySpecs: categorySpecs [
 	#category : #operations,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Categorizer>>classify: element under: heading  [
+Categorizer>>classify: element under: heading [
 	self classify: element under: heading suppressIfDefault: true
 ]
 
@@ -459,7 +459,7 @@ Categorizer>>listAtCategoryNamed: categoryName [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Categorizer>>listAtCategoryNumber: anInteger  [
+Categorizer>>listAtCategoryNumber: anInteger [
 	"Answer the array of elements stored at the position indexed by anInteger.  Answer nil if anInteger is larger than the number of categories."
 
 	| firstIndex lastIndex |
@@ -483,7 +483,7 @@ Categorizer>>listAtProtocolNamed: categoryName [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Categorizer>>numberOfCategoryOfElement: element  [
+Categorizer>>numberOfCategoryOfElement: element [
 	"Answer the index of the category with which the argument, element, is 
 	associated."
 
@@ -514,7 +514,7 @@ Categorizer>>protocolOfElement: element [
 	#category : #operations,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Categorizer>>removeCategory: cat  [
+Categorizer>>removeCategory: cat [
 	"Remove the category named, cat. Create an error notificiation if the 
 	category has any elements in it."
 
@@ -539,7 +539,7 @@ Categorizer>>removeCategory: cat  [
 	#category : #operations,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Categorizer>>removeElement: element  [
+Categorizer>>removeElement: element [
 	^ self basicRemoveElement: element
 ]
 

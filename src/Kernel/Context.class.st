@@ -258,7 +258,7 @@ Context class>>runSimulated: aBlock [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context class>>sender: s receiver: r method: m arguments: args  [
+Context class>>sender: s receiver: r method: m arguments: args [
 	"Answer an instance of me with attributes set to the arguments."
 
 	^(self newForMethod: m) setSender: s receiver: r method: m arguments: args
@@ -355,7 +355,7 @@ Context class>>tryNamedPrimitiveTemplateMethod [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>aboutToReturn: result through: firstUnwindContext  [
+Context>>aboutToReturn: result through: firstUnwindContext [
 	"Called from VM when an unwindBlock is found between self and its home.
 	 Return to home's sender, executing unwind blocks on the way."
 
@@ -366,7 +366,7 @@ Context>>aboutToReturn: result through: firstUnwindContext  [
 	#category : #controlling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>activateMethod: newMethod withArgs: args receiver: rcvr class: class  [
+Context>>activateMethod: newMethod withArgs: args receiver: rcvr class: class [
 	"Answer a Context initialized with the arguments."
 
 	^Context 
@@ -540,7 +540,7 @@ Context>>basicSize [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>blockReturnConstant: value  [
+Context>>blockReturnConstant: value [
 	"Simulate the interpreter's action when a ReturnConstantToCaller
 	bytecode is 
 	encountered in the receiver. This should only happen in a closure
@@ -701,7 +701,7 @@ Context>>contextClass [
 	#category : #'debugger access',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>contextStack  [
+Context>>contextStack [
 	"Answer an Array of the contexts on the receiver's sender chain."
 
 	^self stackOfSize: 100000
@@ -832,7 +832,7 @@ Context>>doPop [
 	#timestamp : ' 8/31/2017 07:16:33'
 }
 Context>>"protocol: private"
-doPrimitive: primitiveIndex method: meth receiver: aReceiver args: arguments  [
+doPrimitive: primitiveIndex method: meth receiver: aReceiver args: arguments [
 	"Simulate a primitive method whose index is primitiveIndex.  The simulated receiver and
 	 arguments are given as arguments to this message. If successful, push result and return
 	 resuming context, else ^ {errCode, PrimitiveFailToken}. Any primitive which provokes
@@ -1170,7 +1170,7 @@ Context>>handleSignal: exception [
 	#category : #query,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>hasContext: aContext  [
+Context>>hasContext: aContext [
 	"Answer whether aContext is me or one of my senders"
 
 	^ (self findContextSuchThat: [ :context | context == aContext ]) notNil
@@ -1198,7 +1198,7 @@ Context>>hasMethodReturn [
 	#category : #controlling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>hasSender: context  [
+Context>>hasSender: context [
 	"Answer whether the receiver is strictly above context on the stack."
 
 	| senderContext |
@@ -1217,7 +1217,7 @@ Context>>hasSender: context  [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>home  [
+Context>>home [
 	"Answer the context in which the receiver was defined."
 
 	closureOrNil == nil ifTrue:
@@ -1372,7 +1372,7 @@ Context>>jump [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>jump: distance  [
+Context>>jump: distance [
 	"Simulate the action of a 'unconditional jump' bytecode whose offset is 
 	the argument, distance."
 
@@ -1383,7 +1383,7 @@ Context>>jump: distance  [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>jump: distance if: condition  [
+Context>>jump: distance if: condition [
 	"Simulate the action of a 'conditional jump' bytecode whose offset is the 
 	argument, distance, and whose condition is the argument, condition."
 
@@ -1423,7 +1423,7 @@ Context>>method [
 	#category : #'debugger access',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>methodClass  [
+Context>>methodClass [
 	"Answer the class in which the receiver's method was found."
 	
 	^self method methodClass ifNil:[self receiver class].
@@ -1546,7 +1546,7 @@ Context>>numTemps [
 	#category : #'mirror primitives',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>object: anObject basicAt: index  [
+Context>>object: anObject basicAt: index [
 	"Answer the value of an indexable element in the argument anObject without sending
 	 it a message. Fail if the argument index is not an Integer or is out of bounds, or if
 	 anObject is not indexable. This mimics the action of the VM when it indexes an object.
@@ -1564,7 +1564,7 @@ Context>>object: anObject basicAt: index  [
 	#category : #'mirror primitives',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>object: anObject basicAt: index put: value  [
+Context>>object: anObject basicAt: index put: value [
 	"Store the last argument 
 	 value in the indexable element of the argument anObject indicated by index without sending
 	 anObject a message. Fail if the argument index is not an Integer or is out of bounds, or if
@@ -1587,7 +1587,7 @@ Context>>object: anObject basicAt: index put: value  [
 	#category : #'mirror primitives',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>object: anObject eqeq: anOtherObject  [
+Context>>object: anObject eqeq: anOtherObject [
 	"Answer whether the first and second arguments are the same object (have the
 	 same object pointer) without sending a message to the first argument.  This
 	 mimics the action of the VM when it compares two object pointers.  Used to
@@ -1617,7 +1617,7 @@ Context>>object: anObject instVarAt: anIndex [
 	#category : #'mirror primitives',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>object: anObject instVarAt: anIndex put: aValue  [
+Context>>object: anObject instVarAt: anIndex put: aValue [
 	"Primitive. Store a value into a fixed variable in the argument anObject.
 	 The numbering of the variables corresponds to the named instance
 	 variables.  Fail if the index is not an Integer or is not the index of a
@@ -1716,7 +1716,7 @@ Context>>pop [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>popIntoLiteralVariable: value  [
+Context>>popIntoLiteralVariable: value [
 	"Simulate the action of bytecode that removes the top of the stack and 
 	stores it into a literal variable of my method."
 
@@ -1728,7 +1728,7 @@ Context>>popIntoLiteralVariable: value  [
 	#timestamp : ' 8/31/2017 07:16:33'
 }
 Context>>"protocol: instruction decoding"
-popIntoReceiverVariable: offset  [
+popIntoReceiverVariable: offset [
 	"Simulate the action of bytecode that removes the top of the stack and 
 	stores it into an instance variable of my receiver."
 
@@ -1750,7 +1750,7 @@ Context>>popIntoRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>popIntoTemporaryVariable: offset  [
+Context>>popIntoTemporaryVariable: offset [
 	"Simulate the action of bytecode that removes the top of the stack and 
 	stores it into one of my temporary variables."
 
@@ -1776,7 +1776,7 @@ Context>>print: anObject on: aStream [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>printDebugOn: aStream	 [
+Context>>printDebugOn: aStream [
 	"print a condensed for of the stack.
 		For methods simply print Class >> selector
 		For blocks only print the first line"
@@ -1879,7 +1879,7 @@ Context>>privRefresh [
 	#category : #initialize-release,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>privRefreshWith: aCompiledMethod  [
+Context>>privRefreshWith: aCompiledMethod [
 	"Reinitialize the receiver as though it had been for a different method. 
 	 Used by a Debugger when one of the methods to which it refers is 
 	 recompiled."
@@ -1896,7 +1896,7 @@ Context>>privRefreshWith: aCompiledMethod  [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>privSender: aContext  [
+Context>>privSender: aContext [
 
 	sender := aContext
 ]
@@ -1905,7 +1905,7 @@ Context>>privSender: aContext  [
 	#category : #controlling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>push: value  [
+Context>>push: value [
 	"Push value on the receiver's stack."
 
 	self stackp: stackp + 1.
@@ -1988,7 +1988,7 @@ Context>>pushClosureTemps: numTemps [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>pushConsArrayWithElements: numElements  [
+Context>>pushConsArrayWithElements: numElements [
 	| array |
 	array := Array new: numElements.
 	numElements to: 1 by: -1 do: [ :i |
@@ -2000,7 +2000,7 @@ Context>>pushConsArrayWithElements: numElements  [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>pushConstant: value  [
+Context>>pushConstant: value [
 	"Simulate the action of bytecode that pushes the constant, value, on the 
 	top of the stack."
 
@@ -2028,7 +2028,7 @@ Context>>pushFullClosure: compiledBlock numCopied: numCopied receiverOnStack: on
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>pushLiteralVariable: value  [
+Context>>pushLiteralVariable: value [
 	"Simulate the action of bytecode that pushes the contents of the literal 
 	variable whose index is the argument, index, on the top of the stack."
 
@@ -2039,7 +2039,7 @@ Context>>pushLiteralVariable: value  [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>pushNewArrayOfSize: arraySize  [
+Context>>pushNewArrayOfSize: arraySize [
 	self push: (Array new: arraySize)
 ]
 
@@ -2059,7 +2059,7 @@ Context>>pushReceiver [
 	#timestamp : ' 8/31/2017 07:16:33'
 }
 Context>>"protocol: instruction decoding"
-pushReceiverVariable: offset  [
+pushReceiverVariable: offset [
 	"Simulate the action of bytecode that pushes the contents of the receiver's 
 	instance variable whose index is the argument, index, on the top of the 
 	stack."
@@ -2081,7 +2081,7 @@ Context>>pushRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>pushTemporaryVariable: offset  [
+Context>>pushTemporaryVariable: offset [
 	"Simulate the action of bytecode that pushes the contents of the 
 	temporary variable whose index is the argument, index, on the top of 
 	the stack."
@@ -2134,7 +2134,7 @@ Context>>quickStep [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>receiver  [
+Context>>receiver [
 
 	^receiver
 ]
@@ -2163,7 +2163,7 @@ Context>>release [
 	#category : #'debugger access',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>releaseTo: caller  [
+Context>>releaseTo: caller [
 	"Remove information from the receiver and the contexts on its sender 
 	chain up to caller in order to break circularities."
 
@@ -2310,7 +2310,7 @@ Context>>return: value [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>return: value from: aSender  [
+Context>>return: value from: aSender [
 	"For simulation.  Roll back self to aSender and return value from it.  Execute any unwind blocks on the way.  ASSUMES aSender is a sender of self"
 
 	| newTop context |
@@ -2392,7 +2392,7 @@ Context>>runSimulated: aBlock contextAtEachStep: block2 [
 	#category : #controlling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>runUntilErrorOrReturnFrom: aSender  [
+Context>>runUntilErrorOrReturnFrom: aSender [
 	"ASSUMES aSender is a sender of self.  Execute self's stack until aSender returns or an unhandled exception is raised.  Return a pair containing the new top context and a possibly nil exception.  The exception is not nil if it was raised before aSender returned and it was not handled.  The exception is returned rather than openning the debugger, giving the caller the choice of how to handle it."
 	"Self is run by jumping directly to it (the active process abandons thisContext and executes self).  However, before jumping to self we insert an ensure block under aSender that jumps back to thisContext when evaluated.  We also insert an exception handler under aSender that jumps back to thisContext when an unhandled exception is raised.  In either case, the inserted ensure and exception handler are removed once control jumps back to thisContext."
 
@@ -2514,7 +2514,7 @@ Context>>send: selector to: rcvr with: arguments lookupIn: lookupClass [
 	#category : #controlling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>send: selector to: aReceiver with: arguments super: superFlag  [
+Context>>send: selector to: aReceiver with: arguments super: superFlag [
 	"Simulate the action of sending a message with selector, selector, and 
 	arguments, args, to receiver. The argument, superFlag, tells whether the 
 	receiver of the message was specified with 'super' in the source method."
@@ -2585,7 +2585,7 @@ In this method we cope such information from one to another one."
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>setSender: newSender receiver: newReceiver method: newMethod arguments: arguments  [
+Context>>setSender: newSender receiver: newReceiver method: newMethod arguments: arguments [
 	"Create the receiver's initial state."
 
 	sender := newSender.
@@ -2717,7 +2717,7 @@ Context>>sourceCode [
 	#category : #'debugger access',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>stack  [
+Context>>stack [
 	"Answer an Array of the contexts on the receiver's sender chain."
 
 	^self stackOfSize: 9999
@@ -2727,7 +2727,7 @@ Context>>stack  [
 	#category : #'debugger access',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>stackOfSize: limit  [
+Context>>stackOfSize: limit [
 	"Answer an OrderedCollection of the top 'limit' contexts
 	 on the receiver's sender chain."
 
@@ -2744,7 +2744,7 @@ Context>>stackOfSize: limit  [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>stackPtr   [
+Context>>stackPtr [
 	"For use only by the SystemTracer and the Debugger, Inspectors etc"
 	^ stackp
 ]
@@ -2810,7 +2810,7 @@ Context>>stepToCallee [
 	#category : #'system simulation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>stepToHome: aContext  [
+Context>>stepToHome: aContext [
 	"Resume self until the home of top context is aContext.  Top context may be a block context."
 
 	| home ctxt here error topContext context |
@@ -2885,7 +2885,7 @@ Context>>stepUntilSomethingOnStack [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>storeIntoLiteralVariable: value  [
+Context>>storeIntoLiteralVariable: value [
 	"Simulate the action of bytecode that stores the top of the stack into a 
 	literal variable of my method."
 
@@ -2897,7 +2897,7 @@ Context>>storeIntoLiteralVariable: value  [
 	#timestamp : ' 8/31/2017 07:16:33'
 }
 Context>>"protocol: instruction decoding"
-storeIntoReceiverVariable: offset  [
+storeIntoReceiverVariable: offset [
 	"Simulate the action of bytecode that stores the top of the stack into an 
 	instance variable of my receiver."
 
@@ -2919,7 +2919,7 @@ Context>>storeIntoRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>storeIntoTemporaryVariable: offset  [
+Context>>storeIntoTemporaryVariable: offset [
 	"Simulate the action of bytecode that stores the top of the stack into one 
 	of my temporary variables."
 
@@ -2939,7 +2939,7 @@ Context>>swapReceiver: newReceiver [
 	#category : #'debugger access',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>swapSender: coroutine  [
+Context>>swapSender: coroutine [
 	"Replace the receiver's sender with coroutine and answer the receiver's 
 	previous sender. For use in coroutining."
 
@@ -2953,7 +2953,7 @@ Context>>swapSender: coroutine  [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>tempAt: index  [
+Context>>tempAt: index [
 	"Answer the value of the temporary variable whose index is the 
 	 argument, index.  Primitive. Assumes receiver is indexable. Answer the
 	 value of an indexable element in the receiver. Fail if the argument index
@@ -2969,7 +2969,7 @@ Context>>tempAt: index  [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>tempAt: index put: value  [
+Context>>tempAt: index put: value [
 	"Store the argument, value, as the temporary variable whose index is the 
 	 argument, index.  Primitive. Assumes receiver is indexable. Answer the
 	 value of an indexable element in the receiver. Fail if the argument index
@@ -3124,7 +3124,7 @@ Context>>tryNamedPrimitiveIn: aCompiledMethod for: aReceiver withArgs: arguments
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Context>>tryPrimitiveFor: aMethod receiver: aReceiver args: arguments  [
+Context>>tryPrimitiveFor: aMethod receiver: aReceiver args: arguments [
 	"If this method has a primitive index, then run the primitive and return its result.
 	Otherwise (and also if the primitive fails) return PrimitiveFailToken,
 	as an indication that the method should be activated and run as bytecodes."

@@ -12,7 +12,7 @@ Class {
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-AsciiCharset class>>canBeGlobalVarInitial: aCharacter  [
+AsciiCharset class>>canBeGlobalVarInitial: aCharacter [
 	
 	^ self isUppercase: aCharacter
 ]

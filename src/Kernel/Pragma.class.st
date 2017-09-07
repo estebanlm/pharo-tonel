@@ -144,7 +144,7 @@ Pragma>>= aPragma [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Pragma>>analogousCodeTo: anObject  [
+Pragma>>analogousCodeTo: anObject [
 	^self class == anObject class
 	  and: [keyword == anObject keyword
 	  and: [arguments = anObject arguments]]

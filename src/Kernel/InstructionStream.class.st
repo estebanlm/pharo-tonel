@@ -64,7 +64,7 @@ InstructionStream class>>isContextClass [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-InstructionStream class>>on: method  [
+InstructionStream class>>on: method [
 	"Answer an instance of me on the argument, method."
 
 	^self new method: method pc: method initialPC
@@ -74,7 +74,7 @@ InstructionStream class>>on: method  [
 	#category : #scanning,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-InstructionStream>>addSelectorTo: set  [
+InstructionStream>>addSelectorTo: set [
 	"If this instruction is a send, add its selector to set."
 
 	| selectorOrSelf |
@@ -285,7 +285,7 @@ InstructionStream>>interpretNext3ByteSistaV1Instruction: bytecode for: client ex
 	#category : #decoding,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-InstructionStream>>interpretNextInstructionFor: client  [
+InstructionStream>>interpretNextInstructionFor: client [
 	"Send to the argument, client, a message that specifies the type of the 
 	next instruction."
 	^ self method encoderClass interpretNextInstructionFor: client  in: self
@@ -405,7 +405,7 @@ InstructionStream>>interpretNextSistaV1InstructionFor: client [
 	#category : #decoding,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-InstructionStream>>interpretNextV3PlusClosureInstructionFor: client  [
+InstructionStream>>interpretNextV3PlusClosureInstructionFor: client [
 	"Send to the argument, client, a message that specifies the type of the 
 	next instruction."
 
@@ -552,7 +552,7 @@ InstructionStream>>interpretNextV3PlusClosureInstructionFor: client  [
 	#category : #decoding,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-InstructionStream>>interpretSistaV1ExtendedPush: extB for: client  [
+InstructionStream>>interpretSistaV1ExtendedPush: extB for: client [
 	"Implement the extended push for non-zero extensions."
 	"*	82			01010010			Push thisContext, (then Extend B = 1 => push
 	thisProcess) "
@@ -1041,7 +1041,7 @@ InstructionStream>>willJumpIfFalse [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-InstructionStream>>willJumpIfTrue  [
+InstructionStream>>willJumpIfTrue [
 	"Answer whether the next bytecode is a jump-if-true."
  
 	^ self method encoderClass isBranchIfTrueAt: pc in: self method

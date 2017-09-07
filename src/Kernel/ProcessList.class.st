@@ -132,7 +132,7 @@ ProcessList>>add: aLinkOrObject beforeLink: otherLink [
 	#category : #adding,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ProcessList>>addFirst: aLinkOrObject  [
+ProcessList>>addFirst: aLinkOrObject [
 	"Add aLink to the beginning of the receiver's list. Answer aLink."
 	|aLink|
 	aLink := aLinkOrObject asLink.
@@ -179,7 +179,7 @@ ProcessList>>at: index put: anObject [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ProcessList>>at: index putLink: aLink  [
+ProcessList>>at: index putLink: aLink [
 	| previousLink nextLink |
 	"Please don't put a link which is already in the list, or you will create an infinite loop"
 	(self validIndex: index)
@@ -212,7 +212,7 @@ ProcessList>>at: index putLink: aLink  [
 	#category : #enumerating,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ProcessList>>collect: aBlock  [
+ProcessList>>collect: aBlock [
 	"Evaluate aBlock with each of the receiver's elements as the argument.  
 	Collect the resulting values into a collection like the receiver. Answer  
 	the new collection."
@@ -375,7 +375,7 @@ ProcessList>>linkAt: index ifAbsent: errorBlock [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ProcessList>>linkOf: anObject  [
+ProcessList>>linkOf: anObject [
 	^ self
 		linkOf: anObject
 		ifAbsent: [self error: 'No such element']
@@ -385,7 +385,7 @@ ProcessList>>linkOf: anObject  [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ProcessList>>linkOf: anObject ifAbsent: errorBlock  [
+ProcessList>>linkOf: anObject ifAbsent: errorBlock [
 	
 	self
 		linksDo: [:el | el value = anObject
@@ -424,7 +424,7 @@ ProcessList>>postCopy [
 	#category : #removing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ProcessList>>remove: aLinkOrObject ifAbsent: aBlock  [
+ProcessList>>remove: aLinkOrObject ifAbsent: aBlock [
 	"Remove aLink from the receiver. If it is not there, answer the result of evaluating aBlock."
 	
 	| link |
@@ -447,7 +447,7 @@ ProcessList>>removeAll [
 	#category : #removing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ProcessList>>removeAllSuchThat: aBlock  [
+ProcessList>>removeAllSuchThat: aBlock [
 	"Evaluate aBlock for each element and remove all that elements from
 	the receiver for that aBlock evaluates to true.  For LinkedLists, it's safe to use do:."
 
@@ -506,7 +506,7 @@ ProcessList>>removeLink: aLink [
 	#category : #removing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ProcessList>>removeLink: aLink ifAbsent: aBlock   [
+ProcessList>>removeLink: aLink ifAbsent: aBlock [
 	"Remove aLink from the receiver. If it is not there, answer the result of
 	evaluating aBlock."
 
@@ -531,7 +531,7 @@ ProcessList>>removeLink: aLink ifAbsent: aBlock   [
 	#category : #enumerating,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ProcessList>>select: aBlock  [
+ProcessList>>select: aBlock [
 	"Reimplemennt #select: for speedup on linked lists. 
 	The super implemention accesses the linkes by index, thus causing an O(n^2)"
 	

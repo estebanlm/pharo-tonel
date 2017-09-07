@@ -357,7 +357,7 @@ Float class>>radix [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Float class>>readFrom: aStream  [
+Float class>>readFrom: aStream [
 	"Answer a new Float as described on the stream, aStream."
 
 	^(super readFrom: aStream) asFloat
@@ -595,7 +595,7 @@ Float>>absPrintInexactlyOn: aStream base: base [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Float>>absPrintOn: aStream base: base digitCount: digitCount  [
+Float>>absPrintOn: aStream base: base digitCount: digitCount [
 	"Print me in the given base, using digitCount significant figures."
 
 	| fuzz x exp q fBase scale logScale xi |
@@ -652,7 +652,7 @@ at: i)]]]
 	#category : #converting,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Float>>adaptToFraction: rcvr andCompare: selector  [
+Float>>adaptToFraction: rcvr andCompare: selector [
 	"If I am involved in comparison with a Fraction, convert myself to a
 	Fraction. This way, no bit is lost and comparison is exact."
 	
@@ -689,7 +689,7 @@ Float>>adaptToFraction: rcvr andSend: selector [
 	#category : #converting,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Float>>adaptToInteger: rcvr andCompare: selector  [
+Float>>adaptToInteger: rcvr andCompare: selector [
 	"If I am involved in comparison with an Integer, convert myself to a
 	Fraction. This way, no bit is lost and comparison is exact."
 	
@@ -1069,7 +1069,7 @@ exp) ] ].
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Float>>at: index  [
+Float>>at: index [
 	^self basicAt: index
 ]
 
@@ -1077,7 +1077,7 @@ Float>>at: index  [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Float>>at: index put: value  [
+Float>>at: index put: value [
 	^self basicAt: index put: value
 ]
 
@@ -1126,7 +1126,7 @@ Float>>basicAt: index put: value [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Float>>basicNew  [
+Float>>basicNew [
 		^ Float basicNew: 2
 ]
 
@@ -1134,7 +1134,7 @@ Float>>basicNew  [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Float>>basicNew: anInteger  [
+Float>>basicNew: anInteger [
 		^ Float basicNew: 2
 ]
 
@@ -1264,7 +1264,7 @@ Float>>hash [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Float>>hex   [
+Float>>hex [
 
 	^ String streamContents:
 		[:strm | | word nibble |
@@ -1503,7 +1503,7 @@ Float>>printOn: stream base: base [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Float>>printPaddedWith: aCharacter to: aNumber  [
+Float>>printPaddedWith: aCharacter to: aNumber [
 	"Answer the string containing the ASCII representation of the receiver 
 	padded on the left with aCharacter to be at least on aNumber 
 	integerPart characters and padded the right with aCharacter to be at 
@@ -1570,7 +1570,7 @@ Float>>reciprocal [
 	#category : #'mathematical functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Float>>reciprocalFloorLog: radix  [
+Float>>reciprocalFloorLog: radix [
 	"Quick computation of (self log: radix) floor, when self < 1.0.
 	Avoids infinite recursion problems with denormalized numbers"
 
@@ -1694,7 +1694,7 @@ Float>>significandAsInteger [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Float>>storeOn: aStream  [
+Float>>storeOn: aStream [
 	"Print the Number exactly so it can be interpreted back unchanged"
 	
 	self storeOn: aStream base: 10
@@ -1704,7 +1704,7 @@ Float>>storeOn: aStream  [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Float>>storeOn: aStream base: base  [
+Float>>storeOn: aStream base: base [
 	"Print the Number exactly so it can be interpreted back unchanged"
 	self isFinite
 		ifTrue: [self sign = -1 ifTrue: [aStream nextPutAll: '-'].

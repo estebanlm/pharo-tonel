@@ -385,7 +385,7 @@ CompiledCode>>hasLiteralThorough: literal [
 	#category : #literals,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-CompiledCode>>hasSelector: selector  [
+CompiledCode>>hasSelector: selector [
 	"Answers true if the method refers to the selector"
 	^ self hasSelector: selector specialSelectorIndex: (Smalltalk specialSelectorIndexOrNil: selector)
 ]
@@ -570,7 +570,7 @@ CompiledCode>>isRealPrimitive [
 	#category : #literals,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-CompiledCode>>literalAt: index  [
+CompiledCode>>literalAt: index [
 	"Answer the literal indexed by the argument."
 
 	^self objectAt: index + 1
@@ -580,7 +580,7 @@ CompiledCode>>literalAt: index  [
 	#category : #literals,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-CompiledCode>>literalAt: index put: value  [
+CompiledCode>>literalAt: index put: value [
 	"Replace the literal indexed by the first argument with the second 
 	argument. Answer the second argument."
 
@@ -670,7 +670,7 @@ CompiledCode>>localMessages [
 	#category : #scanning,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-CompiledCode>>localReadsRef: literalAssociation  [
+CompiledCode>>localReadsRef: literalAssociation [
 	"Answer whether the receiver loads the argument."
 	| litIndex scanner |
 	(litIndex := self indexOfLiteral: literalAssociation) = 0 ifTrue:
@@ -706,7 +706,7 @@ CompiledCode>>localSendsToSuper [
 	#category : #scanning,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-CompiledCode>>localWritesRef: literalAssociation  [
+CompiledCode>>localWritesRef: literalAssociation [
 	"Answer whether the receiver stores into the argument."
 	| litIndex scanner |
 	(litIndex := self indexOfLiteral: literalAssociation) = 0 ifTrue:
@@ -792,7 +792,7 @@ CompiledCode>>numTemps [
 	#category : #literals,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-CompiledCode>>objectAt: index  [
+CompiledCode>>objectAt: index [
 	"Primitive. Answer the method header (if index=1) or a literal (if index 
 	>1) from the receiver. Essential. See Object documentation 
 	whatIsAPrimitive."
@@ -805,7 +805,7 @@ CompiledCode>>objectAt: index  [
 	#category : #literals,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-CompiledCode>>objectAt: index put: value  [
+CompiledCode>>objectAt: index put: value [
 	"Primitive. Store the value argument into a literal in the receiver. An 
 	index of 2 corresponds to the first literal. Fails if the index is less than 2 
 	or greater than the number of literals. Answer the value as the result. 
@@ -851,7 +851,7 @@ CompiledCode>>primitiveErrorVariableName [
 	#category : #scanning,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-CompiledCode>>readsField: varIndex  [
+CompiledCode>>readsField: varIndex [
 	"Answer whether the receiver loads the instance variable indexed by the argument."
 	| varIndexCode scanner |
 	varIndexCode := varIndex - 1.
@@ -863,7 +863,7 @@ CompiledCode>>readsField: varIndex  [
 	#category : #scanning,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-CompiledCode>>readsRef: literalAssociation  [
+CompiledCode>>readsRef: literalAssociation [
 	"Answer whether the receiver loads the argument."
 	(self localReadsRef: literalAssociation) ifTrue: [ ^ true ].
 	^ self innerCompiledBlocksAnySatisfy: [ :cb | cb readsRef: literalAssociation ]
@@ -907,7 +907,7 @@ CompiledCode>>referredInstVars [
 	#category : #literals,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-CompiledCode>>refersToLiteral: aLiteral  [
+CompiledCode>>refersToLiteral: aLiteral [
 	"Answer true if any literal in this method is literal, even if embedded in array structure or within its pragmas."
 	"only iterate to numLiterals - 1, as the last has the classBinding and the last-but-one needs special treatment"
 	
@@ -962,7 +962,7 @@ CompiledCode>>sameLiteralsAs: method [
 	#category : #scanning,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-CompiledCode>>scanFor: byte  [
+CompiledCode>>scanFor: byte [
 	"Answer whether the receiver contains the argument as a bytecode."
 
 	^ (InstructionStream on: self) scanFor: [:instr | instr = byte]
@@ -995,7 +995,7 @@ CompiledCode>>sendsAnySelectorOf: aCollection [
 	#category : #literals,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-CompiledCode>>sendsSelector: aSymbol 	 [
+CompiledCode>>sendsSelector: aSymbol [
 	"Answer whether the method sends a particular selector"
 	^ self messages includes: aSymbol
 ]
@@ -1013,7 +1013,7 @@ CompiledCode>>sendsToSuper [
 	#category : #initialize-release,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-CompiledCode>>setFrameBit: boolean  [
+CompiledCode>>setFrameBit: boolean [
 	"true for large frame, else false"
 	| largeFrameBit newHeader |
 	largeFrameBit := 16r20000.
@@ -1144,7 +1144,7 @@ CompiledCode>>writesField: varIndex [
 	#category : #scanning,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-CompiledCode>>writesRef: literalAssociation  [
+CompiledCode>>writesRef: literalAssociation [
 	"Answer whether the receiver stores into the argument."
 	(self localWritesRef: literalAssociation) ifTrue: [ ^ true ].
 	^ self innerCompiledBlocksAnySatisfy: [ :cb | cb writesRef: literalAssociation ]

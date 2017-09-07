@@ -52,7 +52,7 @@ Delay class>>delaySchedulerClass [
 	#category : #settings,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Delay class>>delaySchedulerClass: aSchedulerClass  [
+Delay class>>delaySchedulerClass: aSchedulerClass [
 	| newScheduler |
 	self delaySchedulerClass = aSchedulerClass ifTrue:[ ^self ].
 	newScheduler := aSchedulerClass new.

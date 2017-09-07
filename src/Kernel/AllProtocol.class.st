@@ -51,7 +51,7 @@ AllProtocol>>canBeRenamed [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-AllProtocol>>isVirtualProtocol  [
+AllProtocol>>isVirtualProtocol [
 	^ true
 ]
 
@@ -79,7 +79,7 @@ AllProtocol>>name [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-AllProtocol>>name: aString  [
+AllProtocol>>name: aString [
 	self error: 'You cannot change my name'.
 ]
 

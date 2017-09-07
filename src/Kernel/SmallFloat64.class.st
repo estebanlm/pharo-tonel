@@ -29,7 +29,7 @@ SmallFloat64 class>>basicNew: anInteger [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallFloat64>>* aNumber  [
+SmallFloat64>>* aNumber [
 	"Primitive. Answer the result of multiplying the receiver by aNumber.
 	Fail if the argument is not a Float. Essential. See Object documentation
 	whatIsAPrimitive."
@@ -42,7 +42,7 @@ SmallFloat64>>* aNumber  [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallFloat64>>+ aNumber  [
+SmallFloat64>>+ aNumber [
 	"Primitive. Answer the sum of the receiver and aNumber. Essential.
 	Fail if the argument is not a Float. See Object documentation
 	whatIsAPrimitive."
@@ -55,7 +55,7 @@ SmallFloat64>>+ aNumber  [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallFloat64>>- aNumber  [
+SmallFloat64>>- aNumber [
 	"Primitive. Answer the difference between the receiver and aNumber.
 	Fail if the argument is not a Float. Essential. See Object documentation
 	whatIsAPrimitive."
@@ -68,7 +68,7 @@ SmallFloat64>>- aNumber  [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallFloat64>>/ aNumber  [
+SmallFloat64>>/ aNumber [
 	"Primitive. Answer the result of dividing receiver by aNumber.
 	Fail if the argument is not a Float. Essential. See Object documentation
 	whatIsAPrimitive."
@@ -82,7 +82,7 @@ SmallFloat64>>/ aNumber  [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallFloat64>>< aNumber  [
+SmallFloat64>>< aNumber [
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is less than the argument. Otherwise return false.
 	Fail if the argument is not a Float. Essential. See Object documentation
@@ -96,7 +96,7 @@ SmallFloat64>>< aNumber  [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallFloat64>><= aNumber  [
+SmallFloat64>><= aNumber [
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is less than or equal to the argument. Otherwise return
 	false. Fail if the argument is not a Float. Optional. See Object
@@ -110,7 +110,7 @@ SmallFloat64>><= aNumber  [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallFloat64>>= aNumber  [
+SmallFloat64>>= aNumber [
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is equal to the argument. Otherwise return false.
 	Fail if the argument is not a Float. Essential. See Object documentation
@@ -125,7 +125,7 @@ SmallFloat64>>= aNumber  [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallFloat64>>> aNumber  [
+SmallFloat64>>> aNumber [
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is greater than the argument. Otherwise return false.
 	Fail if the argument is not a Float. Essential. See Object documentation
@@ -139,7 +139,7 @@ SmallFloat64>>> aNumber  [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallFloat64>>>= aNumber  [
+SmallFloat64>>>= aNumber [
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is greater than or equal to the argument. Otherwise return
 	false. Fail if the argument is not a Float. Optional. See Object documentation 
@@ -407,7 +407,7 @@ SmallFloat64>>sqrt [
 	#category : #'mathematical functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallFloat64>>timesTwoPower: anInteger  [
+SmallFloat64>>timesTwoPower: anInteger [
 	"Primitive. Answer with the receiver multiplied by 2.0 raised
 	to the power of the argument.
 	Optional. See Object documentation whatIsAPrimitive."
@@ -463,7 +463,7 @@ SmallFloat64>>veryDeepCopyWith: deepCopier [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-SmallFloat64>>~= aNumber  [
+SmallFloat64>>~= aNumber [
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is not equal to the argument. Otherwise return false.
 	Fail if the argument is not a Float. Optional. See Object documentation

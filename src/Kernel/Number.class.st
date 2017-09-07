@@ -74,7 +74,7 @@ Number class>>readExponent: baseValue base: base from: aStream [
 	#category : #deprecated,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number class>>readRemainderOf: integerPart from: aStream base: base withSign: sign  [
+Number class>>readRemainderOf: integerPart from: aStream base: base withSign: sign [
 	"Read optional fractional part and exponent or decimal scale, and return the final result"
 	"Number readFrom: '3r-22.2'"
 
@@ -125,7 +125,7 @@ Number class>>readRemainderOf: integerPart from: aStream base: base withSign: si
 	#category : #deprecated,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number class>>readScaledDecimal: integerPart fractionPart: fractionPart digits: fractionDigits base: base sign: sign from: aStream  [
+Number class>>readScaledDecimal: integerPart fractionPart: fractionPart digits: fractionDigits base: base sign: sign from: aStream [
 	"Complete creation of a ScaledDecimal, reading scale from aStream. Answer
 	a ScaledDecimal, or nil if parsing fails.
 	<number>s[<scale>]"
@@ -155,7 +155,7 @@ Number class>>readScaledDecimal: integerPart fractionPart: fractionPart digits: 
 	#category : #'mathematical functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>% aNumber  [
+Number>>% aNumber [
 	"modulo. Remainder defined in terms of //. Answer a Number with the 
 	same sign as aNumber. e.g. 9\\4 = 1, -9\\4 = 3, 9\\-4 = -3, 0.9\\0.4 = 0.1."
 	^ self \\ aNumber
@@ -165,7 +165,7 @@ Number>>% aNumber  [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>* aNumber  [
+Number>>* aNumber [
 	"Answer the result of multiplying the receiver by aNumber."
 
 	self subclassResponsibility
@@ -175,7 +175,7 @@ Number>>* aNumber  [
 	#category : #'mathematical functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>** exponent  [
+Number>>** exponent [
 	" A shortcut methog for raisedTo: "
 	^ self raisedTo: exponent
 ]
@@ -184,7 +184,7 @@ Number>>** exponent  [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>+ aNumber  [
+Number>>+ aNumber [
 	"Answer the sum of the receiver and aNumber."
 
 	self subclassResponsibility
@@ -194,7 +194,7 @@ Number>>+ aNumber  [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>- aNumber  [
+Number>>- aNumber [
 	"Answer the difference between the receiver and aNumber."
 
 	self subclassResponsibility
@@ -204,7 +204,7 @@ Number>>- aNumber  [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>/ aNumber  [
+Number>>/ aNumber [
 	"Answer the result of dividing the receiver by aNumber."
 
 	self subclassResponsibility
@@ -214,7 +214,7 @@ Number>>/ aNumber  [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>// aNumber  [
+Number>>// aNumber [
 	"Integer quotient defined by division with truncation toward negative 
 	infinity. 9//4 = 2, -9//4 = -3. -0.9//0.4 = -3. \\ answers the remainder 
 	from this division."
@@ -226,7 +226,7 @@ Number>>// aNumber  [
 	#category : #converting,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>@ y  [
+Number>>@ y [
 	"Primitive. Answer a Point whose x value is the receiver and whose y 
 	value is the argument. Optional. No Lookup. See Object documentation 
 	whatIsAPrimitive."
@@ -239,7 +239,7 @@ Number>>@ y  [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>\\ aNumber  [
+Number>>\\ aNumber [
 	"modulo. Remainder defined in terms of //. Answer a Number with the 
 	same sign as aNumber. e.g. 9\\4 = 1, -9\\4 = 3, 9\\-4 = -3, 0.9\\0.4 = 0.1."
 
@@ -274,7 +274,7 @@ Number>>adaptToCollection: rcvr andSend: selector [
 	#category : #converting,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>adaptToFloat: rcvr andCompare: selector  [
+Number>>adaptToFloat: rcvr andCompare: selector [
 	"If I am involved in comparison with a Float, convert rcvr to a
 	Fraction. This way, no bit is lost and comparison is exact."
 	
@@ -296,7 +296,7 @@ Number>>adaptToFloat: rcvr andCompare: selector  [
 	#category : #converting,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>adaptToFloat: rcvr andSend: selector  [
+Number>>adaptToFloat: rcvr andSend: selector [
 	"If I am involved in arithmetic with a Float, convert me to a Float."
 	^ rcvr perform: selector with: self asFloat
 ]
@@ -332,7 +332,7 @@ Number>>adaptToPoint: rcvr andSend: selector [
 	#category : #'mathematical functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>arcCos  [
+Number>>arcCos [
 	"The receiver is the cosine of an angle. Answer the angle measured in 
 	radians."
 
@@ -446,7 +446,7 @@ Number>>asScaledDecimal [
 	#category : #converting,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>asScaledDecimal: scale  [
+Number>>asScaledDecimal: scale [
 	"Answer the receiver converted to a ScaledDecimal."
 	
 	^ ScaledDecimal newFromNumber: self scale: scale
@@ -771,7 +771,7 @@ Number>>log [
 	#category : #'mathematical functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>log: aNumber  [
+Number>>log: aNumber [
 	"Answer the log base aNumber of the receiver."
 
 	^self ln / aNumber ln
@@ -980,7 +980,7 @@ Number>>printStringBase: base [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>quo: aNumber  [
+Number>>quo: aNumber [
 	"Integer quotient defined by division with truncation toward zero. 
 	
 	-9 quo: 4 = -2.
@@ -1006,7 +1006,7 @@ Number>>radiansToDegrees [
 	#category : #'mathematical functions',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>raisedTo: aNumber  [
+Number>>raisedTo: aNumber [
 	"Answer the receiver raised to aNumber."
 
 	aNumber isInteger ifTrue: [
@@ -1075,7 +1075,7 @@ Number>>reduce [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>rem: aNumber  [
+Number>>rem: aNumber [
 	"Remainder defined in terms of quo:. Answer a Number with the same 
 	sign as self. e.g. 9 rem: 4 = 1, -9 rem: 4 = -1. 0.9 rem: 0.4 = 0.1."
 
@@ -1113,7 +1113,7 @@ Number>>roundDownTo: aNumber [
 	#category : #'truncation and round off',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>roundTo: quantum  [
+Number>>roundTo: quantum [
 	"Answer the nearest number that is a multiple of quantum."
 
 	^(self / quantum) rounded * quantum
@@ -1123,7 +1123,7 @@ Number>>roundTo: quantum  [
 	#category : #'truncation and round off',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>roundUpTo: aNumber  [
+Number>>roundUpTo: aNumber [
 	"Answer the next multiple of aNumber toward infinity that is nearest the receiver.
 	Examples:
                3.1479 roundUpTo: 0.01 -> 3.15
@@ -1220,7 +1220,7 @@ Number>>squared [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>storeOn: aStream  [
+Number>>storeOn: aStream [
 	self printOn: aStream
 ]
 
@@ -1298,7 +1298,7 @@ Number>>to: stop by: step [
 	#category : #intervals,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>to: stop by: step do: aBlock  [
+Number>>to: stop by: step do: aBlock [
 	"Normally compiled in-line, and therefore not overridable.
 	Evaluate aBlock for each element of the interval (self to: stop by: 
 step)."
@@ -1320,7 +1320,7 @@ step)."
 	#category : #intervals,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>to: stop do: aBlock  [
+Number>>to: stop do: aBlock [
 	"Normally compiled in-line, and therefore not overridable.
 	Evaluate aBlock for each element of the interval (self to: stop by: 1)."
 	| nextValue |
@@ -1335,7 +1335,7 @@ Number>>to: stop do: aBlock  [
 	#category : #'truncation and round off',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Number>>truncateTo: aNumber  [
+Number>>truncateTo: aNumber [
 	"Answer the next multiple of aNumber toward zero that is nearest the receiver.
 	Examples:
                3.1479 truncateTo: 0.01 -> 3.14

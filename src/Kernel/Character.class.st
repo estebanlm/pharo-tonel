@@ -123,7 +123,7 @@ Character class>>characterTable [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Character class>>codePoint: anInteger  [
+Character class>>codePoint: anInteger [
 	"Just for ANSI Compliance"	
 	^self value: anInteger
 	
@@ -173,7 +173,7 @@ Character class>>delete [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Character class>>digitValue: x  [
+Character class>>digitValue: x [
 	"Answer the Character whose digit value is x. For example,
 	 answer $9 for x=9, $0 for x=0, $A for x=10, $Z for x=35."
 
@@ -401,7 +401,7 @@ Character class>>value: anInteger [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Character>>< aCharacter  [
+Character>>< aCharacter [
 	"Answer true if the receiver's value < aCharacter's value."
 
 	^self asciiValue < aCharacter asciiValue
@@ -411,7 +411,7 @@ Character>>< aCharacter  [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Character>>= aCharacter  [
+Character>>= aCharacter [
 	"Primitive. Answer if the receiver and the argument are the
 	 same object (have the same object pointer). Optional. See
 	 Object documentation whatIsAPrimitive."
@@ -423,7 +423,7 @@ Character>>= aCharacter  [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Character>>> aCharacter  [
+Character>>> aCharacter [
 	"Answer true if the receiver's value > aCharacter's value."
 
 	^self asciiValue > aCharacter asciiValue
@@ -482,7 +482,7 @@ Character>>asString [
 	#category : #converting,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Character>>asSymbol  [
+Character>>asSymbol [
 	"Answer a Symbol consisting of the receiver as the only element."
 
 	^Symbol internCharacter: self
@@ -830,7 +830,7 @@ Character>>printStringHex [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Character>>sameAs: aCharacter  [
+Character>>sameAs: aCharacter [
 	"Answer whether the receiver is equal to aCharacter, ignoring case"
 	^ (self asLowercase = aCharacter asLowercase)	
 ]

@@ -37,7 +37,7 @@ Duration class>>days: days hours: hours minutes: minutes seconds: seconds [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Duration class>>days: days hours: hours minutes: minutes seconds: seconds nanoSeconds: nanos	 [
+Duration class>>days: days hours: hours minutes: minutes seconds: seconds nanoSeconds: nanos [
 
  	^ self seconds: ((days * SecondsInDay) 
 						+ (hours * SecondsInHour)
@@ -270,7 +270,7 @@ Duration>>< comparand [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Duration>>= comparand  [
+Duration>>= comparand [
  	"Answer whether the argument is a <Duration> representing the same 
  	period of time as the receiver."
  
@@ -597,7 +597,7 @@ Duration>>seconds [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Duration>>seconds: secondCount nanoSeconds: nanoCount  [
+Duration>>seconds: secondCount nanoSeconds: nanoCount [
 	"Private - only used by Duration class"
 
 	seconds := secondCount.

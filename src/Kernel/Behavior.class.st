@@ -88,7 +88,7 @@ Behavior class>>initializeObsoleteSubclasses [
 	#category : #'accessing method dictionary',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>>> selector  [
+Behavior>>>> selector [
 	"Answer the compiled method associated with the argument, selector (a 
 	Symbol), a message selector in the receiver's method dictionary. If the 
 	selector is not in the dictionary, create an error notification."
@@ -125,7 +125,7 @@ Behavior>>addObsoleteSubclass: aClass [
 	#category : #'adding/removing methods',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>addSelector: selector withMethod: compiledMethod  [
+Behavior>>addSelector: selector withMethod: compiledMethod [
 	^ self addSelector: selector withMethod: compiledMethod notifying: nil
 ]
 
@@ -360,7 +360,7 @@ Behavior>>allSelectorsAboveUntil: aRootClass [
 	#category : #'accessing method dictionary',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>allSelectorsBelow: topClass  [
+Behavior>>allSelectorsBelow: topClass [
 	| coll |
 	coll := IdentitySet new.
 	self withAllSuperclassesDo: 
@@ -411,7 +411,7 @@ Behavior>>allSlots [
 	#category : #'accessing instances and variables',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>allSubInstances  [
+Behavior>>allSubInstances [
 	"Answer a list of all current instances of the receiver and all of its subclasses."
 	| aCollection |
 	aCollection := OrderedCollection new.
@@ -424,7 +424,7 @@ Behavior>>allSubInstances  [
 	#category : #enumerating,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>allSubInstancesDo: aBlock  [
+Behavior>>allSubInstancesDo: aBlock [
 	"Evaluate the argument, aBlock, for each of the current instances of the 
 	receiver and all its subclasses."
 
@@ -452,7 +452,7 @@ Behavior>>allSubclasses [
 	#category : #enumerating,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>allSubclassesDo: aBlock  [
+Behavior>>allSubclassesDo: aBlock [
 	"Evaluate the argument, aBlock, for each of the receiver's subclasses."
 
 	self subclassesDo: 
@@ -465,7 +465,7 @@ Behavior>>allSubclassesDo: aBlock  [
 	#category : #'accessing class hierarchy',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>allSubclassesWithLevelDo: classAndLevelBlock startingLevel: level  [
+Behavior>>allSubclassesWithLevelDo: classAndLevelBlock startingLevel: level [
 	"Walk the tree of subclasses, giving the class and its level"
 	| subclassNames |
 	classAndLevelBlock value: self value: level.
@@ -499,7 +499,7 @@ Behavior>>allSuperclasses [
 	#category : #enumerating,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>allSuperclassesDo: aBlock  [
+Behavior>>allSuperclassesDo: aBlock [
 	"Evaluate the argument, aBlock, for each of the receiver's superclasses."
 
 	self superclass == nil
@@ -556,7 +556,7 @@ Behavior>>applyChangesOfNewTraitCompositionReplacing: oldComposition [
 	#category : #'adding/removing methods',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>basicAddSelector: selector withMethod: compiledMethod  [
+Behavior>>basicAddSelector: selector withMethod: compiledMethod [
 	"Add the message selector with the corresponding compiled method to the 
 	receiver's method dictionary.
 	Do this without sending system change notifications"
@@ -650,7 +650,7 @@ Behavior>>basicObsoleteSubclasses [
 	#category : #'adding/removing methods',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>basicRemoveSelector: selector  [
+Behavior>>basicRemoveSelector: selector [
 	"Assuming that the argument, selector (a Symbol), is a message selector 
 	in my method dictionary, remove it and its method."
 
@@ -885,7 +885,7 @@ Behavior>>commentsIn: sourceString [
 	#category : #'accessing method dictionary',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>compiledMethodAt: selector  [
+Behavior>>compiledMethodAt: selector [
 	"Answer the compiled method associated with the argument, selector (a 
 	Symbol), a message selector in the receiver's method dictionary. If the 
 	selector is not in the dictionary, create an error notification."
@@ -1335,7 +1335,7 @@ Behavior>>includesLocalSelector: aSymbol [
 	#category : #'testing method dictionary',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>includesSelector: aSymbol  [
+Behavior>>includesSelector: aSymbol [
 	"Answer whether the message whose selector is the argument is in the 
 	method dictionary of the receiver's class."
 
@@ -1346,7 +1346,7 @@ Behavior>>includesSelector: aSymbol  [
 	#category : #'accessing instances and variables',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>includesSharedPoolNamed:  aSharedPoolString  [
+Behavior>>includesSharedPoolNamed:  aSharedPoolString [
 	"Answer whether the receiver uses the shared pool named aSharedPoolString"
 	
 	^ (self sharedPools anySatisfy: [:each | each name = aSharedPoolString])
@@ -1366,7 +1366,7 @@ Behavior>>indexIfCompact [
 	#category : #'testing class hierarchy',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>inheritsFrom: aClass  [
+Behavior>>inheritsFrom: aClass [
 	"Answer whether the argument, aClass, is on the receiver's superclass 
 	chain."
 
@@ -1398,7 +1398,7 @@ Behavior>>initialize [
 	#category : #initialization,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>initializeSlots: anObject  [
+Behavior>>initializeSlots: anObject [
 	self classLayout initializeInstance: anObject
 ]
 
@@ -1881,7 +1881,7 @@ Behavior>>localSelectors [
 	#category : #'accessing method dictionary',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>localSelectors: aSet  [
+Behavior>>localSelectors: aSet [
 	self basicLocalSelectors: aSet
 ]
 
@@ -2035,7 +2035,7 @@ Behavior>>new [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>new: sizeRequested  [
+Behavior>>new: sizeRequested [
 	"Answer an initialized instance of this class with the number of indexable
 	variables specified by the argument, sizeRequested."
 
@@ -2151,7 +2151,7 @@ Behavior>>postCopy [
 	#category : #'accessing method dictionary',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>precodeCommentOrInheritedCommentFor: selector  [
+Behavior>>precodeCommentOrInheritedCommentFor: selector [
 	"Answer a string representing the first comment in the method associated 
 	with selector, considering however only comments that occur before the 
 	beginning of the actual code. If the version recorded in the receiver is 
@@ -2193,7 +2193,7 @@ Behavior>>printHierarchy [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>printOn: aStream  [
+Behavior>>printOn: aStream [
 	"Refer to the comment in Object|printOn:." 
 
 	aStream nextPutAll: 'a descendent of '.
@@ -2365,7 +2365,7 @@ Behavior>>removeSelector: aSelector [
 	#category : #'adding/removing methods',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>removeSelectorSilently: selector  [
+Behavior>>removeSelectorSilently: selector [
 	"Remove selector without sending system change notifications"
 
 	^ SystemAnnouncer uniqueInstance suspendAllWhile: [self removeSelector: selector].
@@ -2392,7 +2392,7 @@ Behavior>>removeUser: aClassOrTrait [
 	#category : #enumerating,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>selectSubclasses: aBlock  [
+Behavior>>selectSubclasses: aBlock [
 	"Evaluate the argument, aBlock, with each of the receiver's (next level) 
 	subclasses as its argument. Collect into a Set only those subclasses for 
 	which aBlock evaluates to true. In addition, evaluate aBlock for the 
@@ -2411,7 +2411,7 @@ Behavior>>selectSubclasses: aBlock  [
 	#category : #enumerating,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>selectSuperclasses: aBlock  [
+Behavior>>selectSuperclasses: aBlock [
 	"Evaluate the argument, aBlock, with the receiver's superclasses as the 
 	argument. Collect into an OrderedCollection only those superclasses for 
 	which aBlock evaluates to true. In addition, evaluate aBlock for the 
@@ -2717,7 +2717,7 @@ Behavior>>superclass [
 	#category : #'accessing class hierarchy',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>superclass: aClass  [
+Behavior>>superclass: aClass [
 	"Change the receiver's superclass to be aClass."
 	"Note: Do not use 'aClass isKindOf: Behavior' here
 		in case we recompile from Behavior itself."
@@ -2744,7 +2744,7 @@ Behavior>>superclass: aClass methodDictionary: mDict format: fmt [
 	#category : #'accessing method dictionary',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>supermostPrecodeCommentFor: selector  [
+Behavior>>supermostPrecodeCommentFor: selector [
 	"Answer a string representing the precode comment in the most distant 
 	superclass's implementation of the selector. Return nil if none found."
 	| aSuper superComment |
@@ -2848,7 +2848,7 @@ Behavior>>traitOrClassOfSelector: aSymbol [
 	#category : #traits,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>traitTransformations  [
+Behavior>>traitTransformations [
 	^ self traitComposition transformations 
 ]
 
@@ -3007,7 +3007,7 @@ Behavior>>variablesAndOffsetsDo: aBinaryBlock [
 	#category : #queries,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>whichClassDefinesClassVar: aString  [
+Behavior>>whichClassDefinesClassVar: aString [
 	Symbol hasInterned: aString ifTrue: [ :aSymbol |
 		^self whichSuperclassSatisfies: 
 			[:aClass | 
@@ -3019,7 +3019,7 @@ Behavior>>whichClassDefinesClassVar: aString  [
 	#category : #queries,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>whichClassDefinesInstVar: aString  [
+Behavior>>whichClassDefinesInstVar: aString [
 	^self 
 		whichSuperclassSatisfies: [:aClass | aClass instVarNames includes: aString]
 ]
@@ -3028,7 +3028,7 @@ Behavior>>whichClassDefinesInstVar: aString  [
 	#category : #'testing method dictionary',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>whichClassIncludesSelector: aSymbol  [
+Behavior>>whichClassIncludesSelector: aSymbol [
 	"Answer the class on the receiver's superclass chain where the 
 	argument, aSymbol (a message selector), will be found. Answer nil if none found."
 	"Rectangle whichClassIncludesSelector: #inspect."
@@ -3043,7 +3043,7 @@ Behavior>>whichClassIncludesSelector: aSymbol  [
 	#category : #'testing method dictionary',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>whichSelectorsAccess: instVarName  [
+Behavior>>whichSelectorsAccess: instVarName [
 	"Answer a set of selectors whose methods access the argument, 
 	instVarName, as a named instance variable."
 
@@ -3059,7 +3059,7 @@ Behavior>>whichSelectorsAccess: instVarName  [
 	#category : #queries,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>whichSelectorsAssign: instVarName  [
+Behavior>>whichSelectorsAssign: instVarName [
 	"Answer a Set of selectors whose methods store into the argument, 
 	instVarName, as a named instance variable."
 	^self whichSelectorsStoreInto: instVarName
@@ -3084,7 +3084,7 @@ Behavior>>whichSelectorsRead: aString [
 	#category : #'testing method dictionary',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>whichSelectorsReferTo: literal  [
+Behavior>>whichSelectorsReferTo: literal [
 	^ self thoroughWhichSelectorsReferTo: literal
 ]
 
@@ -3092,7 +3092,7 @@ Behavior>>whichSelectorsReferTo: literal  [
 	#category : #'testing method dictionary',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>whichSelectorsStoreInto: instVarName  [
+Behavior>>whichSelectorsStoreInto: instVarName [
 	"Answer a Set of selectors whose methods access the argument, 
 	instVarName, as a named instance variable."
 	| instVarIndex |
@@ -3106,7 +3106,7 @@ Behavior>>whichSelectorsStoreInto: instVarName  [
 	#category : #queries,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>whichSuperclassSatisfies: aBlock  [
+Behavior>>whichSuperclassSatisfies: aBlock [
 	(aBlock value: self) ifTrue: [^self].
 	^self superclass ifNotNil: [self superclass whichSuperclassSatisfies: aBlock]
 ]
@@ -3173,7 +3173,7 @@ Behavior>>withAllSuperclasses [
 	#category : #enumerating,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Behavior>>withAllSuperclassesDo: aBlock  [
+Behavior>>withAllSuperclassesDo: aBlock [
 	"Evaluate the argument, aBlock, for each of the receiver's superclasses."
 	aBlock value: self.
 	self superclass == nil

@@ -241,7 +241,7 @@ ClassOrganization>>commentStamp: anObject [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassOrganization>>extensionProtocols  [
+ClassOrganization>>extensionProtocols [
 	^ self protocolOrganizer extensionProtocols.
 ]
 
@@ -266,7 +266,7 @@ ClassOrganization>>hasSubject [
 	#category : #initialization,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassOrganization>>initialize  [
+ClassOrganization>>initialize [
 	super initialize.
 	protocolOrganizer := ProtocolOrganizer new.
 ]
@@ -294,7 +294,7 @@ ClassOrganization>>isEmptyCategoryNamed: categoryName [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassOrganization>>listAtCategoryNamed: aName		 [
+ClassOrganization>>listAtCategoryNamed: aName [
 	^ (self protocolOrganizer methodsInProtocolNamed: aName) asArray
 ]
 
@@ -302,7 +302,7 @@ ClassOrganization>>listAtCategoryNamed: aName		 [
 	#category : #'backward compatibility',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassOrganization>>listAtCategoryNumber: aSmallInteger  [
+ClassOrganization>>listAtCategoryNumber: aSmallInteger [
 	
 	^ (protocolOrganizer allProtocols at: aSmallInteger ifAbsent: [ ^ {} ]) methods asArray
 ]
@@ -404,7 +404,7 @@ ClassOrganization>>ownCategories [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassOrganization>>protocolNamed: aString  [
+ClassOrganization>>protocolNamed: aString [
 	^ self protocolOrganizer 
 		protocolNamed: aString 
 		ifAbsent: [ nil ] 
@@ -423,7 +423,7 @@ ClassOrganization>>protocolOrganizer [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-ClassOrganization>>protocols  [
+ClassOrganization>>protocols [
 	^ self protocolOrganizer protocols.
 ]
 

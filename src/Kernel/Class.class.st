@@ -30,7 +30,7 @@ Class {
 	#category : #fileIn/Out,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class class>>allSuperclassesFor: aClass cache: cache 	 [
+Class class>>allSuperclassesFor: aClass cache: cache [
 	^ cache at: aClass ifAbsentPut: [aClass allSuperclasses asArray]
 ]
 
@@ -38,7 +38,7 @@ Class class>>allSuperclassesFor: aClass cache: cache 	 [
 	#category : #fileIn/Out,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class class>>doesNotIncludeInstanceOrSuperclassesFor: aClass in: unprocessedClasses cache: cache  [
+Class class>>doesNotIncludeInstanceOrSuperclassesFor: aClass in: unprocessedClasses cache: cache [
 	| soleInstance |
 	soleInstance := aClass soleInstance.
 	^ (unprocessedClasses includes: soleInstance) not and: [
@@ -49,7 +49,7 @@ Class class>>doesNotIncludeInstanceOrSuperclassesFor: aClass in: unprocessedClas
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class class>>hasNoDependenciesFor: aClass in: unprocessedClasses cache: cache  [
+Class class>>hasNoDependenciesFor: aClass in: unprocessedClasses cache: cache [
 	^ (self hasNoSuperclassesOf: aClass in: unprocessedClasses cache: cache) and: [
 		aClass isMeta not or: [
 			self hasNoDependenciesForMetaclass: aClass in: unprocessedClasses cache: cache]] 
@@ -59,7 +59,7 @@ Class class>>hasNoDependenciesFor: aClass in: unprocessedClasses cache: cache  [
 	#category : #fileIn/Out,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class class>>hasNoDependenciesForMetaclass: aClass in: unprocessedClasses cache: cache  [
+Class class>>hasNoDependenciesForMetaclass: aClass in: unprocessedClasses cache: cache [
 	| soleInstance |
 	soleInstance := aClass soleInstance.
 	^ (unprocessedClasses includes: soleInstance) not and: [
@@ -70,7 +70,7 @@ Class class>>hasNoDependenciesForMetaclass: aClass in: unprocessedClasses cache:
 	#category : #fileIn/Out,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class class>>hasNoSuperclassesOf: aClass in: unprocessedClasses cache: cache  [
+Class class>>hasNoSuperclassesOf: aClass in: unprocessedClasses cache: cache [
 	^ (unprocessedClasses includesAnyOf: (self allSuperclassesFor: aClass cache: cache)) not
 	
 ]
@@ -115,7 +115,7 @@ Class class>>superclassOrder: classes [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class class>>template: aSystemCategoryName  [
+Class class>>template: aSystemCategoryName [
 	"Answer an expression that can be edited and evaluated in order to define a new class."
 
 	^ self templateForSubclassOf: Object name category: aSystemCategoryName 
@@ -125,7 +125,7 @@ Class class>>template: aSystemCategoryName  [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class class>>templateForSubclassOf: priorClassName category: systemCategoryName  [
+Class class>>templateForSubclassOf: priorClassName category: systemCategoryName [
 	"Answer an expression that can be edited and evaluated in order to define a new class, given that the class previously looked at was as given"
 
 	^priorClassName asString, ' subclass: #NameOfSubclass
@@ -163,7 +163,7 @@ Class>>addClassSlot: aSlot [
 	#category : #'class variables',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class>>addClassVarNamed: aString  [
+Class>>addClassVarNamed: aString [
 	"Add the argument, aString, as a class variable of the receiver.
 	Signal an error if the first character of aString is not capitalized,
 	or if it is already a variable named in the class."
@@ -217,7 +217,7 @@ Class>>addInstVarNamed: aString [
 	#category : #'pool variables',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class>>addSharedPool: aSharedPool  [
+Class>>addSharedPool: aSharedPool [
 	"Add the argument, aSharedPool, as one of the receiver's shared pools. 
 	Create an error if the shared pool is already one of the pools.
 	This method will work with shared pools that are plain Dictionaries or thenewer SharedPool subclasses"
@@ -257,7 +257,7 @@ Class>>addSlot: aSlot [
 	#category : #'accessing class hierarchy',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class>>addSubclass: aSubclass  [
+Class>>addSubclass: aSubclass [
 	"Make the argument, aSubclass, be one of the subclasses of the receiver. 
 	Create an error notification if the argument's superclass is not the receiver."
 	aSubclass superclass ~~ self 
@@ -445,7 +445,7 @@ Class>>category [
 	#category : #organization,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class>>category: aString  [
+Class>>category: aString [
 	"Categorize the receiver under the system category, aString, removing it from 
 	any previous categorization."
 
@@ -608,7 +608,7 @@ Class>>compileAllFrom: oldClass [
 	#category : #copying,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class>>copy  [
+Class>>copy [
 	"Answer a copy of the receiver without a list of subclasses"
 	| newClass |
 	newClass := self class copy new
@@ -629,7 +629,7 @@ Class>>copy  [
 	#category : #initialize-release,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class>>declareClassVariables: newVars  [
+Class>>declareClassVariables: newVars [
 	"Declare class variables common to all instances. Answer whether 
 	recompilation is advisable."
 	|  conflicts |
@@ -1235,7 +1235,7 @@ Class>>possibleVariablesFor: misspelled continuedFrom: oldResults [
 	#category : #'subclass creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class>>private_subclass: t instanceVariableNames: f classVariableNames: d poolDictionaries: s category: cat  [
+Class>>private_subclass: t instanceVariableNames: f classVariableNames: d poolDictionaries: s category: cat [
 	"This is the standard initialization message for creating a new class as a 
 	subclass of an existing class (the receiver)."
 	^ self classInstaller make: [ :builder |
@@ -1266,7 +1266,7 @@ Class>>readClassVariableNamed: aString [
 	#category : #compiling,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class>>reformatAll  [
+Class>>reformatAll [
 	"Reformat all methods in this class.
 	Leaves old code accessible to version browsing"
 
@@ -1375,7 +1375,7 @@ Class>>removeFromSystemUnlogged [
 	#category : #'instance variables',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class>>removeInstVarNamed: aString  [
+Class>>removeInstVarNamed: aString [
 	"Remove the argument, aString, as one of the receiver's instance variables."
 
 	^self removeSlot: (self slotNamed: aString)
@@ -1385,7 +1385,7 @@ Class>>removeInstVarNamed: aString  [
 	#category : #'pool variables',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class>>removeSharedPool: aDictionary  [
+Class>>removeSharedPool: aDictionary [
 	"Remove the pool dictionary, aDictionary, as one of the receiver's pool 
 	dictionaries. Create an error notification if the dictionary is not one of 
 	the pools.
@@ -1432,7 +1432,7 @@ Class>>removeSharedPool: aDictionary  [
 	#category : #'accessing class hierarchy',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class>>removeSubclass: aSubclass  [
+Class>>removeSubclass: aSubclass [
 	"If the argument, aSubclass, is one of the receiver's subclasses, remove it."
 
 	self subclasses == nil ifFalse:
@@ -1444,7 +1444,7 @@ Class>>removeSubclass: aSubclass  [
 	#category : #'class name',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class>>rename: aString  [
+Class>>rename: aString [
 	"The new name of the receiver is the argument, aString."
 
 	| oldName newName |
@@ -1535,7 +1535,7 @@ Class>>sharedPools: aCollection [
 	#category : #initialize-release,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class>>sharing: poolString  [
+Class>>sharing: poolString [
 	"Set up sharedPools. Answer whether recompilation is advisable."
 	| oldPools |
 	oldPools := self sharedPools.
@@ -1699,7 +1699,7 @@ Class>>subclass: aSubclassSymbol slots: slotDefinition classVariables: classVarD
 	#category : #'subclass creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class>>subclass: t uses: aTraitComposition  [
+Class>>subclass: t uses: aTraitComposition [
 	| cls |
 	cls := self
 				subclass: t
@@ -1715,7 +1715,7 @@ Class>>subclass: t uses: aTraitComposition  [
 	#category : #'subclass creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class>>subclass: aTraitName uses: aTraitCompositionOrArray instanceVariableNames: instVarNames classVariableNames: classVarNames category: cat  [
+Class>>subclass: aTraitName uses: aTraitCompositionOrArray instanceVariableNames: instVarNames classVariableNames: classVarNames category: cat [
 
 	^ self
 		subclass: aTraitName
@@ -1859,7 +1859,7 @@ Class>>subclass: aSubclassSymbol uses: aTraitCompositionOrArray slots: slotDefin
 	#category : #'subclass creation - private',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class>>subclass: aName uses: aTraitComposition with: aBlock  [
+Class>>subclass: aName uses: aTraitComposition with: aBlock [
 	"Define (or redefine) a subclass by evaluating a block closure. 
 
 	Note (MartinDias): 
@@ -1918,7 +1918,7 @@ Class>>subclasses: aCollection [
 	#category : #'accessing class hierarchy',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Class>>subclassesDo: aBlock  [
+Class>>subclassesDo: aBlock [
 	"Evaluate the argument, aBlock, for each of the receiver's immediate subclasses."
 	
 	self subclasses do: aBlock

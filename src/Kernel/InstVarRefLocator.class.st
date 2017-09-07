@@ -19,7 +19,7 @@ Class {
 	#category : #initialize-release,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-InstVarRefLocator>>interpretNextInstructionUsing: aScanner  [
+InstVarRefLocator>>interpretNextInstructionUsing: aScanner [
 	
 	bingo := false.
 	aScanner interpretNextInstructionFor: self.
@@ -30,7 +30,7 @@ InstVarRefLocator>>interpretNextInstructionUsing: aScanner  [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-InstVarRefLocator>>popIntoReceiverVariable: offset  [
+InstVarRefLocator>>popIntoReceiverVariable: offset [
 
 	bingo := true
 ]
@@ -48,7 +48,7 @@ InstVarRefLocator>>pushReceiverVariable: offset [
 	#category : #'instruction decoding',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-InstVarRefLocator>>storeIntoReceiverVariable: offset  [
+InstVarRefLocator>>storeIntoReceiverVariable: offset [
 
 	bingo := true
 ]

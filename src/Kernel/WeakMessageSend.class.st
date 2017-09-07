@@ -410,7 +410,7 @@ WeakMessageSend>>value: anObject [
 	#category : #evaluating,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-WeakMessageSend>>value: anObject1 value: anObject2  [
+WeakMessageSend>>value: anObject1 value: anObject2 [
 
 	| strongReceiver |
 	

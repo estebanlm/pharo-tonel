@@ -36,7 +36,7 @@ Metaclass>>acceptsLoggingOfCompilation [
 	#category : #'instance variables',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Metaclass>>addInstVarNamed: aString  [
+Metaclass>>addInstVarNamed: aString [
 	"Add the argument, aString, as one of the receiver's instance variables."
 
 	| fullString |
@@ -80,7 +80,7 @@ Metaclass>>addSubclass: aClass [
 	#category : #initialize-release,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Metaclass>>adoptInstance: oldInstance from: oldMetaClass  [
+Metaclass>>adoptInstance: oldInstance from: oldMetaClass [
 	"Recreate any existing instances of the argument, oldClass, as instances of 
 	the receiver, which is a newly changed class. Permute variables as 
 	necessary."
@@ -310,7 +310,7 @@ Metaclass>>initializeFrom: anotherClassTrait [
 	#category : #initialize-release,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Metaclass>>instanceVariableNames: instVarString  [
+Metaclass>>instanceVariableNames: instVarString [
 	"Declare additional named variables for my instance."
 	| theClass |
 	theClass := self theNonMetaClass.
@@ -506,7 +506,7 @@ Metaclass>>postCopy [
 	#category : #'instance variables',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Metaclass>>removeInstVarNamed: aString  [
+Metaclass>>removeInstVarNamed: aString [
 	"Remove the argument, aString, as one of the receiver's instance variables."
 
 	| newArray newString |
@@ -538,7 +538,7 @@ Metaclass>>sharedPools [
 	#category : #initialize-release,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Metaclass>>slots: slotsDefinition  [
+Metaclass>>slots: slotsDefinition [
 	"Declare additional named variables for my instance."
 	| theClass |
 	theClass := self theNonMetaClass.
@@ -639,7 +639,7 @@ Metaclass>>uses: aTraitCompositionOrArray [
 	#category : #initialize-release,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Metaclass>>uses: aTraitCompositionOrArray instanceVariableNames: instVarString  [
+Metaclass>>uses: aTraitCompositionOrArray instanceVariableNames: instVarString [
 	| newComposition newMetaClass copyOfOldMetaClass |
 	
 	copyOfOldMetaClass := self copy.
@@ -657,7 +657,7 @@ Metaclass>>uses: aTraitCompositionOrArray instanceVariableNames: instVarString  
 	#category : #initialize-release,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Metaclass>>uses: aTraitCompositionOrArray slots: slotArray  [
+Metaclass>>uses: aTraitCompositionOrArray slots: slotArray [
 	| newComposition newMetaClass copyOfOldMetaClass |
 	
 	copyOfOldMetaClass := self copy.

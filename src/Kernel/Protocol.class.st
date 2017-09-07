@@ -34,7 +34,7 @@ Protocol class>>defaultName [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Protocol class>>empty  [
+Protocol class>>empty [
 	 ^ self name: #''
 ]
 
@@ -53,7 +53,7 @@ Protocol class>>name: nm [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Protocol class>>name: nm methods: methods  [
+Protocol class>>name: nm methods: methods [
 
 	^ self new
 		methods: methods;
@@ -145,7 +145,7 @@ Protocol>>isEmpty [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Protocol>>isExtensionProtocol  [
+Protocol>>isExtensionProtocol [
 	^ self name first = $*.
 ]
 

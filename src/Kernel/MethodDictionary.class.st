@@ -119,7 +119,7 @@ MethodDictionary>>associationAt: key ifAbsent: aBlock [
 	#category : #enumeration,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-MethodDictionary>>associationsDo: aBlock  [
+MethodDictionary>>associationsDo: aBlock [
 
 	tally = 0 ifTrue: [^ self].
 	1 to: self basicSize do:
@@ -217,7 +217,7 @@ MethodDictionary>>fixCollisionsFrom: start [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-MethodDictionary>>grow  [
+MethodDictionary>>grow [
 	| newSelf |
 	newSelf := self species newForCapacity: self basicSize * 2.
 	1 to: self basicSize do:
@@ -278,7 +278,7 @@ MethodDictionary>>keyAtValue: value ifAbsent: exceptionBlock [
 	#category : #enumeration,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-MethodDictionary>>keysAndValuesDo: aBlock  [
+MethodDictionary>>keysAndValuesDo: aBlock [
 	"Enumerate the receiver with all the keys and values passed to the block"
 	tally = 0 ifTrue: [^ self].
 	1 to: self basicSize do:
@@ -291,7 +291,7 @@ MethodDictionary>>keysAndValuesDo: aBlock  [
 	#category : #enumeration,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-MethodDictionary>>keysDo: aBlock  [
+MethodDictionary>>keysDo: aBlock [
 	tally = 0 ifTrue: [^ self].
 	1 to: self basicSize do:
 		[:i | (self basicAt: i) ifNotNil: [ :key | aBlock value: key]]
@@ -309,7 +309,7 @@ MethodDictionary>>postCopy [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-MethodDictionary>>rehash  [
+MethodDictionary>>rehash [
 
 	| newInstance |
 	newInstance := self species newForCapacity: self basicSize.
@@ -358,7 +358,7 @@ MethodDictionary>>removeDangerouslyKey: key ifAbsent: aBlock [
 	#category : #removing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-MethodDictionary>>removeKey: key ifAbsent: errorBlock  [
+MethodDictionary>>removeKey: key ifAbsent: errorBlock [
 	"The interpreter might be using this MethodDictionary while
 	this method is running! Therefore we perform the removal
 	in a copy, and then atomically copy that copy"
@@ -412,7 +412,7 @@ MethodDictionary>>swap: oneIndex with: otherIndex [
 	#category : #enumeration,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-MethodDictionary>>valuesDo: aBlock  [
+MethodDictionary>>valuesDo: aBlock [
 	tally = 0 ifTrue: [^ self].
 	1 to: self basicSize do:
 		[:i | (array at: i) ifNotNil: [ :value | aBlock value: value]]

@@ -275,7 +275,7 @@ Object>>-> anObject [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>= anObject  [
+Object>>= anObject [
 	"Answer whether the receiver and the argument represent the same 
 	object. If = is redefined in any subclass, consider also redefining the 
 	message hash."
@@ -294,11 +294,12 @@ Object>>actAsExecutor [
 
 {
 	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
+	#timestamp : 'EstebanLorenzano 9/7/2017 12:43'
 }
-Object>>adaptToFloat: rcvr andCompare: selector  [
+Object>>adaptToFloat: rcvr andCompare: selector [
 	"If I am involved in comparison with a Float.
 	Default behaviour is to process comparison as any other selectors."
+	
 	^ self adaptToFloat: rcvr andSend: selector
 ]
 
@@ -316,7 +317,7 @@ Object>>adaptToFloat: rcvr andSend: selector [
 	#category : #converting,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>adaptToFraction: rcvr andCompare: selector  [
+Object>>adaptToFraction: rcvr andCompare: selector [
 	"If I am involved in comparison with a Fraction.
 	Default behaviour is to process comparison as any other selectors."
 	^ self adaptToFraction: rcvr andSend: selector
@@ -336,7 +337,7 @@ Object>>adaptToFraction: rcvr andSend: selector [
 	#category : #converting,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>adaptToInteger: rcvr andCompare: selector  [
+Object>>adaptToInteger: rcvr andCompare: selector [
 	"If I am involved in comparison with an Integer.
 	Default behaviour is to process comparison as any other selectors."
 	^ self adaptToInteger: rcvr andSend: selector
@@ -461,7 +462,7 @@ Object>>assert: aBlock descriptionBlock: descriptionBlock [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>at: index  [
+Object>>at: index [
 	"Primitive. Assumes receiver is indexable. Answer the value of an 
 	indexable element in the receiver. Fail if the argument index is not an 
 	Integer or is out of bounds. Essential. See Object documentation 
@@ -482,7 +483,7 @@ Object>>at: index  [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>at: index put: value  [
+Object>>at: index put: value [
 	"Primitive. Assumes receiver is indexable. Store the argument value in 
 	the indexable element of the receiver indicated by index. Fail if the 
 	index is not an Integer or is out of bounds. Or fail if the value is not of 
@@ -505,7 +506,7 @@ Object>>at: index put: value  [
 	#category : #'write barrier',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>attemptToAssign: value withIndex: index  [
+Object>>attemptToAssign: value withIndex: index [
 	"Called by the VM when assigning an instance variable of an immutable object.
 	Upon return, executing will resume *after* the inst var assignment. If the inst var mutation has to be 
 	performed, do it manually here in the call back with instVarAt:put:.
@@ -521,7 +522,7 @@ Object>>attemptToAssign: value withIndex: index  [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>basicAt: index  [
+Object>>basicAt: index [
 	"Primitive. Assumes receiver is indexable. Answer the value of an 
 	indexable element in the receiver. Fail if the argument index is not an 
 	Integer or is out of bounds. Essential. Do not override in a subclass. See 
@@ -538,7 +539,7 @@ Object>>basicAt: index  [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>basicAt: index put: value  [
+Object>>basicAt: index put: value [
 	"Primitive. Assumes receiver is indexable. Store the second argument 
 	value in the indexable element of the receiver indicated by index. Fail 
 	if the index is not an Integer or is out of bounds. Or fail if the value is 
@@ -602,7 +603,7 @@ Object>>beWritableObject [
 	#category : #'reflective operations',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>becomeForward: otherObject  [
+Object>>becomeForward: otherObject [
 	"Primitive. All variables in the entire system that used to point
 	to the receiver now point to the argument.
 	Fails if either argument is a SmallInteger."
@@ -726,7 +727,7 @@ Object>>changed [
 	#category : #updating,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>changed: aParameter  [
+Object>>changed: aParameter [
 	"Receiver changed. The change is denoted by the argument aParameter. 
 	Usually the argument is a Symbol that is part of the dependent's change 
 	protocol. Inform all of the dependents."
@@ -989,7 +990,7 @@ Object>>displayString [
 	#category : #'reflective operations',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>doesNotUnderstand: aMessage  [
+Object>>doesNotUnderstand: aMessage [
 	 "Handle the fact that there was an attempt to send the given message to the receiver but the receiver does not understand this message (typically sent from the machine when a message is sent to the receiver and no method is defined for that selector)."
 	"Testing: (3 activeProcess)"
 		
@@ -1031,7 +1032,7 @@ Object>>error [
 	#category : #'error handling',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>error: aString  [
+Object>>error: aString [
 	"Throw a generic Error exception."
 
 	^Error new signal: aString
@@ -1071,7 +1072,7 @@ Object>>errorNotIndexable [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>errorSubscriptBounds: index  [
+Object>>errorSubscriptBounds: index [
 	"Create an error notification that an improper integer was used as an index."
 
 	SubscriptOutOfBounds signalFor: index
@@ -1158,7 +1159,7 @@ Object>>halt [
 	#category : #halting,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>halt: aString  [
+Object>>halt: aString [
 	<debuggerCompleteToSender>
 	Halt now: aString
 ]
@@ -1184,7 +1185,7 @@ Object>>haltIfNil [
 	#category : #halting,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>haltOnCount: anInteger  [
+Object>>haltOnCount: anInteger [
 	<debuggerCompleteToSender>
 	Halt onCount: anInteger.
 ]
@@ -1486,7 +1487,7 @@ Object>>isInterval [
 	#category : #'class membership',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>isKindOf: aClass  [
+Object>>isKindOf: aClass [
 	"Answer whether the class, aClass, is a superclass or class of the receiver."
 
 	self class == aClass
@@ -1509,7 +1510,7 @@ Object>>isLiteral [
 	#category : #'class membership',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>isMemberOf: aClass  [
+Object>>isMemberOf: aClass [
 	"Answer whether the receiver is an instance of the class, aClass."
 
 	^self class == aClass
@@ -1963,7 +1964,7 @@ Object>>notYetImplemented [
 	#category : #'error handling',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>notify: aString  [
+Object>>notify: aString [
 	"Create and schedule a Notifier with the argument as the message in 
 	order to request confirmation before a process can proceed."
 
@@ -1997,7 +1998,7 @@ Object>>okToChange [
 	#category : #'message performing',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>perform: aSymbol  [
+Object>>perform: aSymbol [
 	"Send the unary selector, aSymbol, to the receiver.
 	Fail if the number of arguments expected by the selector is not zero.
 	Primitive. Optional. See Object documentation whatIsAPrimitive."
@@ -2020,7 +2021,7 @@ Object>>perform: selector orSendTo: otherTarget [
 	#category : #'message performing',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>perform: aSymbol with: anObject  [
+Object>>perform: aSymbol with: anObject [
 	"Send the selector, aSymbol, to the receiver with anObject as its argument.
 	Fail if the number of arguments expected by the selector is not one.
 	Primitive. Optional. See Object documentation whatIsAPrimitive."
@@ -2034,7 +2035,7 @@ Object>>perform: aSymbol with: anObject  [
 	#category : #'message performing',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>perform: aSymbol with: firstObject with: secondObject  [
+Object>>perform: aSymbol with: firstObject with: secondObject [
 	"Send the selector, aSymbol, to the receiver with the given arguments.
 	Fail if the number of arguments expected by the selector is not two.
 	Primitive. Optional. See Object documentation whatIsAPrimitive."
@@ -2048,7 +2049,7 @@ Object>>perform: aSymbol with: firstObject with: secondObject  [
 	#category : #'message performing',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>perform: aSymbol with: firstObject with: secondObject with: thirdObject  [
+Object>>perform: aSymbol with: firstObject with: secondObject with: thirdObject [
 	"Send the selector, aSymbol, to the receiver with the given arguments.
 	Fail if the number of arguments expected by the selector is not three.
 	Primitive. Optional. See Object documentation whatIsAPrimitive."
@@ -2078,7 +2079,7 @@ Object>>perform: aSymbol with: firstObject with: secondObject with: thirdObject 
 	#category : #'message performing',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>perform: selector withArguments: argArray  [
+Object>>perform: selector withArguments: argArray [
 	"Send the selector, aSymbol, to the receiver with arguments in argArray.
 	Fail if the number of arguments expected by the selector 
 	does not match the size of argArray.
@@ -2264,7 +2265,7 @@ Object>>putOn: aStream [
 	#category : #reading,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>readFromString: aString  [
+Object>>readFromString: aString [
 	"Create an object based on the contents of aString."
 	^ self readFrom: aString readStream
 ]
@@ -2322,7 +2323,7 @@ Object>>requirement [
 	#category : #'class membership',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>respondsTo: aSymbol  [
+Object>>respondsTo: aSymbol [
 	"Answer whether the method dictionary of the receiver's class contains 
 	aSymbol as a message selector."
 
@@ -2555,7 +2556,7 @@ Object>>storeAt: offset inTempFrame: aContext [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>storeOn: aStream  [
+Object>>storeOn: aStream [
 	"Append to the argument aStream a sequence of characters that is an 
 	expression whose evaluation creates an object similar to the receiver."
 
@@ -2681,7 +2682,7 @@ Object>>unpin [
 	#category : #updating,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>update: aParameter  [
+Object>>update: aParameter [
 	"Receive a change notice from an object of whom the receiver is a 
 	dependent. The default behavior is to do nothing; a subclass might want 
 	to change itself in some way."
@@ -2892,7 +2893,7 @@ Object>>yourself [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Object>>~= anObject  [
+Object>>~= anObject [
 	"Answer whether the receiver and the argument do not represent the 
 	same object."
 

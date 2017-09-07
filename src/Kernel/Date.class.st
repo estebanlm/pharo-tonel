@@ -25,7 +25,7 @@ Date class>>dayNames [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Date class>>dayOfWeek: dayName  [
+Date class>>dayOfWeek: dayName [
 
 	^ Week indexOfDay: dayName
 ]
@@ -43,7 +43,7 @@ Date class>>daysInMonth [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Date class>>daysInMonth: monthName forYear: yearInteger  [
+Date class>>daysInMonth: monthName forYear: yearInteger [
 
 	^ Month daysInMonth: monthName forYear: yearInteger.
 
@@ -53,7 +53,7 @@ Date class>>daysInMonth: monthName forYear: yearInteger  [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Date class>>daysInYear: yearInteger  [
+Date class>>daysInYear: yearInteger [
 
 	^ Year daysInYear: yearInteger.
 ]
@@ -106,7 +106,7 @@ Date class>>firstWeekdayOfMonth: month year: year [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Date class>>fromDays: dayCount  [
+Date class>>fromDays: dayCount [
 	"Days since 1 January 1901"
 
 	^ self julianDayNumber: SqueakEpoch + dayCount
@@ -136,7 +136,7 @@ Date class>>fromString: aString [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Date class>>indexOfMonth: aMonthName  [
+Date class>>indexOfMonth: aMonthName [
 
 	^ Month indexOfMonth: aMonthName.
 
@@ -173,7 +173,7 @@ Date class>>monthNames [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Date class>>nameOfDay: dayIndex  [
+Date class>>nameOfDay: dayIndex [
 
 	^ Week nameOfDay: dayIndex 
 ]
@@ -182,7 +182,7 @@ Date class>>nameOfDay: dayIndex  [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Date class>>nameOfMonth: anIndex  [
+Date class>>nameOfMonth: anIndex [
 
 	^ Month nameOfMonth: anIndex.
 
@@ -192,7 +192,7 @@ Date class>>nameOfMonth: anIndex  [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Date class>>newDay: day month: month year: year  [
+Date class>>newDay: day month: month year: year [
 
 	^ self year: year month: month day: day
 ]
@@ -234,7 +234,7 @@ Date class>>orthodoxEasterDateFor: year [
 	#category : #importing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Date class>>readFrom: aStream  [
+Date class>>readFrom: aStream [
 	"Read a Date from the stream in any of the forms:  
 		<day> <month> <year>		(15 April 1982; 15-APR-82; 15.4.82; 15APR82)  
 		<month> <day> <year>		(April 15, 1982; 4/15/82)
@@ -389,7 +389,7 @@ Date class>>yesterday [
 	#category : #adding,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Date>>addDays: dayCount  [
+Date>>addDays: dayCount [
 
 	^ (self asDateAndTime + (dayCount days)) asDate
 ]
@@ -398,7 +398,7 @@ Date>>addDays: dayCount  [
 	#category : #utils,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Date>>addMonths: monthCount  [
+Date>>addMonths: monthCount [
 	|year month maxDaysInMonth day |
 	year := self year + (monthCount + self monthIndex - 1 // 12).
 	month := self monthIndex + monthCount - 1 \\ 12 + 1.
@@ -420,7 +420,7 @@ Date>>asDate [
 	#category : #enumerating,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Date>>dayMonthYearDo: aBlock  [
+Date>>dayMonthYearDo: aBlock [
 	"Supply integers for day, month and year to aBlock and return the result"
 
 	^ start dayMonthYearDo: aBlock
@@ -489,7 +489,7 @@ Date>>onPreviousMonth [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Date>>previous: dayName  [
+Date>>previous: dayName [
 	"Answer the previous date whose weekday name is dayName."
 
 	| days |
@@ -503,7 +503,7 @@ Date>>previous: dayName  [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Date>>printFormat: formatArray  [
+Date>>printFormat: formatArray [
 	"Answer a String describing the receiver using the argument formatArray."
 
 	^ String new: 16 streamContents: [ :aStream |
@@ -523,7 +523,7 @@ Date>>printOn: aStream [
 	#category : #printing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Date>>printOn: aStream format: formatArray  [
+Date>>printOn: aStream format: formatArray [
 	"Print a description of the receiver on aStream using the format 
 	denoted the argument, formatArray: 
 	
@@ -586,7 +586,7 @@ Date>>storeOn: aStream [
 	#category : #adding,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Date>>subtractDate: aDate  [
+Date>>subtractDate: aDate [
 	"Answer the number of days between self and aDate"
 
 	^ (self start - aDate asDateAndTime) days
@@ -596,7 +596,7 @@ Date>>subtractDate: aDate  [
 	#category : #adding,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Date>>subtractDays: dayCount  [
+Date>>subtractDays: dayCount [
 
 	^ (self asDateAndTime - (dayCount days)) asDate
 ]

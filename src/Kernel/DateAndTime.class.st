@@ -45,7 +45,7 @@ Class {
 	#category : #'clock provider',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-DateAndTime class>>clock  [
+DateAndTime class>>clock [
 	 "the provider of real time seconds/milliseconds."
 
 	^ ClockProvider 
@@ -162,7 +162,7 @@ DateAndTime class>>fromSeconds: utcSecondsSinceEpoch offset: aUTCOffset [
 	#category : #input,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-DateAndTime class>>fromString: aString  [
+DateAndTime class>>fromString: aString [
 	^ self readFrom: aString readStream
 ]
 
@@ -346,7 +346,7 @@ DateAndTime class>>noon [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-DateAndTime class>>now  [
+DateAndTime class>>now [
 	"Answer the current date and time expressed in local time.
 	[ 10000 timesRepeat: [ self now. ] ] timeToRun / 10000.0 . "
 
@@ -568,7 +568,7 @@ DateAndTime class>>year: year day: dayOfYear hour: hour minute: minute second: s
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-DateAndTime class>>year: year day: dayOfYear hour: hour minute: minute second: second offset: offset  [
+DateAndTime class>>year: year day: dayOfYear hour: hour minute: minute second: second offset: offset [
 	"Return a DataAndTime"
 
 	| y d |
@@ -789,7 +789,7 @@ DateAndTime>>< comparand [
 	#category : #arithmetic,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-DateAndTime>>= other  [
+DateAndTime>>= other [
 	self == other ifTrue: [ ^ true ].
 	(self species = other species) ifFalse: [ ^ false ].
 	^ self hasEqualTicks: other

@@ -28,7 +28,7 @@ Class {
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Magnitude>>< aMagnitude  [
+Magnitude>>< aMagnitude [
 	"Answer whether the receiver is less than the argument."
 
 	^self subclassResponsibility
@@ -38,7 +38,7 @@ Magnitude>>< aMagnitude  [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Magnitude>><= aMagnitude  [
+Magnitude>><= aMagnitude [
 	"Answer whether the receiver is less than or equal to the argument."
 
 	^(self > aMagnitude) not
@@ -48,7 +48,7 @@ Magnitude>><= aMagnitude  [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Magnitude>>= aMagnitude  [
+Magnitude>>= aMagnitude [
 	"Compare the receiver with the argument and answer with true if the 
 	receiver is equal to the argument. Otherwise answer false."
 
@@ -59,7 +59,7 @@ Magnitude>>= aMagnitude  [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Magnitude>>> aMagnitude  [
+Magnitude>>> aMagnitude [
 	"Answer whether the receiver is greater than the argument."
 
 	^aMagnitude < self
@@ -69,7 +69,7 @@ Magnitude>>> aMagnitude  [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Magnitude>>>= aMagnitude  [
+Magnitude>>>= aMagnitude [
 	"Answer whether the receiver is greater than or equal to the argument."
 
 	^aMagnitude <= self
@@ -79,7 +79,7 @@ Magnitude>>>= aMagnitude  [
 	#category : #testing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Magnitude>>between: min and: max  [
+Magnitude>>between: min and: max [
 	"Answer whether the receiver is less than or equal to the argument, max, 
 	and greater than or equal to the argument, min."
 
@@ -114,7 +114,7 @@ Magnitude>>hash [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Magnitude>>max: aMagnitude  [
+Magnitude>>max: aMagnitude [
 	"Answer the receiver or the argument, whichever has the greater 
 	magnitude."
 
@@ -127,7 +127,7 @@ Magnitude>>max: aMagnitude  [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Magnitude>>min: aMagnitude  [
+Magnitude>>min: aMagnitude [
 	"Answer the receiver or the argument, whichever has the lesser 
 	magnitude."
 
@@ -140,7 +140,7 @@ Magnitude>>min: aMagnitude  [
 	#category : #comparing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Magnitude>>min: aMin max: aMax  [
+Magnitude>>min: aMin max: aMax [
 
 	^ (self min: aMin) max: aMax
 ]

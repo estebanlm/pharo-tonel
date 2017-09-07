@@ -59,7 +59,7 @@ Margin class>>fromRectangle: aRectangle [
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Margin class>>left: leftNumber top: topNumber right: rightNumber bottom: bottomNumber  [
+Margin class>>left: leftNumber top: topNumber right: rightNumber bottom: bottomNumber [
 
 	^ self new setTop: topNumber left: leftNumber bottom: bottomNumber right: rightNumber 
 
@@ -69,7 +69,7 @@ Margin class>>left: leftNumber top: topNumber right: rightNumber bottom: bottomN
 	#category : #'instance creation',
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Margin class>>top: topNumber left: leftNumber bottom: bottomNumber right: rightNumber  [
+Margin class>>top: topNumber left: leftNumber bottom: bottomNumber right: rightNumber [
 
 	^ self new setTop: topNumber left: leftNumber bottom: bottomNumber right: rightNumber 
 
@@ -246,7 +246,7 @@ Margin>>right [
 	#category : #private,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Margin>>setTop: topNumber left: leftNumber bottom: bottomNumber right: rightNumber  [
+Margin>>setTop: topNumber left: leftNumber bottom: bottomNumber right: rightNumber [
 
 	top := topNumber.
 	left := leftNumber.
@@ -266,7 +266,7 @@ Margin>>top [
 	#category : #accessing,
 	#timestamp : ' 8/31/2017 07:16:33'
 }
-Margin>>width  [
+Margin>>width [
 
 	^ self right + self left
 ]
